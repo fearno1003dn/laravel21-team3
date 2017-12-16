@@ -16,4 +16,5 @@ Route::get('/', function () {
 });
 Route::get('/index', function () {
    return view('hotel.layouts.app');
+    return view('admins.layouts.index1');
 });
