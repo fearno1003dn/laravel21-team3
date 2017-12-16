@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/index');
+});
+Route::get('/index', function () {
+   return view('hotel.layouts.app');
 });
