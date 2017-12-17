@@ -12,5 +12,13 @@
 */
 
 Route::get('/', function () {
+    return redirect('/index');
+});
+//admin
+Route::get('/admins', function () {
     return view('admins.layouts.index1');
+});
+//hotel
+Route::get('/index', function () {
+   return view('hotel.layouts.app');
 });
