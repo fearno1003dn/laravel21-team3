@@ -22,6 +22,3 @@ Route::get('/admins', function () {
 Route::get('/index', function () {
     return view('index');
 });
-Route::get('/demo', function () {
-   return view('hotel.SeachRoomVip');
-});
