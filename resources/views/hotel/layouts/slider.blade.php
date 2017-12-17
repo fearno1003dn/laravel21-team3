@@ -1,3 +1,4 @@
+{{ csrf_field() }}
 <div class="main_slider_area">
     <div class="main_slider" id="slider_rev">
         <!-- start hotel booking -->
@@ -50,9 +51,6 @@
                         </div>
                     </form>
                     <!-- special offer start -->
-                    <div class="special_offer_main">
-                        <img src="{{asset('hotel-booking/img/special-offer-main.png')}}" alt="">
-                    </div>
                     <!-- end offer start -->
                 </div>
             </div>

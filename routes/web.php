@@ -22,3 +22,11 @@ Route::get('/admins', function () {
 Route::get('/index', function () {
     return view('index');
 });
+Route::group(['prefix' => 'seachroom'], function () {
+    Route::get('/roomTypeVip', ['as' => 'room.TypeVip', 'uses' => 'RoomController@allRoomVip']);
+    Route::get('/roomTypeDeluxe', ['as' => 'room.TypeDeluxe', 'uses' => 'RoomController@allRoomDeluxe']);
+    Route::get('/roomTypeFamily', ['as' => 'room.TypeFamily', 'uses' => 'RoomController@allRoomFamily']);
+    Route::get('/detailRoom', ['as' => 'room.detailRoom', 'uses' => 'RoomController@detailRoom']);
+
+});
+
