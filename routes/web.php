@@ -20,5 +20,5 @@ Route::get('/admins', function () {
 });
 //hotel
 Route::get('/index', function () {
-   return view('hotel.layouts.app');
+    return view('index');
 });
