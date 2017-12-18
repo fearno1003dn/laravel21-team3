@@ -13,13 +13,33 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 floatright">
                     <div class="right_header_top clearfix floatright">
                         <ul class="nav navbar-nav">
-                            <li class="">
-                                <a class="border-right-dark-4" href="#">login</a></li>
-                            <li role="presentation" class="dropdown">
-                                <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                                    register
-                                </a>
-                            </li>
+                            @if(Auth::guest())
+                                <li class="">
+                                    <a class="border-right-dark-4" href="{{url('/login')}}">login</a>
+                                </li>
+                                <li role="presentation" class="dropdown">
+                                    <a id="drop1" href="{{url('/register')}}" >Register</a>
+                                </li>
+                            @else
+                                <li>    
+                                    <a class="border-right-dark-4" href="">{{Auth::user()->first_name}} {{ Auth::user()->last_name}}</a>
+                                </li>    
+                                <li>
+                                    <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    <!--<a class="border-right-dark-4" href="{!!url('/review')!!}">PAYMENT</a>
+                                        <form id="logout-form" action="{{   route('logout') }}" method="POST" style="display: none;">
+                                             {{ csrf_field() }}
+                                        </form>-->
+                                </li>        
+                                @endif
+                            
                         </ul>
                     </div>
                 </div>
@@ -52,7 +72,7 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li><a href="/">Home</a></li>
+                                <li><a href="{{url('/index')}}">Home</a></li>
                                 <li><a href="accomodation.html">Accomodation</a></li>
                                 <li><a href="gallery.html">Gallery</a></li>
                                 <li role="presentation" class="dropdown">
@@ -87,5 +107,6 @@
             <!-- end mainmenu and logo -->
         </div>
     </div>
+    @yield('content')
     <!-- end main header -->
 </header>

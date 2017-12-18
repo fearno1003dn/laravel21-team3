@@ -22,3 +22,11 @@ Route::get('/admins', function () {
 Route::get('/index', function () {
    return view('hotel.layouts.app');
 });
+
+Route::get('user/profile', function() {
+
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
