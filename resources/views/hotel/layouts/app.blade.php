@@ -57,25 +57,23 @@
     </div>
 </div>
 <!-- end preloader -->
-<!-- start header -->
-@include('hotel.layouts.header');
-<!-- end header -->
-<!-- start main slider -->
-@include('hotel.layouts.slider');
+
+<!-- PAGE WRAP -->
+<div id="page-wrap">
+
+    <!-- HEADER -->
+    @include('hotel.layouts.header');
+    <!-- END / HEADER -->
+    <!-- start main slider -->
+@yield('slider')
 <!-- end main slider -->
+@yield('content')
+<!-- FOOTER -->
+@include('hotel.layouts.footer')
+<!-- END / FOOTER -->
 
-<!-- start welcome section -->
-@include('hotel.layouts.section');
-<!-- end welcome section -->
-
-<!-- start Hotel Facilities section -->
-@include('hotel.layouts.hotelsection');
-<!-- end Hotel Facilities section -->
-
-<!-- start footer -->
-@include('hotel.layouts.footer');
-<!-- end footer -->
-
+</div>
+<!-- END / PAGE WRAP -->
 
 <!-- jquery library -->
 <script src="{{asset('hotel-booking/js/vendor/jquery-1.11.2.min.js')}}"></script>
