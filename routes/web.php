@@ -14,10 +14,16 @@
 Route::get('/', function () {
     return redirect('/index');
 });
+
 //admin
 Route::get('/admins', function () {
-    return view('admins.layouts.index1');
+	$role = Auth::user()->role;
+        if($role == 1)
+            return view('admins.layouts.index1');
+        else
+            return redirect('/index');  
 });
+
 //hotel
 Route::get('/index', function () {
     return view('index');
