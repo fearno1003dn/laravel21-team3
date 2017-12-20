@@ -17,11 +17,10 @@ Route::get('/', function () {
 
 //admin
 Route::get('/admins', function () {
-	$role = Auth::user()->role;
-        if($role == 1)
-            return view('admins.layouts.index1');
-        else
-            return redirect('/index');  
+    if(Auth::check() && Auth::user()->role == 1)
+        return view('admins.layouts.index1');
+    else
+        return redirect('/index');  
 });
 
 //hotel
@@ -29,9 +28,6 @@ Route::get('/index', function () {
     return view('index');
 });
 
-Route::get('user/profile', function() {
-
-});
 
 Auth::routes();
 
