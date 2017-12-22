@@ -1,4 +1,10 @@
 <?php
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use App\Room;
+use App\RoomType;
+use App\Booking;
+use App\BookRoom;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +26,12 @@ Route::get('/admins', function () {
 });
 //hotel
 Route::get('/index', function () {
-    return view('index');
+    $roomtypes = RoomType::all();
+    return view('index', compact('roomtypes'));
 });
 Route::group(['prefix' => 'seachroom'], function () {
-    Route::get('/roomTypeVip', ['as' => 'room.TypeVip', 'uses' => 'RoomController@allRoomVip']);
-    Route::get('/roomTypeDeluxe', ['as' => 'room.TypeDeluxe', 'uses' => 'RoomController@allRoomDeluxe']);
-    Route::get('/roomTypeFamily', ['as' => 'room.TypeFamily', 'uses' => 'RoomController@allRoomFamily']);
-    Route::get('/detailRoom', ['as' => 'room.detailRoom', 'uses' => 'RoomController@detailRoom']);
+    Route::get('/roomType/{name}', ['as' => 'room.TypeVip', 'uses' => 'RoomController@allRoomType']);
+    Route::get('/detailRoom/{id}', ['as' => 'room.detailRoom', 'uses' => 'RoomController@detailRoom']);
+    Route::get('/seach', ['as' => 'room.seach', 'uses' => 'RoomController@seachRoom']);
 });
 

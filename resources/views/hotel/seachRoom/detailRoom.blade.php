@@ -1,6 +1,7 @@
 @extends('hotel.layouts.app')
 @section('slider')
-    @include('hotel.layouts.slider')<br><br>
+    @include('hotel.layouts.availabilitySeach')
+    <br>
 @endsection
 @section('content')
     <div class="room_detail_main margin-bottom-55">
@@ -9,7 +10,7 @@
                 <div class="col-lg-9 col-md-9">
                     <div class="deluxe_room_detail">
                         <div class="section_title content-left margin-bottom-5">
-                            <h5>Deluxe Room Detail <span class="price floatright">$ 130</span> <br> <span class="day floatright">/ DAY</span></h5>
+                            <h5>{{$room->roomTypes->name}} Room Detail <span class="price floatright">$ {{$room->price}}</span> <br> <span class="day floatright">/ DAY</span></h5>
                         </div>
                         <div class="section_content">
                             <div class="showcase">
