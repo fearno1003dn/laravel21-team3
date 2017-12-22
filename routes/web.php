@@ -20,18 +20,28 @@ use App\BookRoom;
 Route::get('/', function () {
     return redirect('/index');
 });
+
 //admin
 Route::get('/admins', function () {
-    return view('admins.layouts.index1');
+    if(Auth::check() && Auth::user()->role == 1)
+        return view('admins.layouts.index1');
+    else
+        return redirect('/index');  
 });
+
 //hotel
 Route::get('/index', function () {
     $roomtypes = RoomType::all();
     return view('index', compact('roomtypes'));
 });
+
 Route::group(['prefix' => 'seachroom'], function () {
     Route::get('/roomType/{name}', ['as' => 'room.TypeVip', 'uses' => 'RoomController@allRoomType']);
     Route::get('/detailRoom/{id}', ['as' => 'room.detailRoom', 'uses' => 'RoomController@detailRoom']);
     Route::get('/seach', ['as' => 'room.seach', 'uses' => 'RoomController@seachRoom']);
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
