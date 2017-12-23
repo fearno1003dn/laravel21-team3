@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>Admin Management</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -47,10 +47,9 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>
-                Dashboard
-                <small>Control panel</small>
-            </h1>
+
+            @yield('content_header')
+
             @yield('content')
         </section>
 
@@ -110,5 +109,8 @@
 <script src="{{asset('AdminLTE-2.4.1/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('AdminLTE-2.4.1/dist/js/demo.js')}}"></script>
+
+@yield('script')
+
 </body>
 </html>

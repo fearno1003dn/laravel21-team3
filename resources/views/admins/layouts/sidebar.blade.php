@@ -4,7 +4,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="{{asset('AdminLTE-2.4.1/dist/img/tung_adm.jpg')}}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p>{{Auth::user()->first_name}} {{ Auth::user()->last_name}}</p>
@@ -25,6 +25,26 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
+            <li>
+                <a href="{!!asset('admins/rooms')!!}">
+                    <i class="fa fa-home"></i> <span>ROOMS </span>
+                </a>
+            </li>
+            <li>
+                <a href="{!!url('admins/roomTypes')!!}">
+                    <i class="fa fa-simplybuilt"></i> <span>ROOM TYPES </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{url('admins/services')}}">
+                    <i class="fa fa-shopping-bag"></i> <span>SERVICES</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{url('admins/users')}}">
+                    <i class="fa fa-user"></i> <span>USER MANAGEMENT</span>
+                </a>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->
