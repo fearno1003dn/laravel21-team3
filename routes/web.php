@@ -40,14 +40,17 @@ Route::put('admins/rooms/{room}', 'RoomController@updateRoom');
 
 Route::get('admins/roomTypes','RoomTypeController@listAllRoomType');
 Route::get('admins/roomTypes/create','RoomTypeController@createRoomType');
-Route::get('admins/roomTypes/edit','RoomTypeController@editRoomType');
+Route::get('admins/roomTypes/{roomTypes}/edit','RoomTypeController@editRoomType');
+Route::post('admins/roomTypes', 'RoomTypeController@saveRoomType');
+Route::get('admins/roomTypes/{roomTypes}/delete', 'RoomTypeController@deleteRoomType');
+Route::put('admins/roomTypes/{roomTypes}', 'RoomTypeController@updateRoomType');
 
 Route::get('admins/services','ServiceController@listAllService');
 Route::get('admins/services/create','ServiceController@createService');
 Route::get('admins/services/{service}/edit','ServiceController@editService');
 Route::post('admins/services', 'ServiceController@saveService');
 Route::get('admins/services/{service}/delete', 'ServiceController@deleteService');
-Route::put('admins/services/', 'ServiceController@updateService');
+Route::put('admins/services/{service}', 'ServiceController@updateService');
 Route::get('admins/services/{service}', 'ServiceController@serviceDetail');
 
 Route::get('admins/users','userController@listAllUser');
@@ -70,4 +73,3 @@ Route::group(['prefix' => 'seachroom'], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-

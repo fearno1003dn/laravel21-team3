@@ -43,27 +43,17 @@
 
                                 <td>{!!$roomType->name!!}</td>
                                 <td>{!!$roomType->description!!}</td>
-                                <td><a href="{{url('admins/roomTypes/'.$roomType->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/roomTypes/'.$roomType->id.'/delete')}}"><i class="fa fa-trash"></i>Delete</a></td>
+                                <td><a href="{{url('admins/roomTypes/'.$roomType->id.'/edit')}}" >
+                                  <i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/roomTypes/'.$roomType->id.'/delete')}}">
+                                    <i class="fa fa-trash"></i>Delete</a></td>
                             </tr>
                         @endforeach
                         </tbody>
-
-
-
-                        <tfoot>
-                            <tr>
-
-                              <th>Room Type</th>
-                              <th>Description</th>
-                              <th>Action</th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
-            {!! $roomTypes->links()!!}
         </div>
         <!-- /.col -->
     </div>

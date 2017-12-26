@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Input;
 use App\Service;
 use Illuminate\Http\Request;
 use App\Http\Requests\ServiceRequest;
+use App\Http\Requests\CheckServiceEditRequest;
 use Illuminate\Pagination\Paginator;
 
 class ServiceController extends Controller
@@ -29,18 +30,18 @@ class ServiceController extends Controller
         return view('admins.services.edit',compact('service'));
     }
 
-    public function saveService()
+    public function saveService(CheckServiceEditRequest $request)
     {
-        $inputs = Input::all();
+        $inputs = $request->all();
         $service = Service::create($inputs);
         return redirect('admins/services')->withSuccess('Success');
     }
 
-    public function updateService(Service $service)
+    public function updateService(Service $service, CheckServiceEditRequest $request)
     {
-        $inputs = Input::all();
+        $inputs = $request->all();
         $service->update($inputs);
-        return redirect('/admins/services'.$service->id)->withSuccess('Update service success');
+        return redirect('/admins/services')->withSuccess('Update service success');
     }
 
     public function deleteService(Service $service)

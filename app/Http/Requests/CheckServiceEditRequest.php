@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoomTypeRequest extends FormRequest
+class CheckServiceEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +23,10 @@ class RoomTypeRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|unique:room_types,name|min:3|max:8',
-        ];
+      $services = $this->route('service');
+      return [
+          'name' => 'required|min:3|max:8|unique:services,name,'.$services->id,
+          'price'=> 'required|numeric',
+      ];
     }
 }
-
-
-$roomTypes = $this->route('roomTypes');
-return [
-    'name' => 'required|min:3|max:8|unique:room_types,name,'.$roomTypes->id,
-];

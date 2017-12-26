@@ -52,8 +52,8 @@
                                     {!!$room->status ? '<a>Available</a>' : '<a>Not Available</a>'!!}
                                 </td>
                                 <td>{!!$room->description!!}</td>
-                                <td>{!!$room->room_sizes->size!!}</td>
-                                <td>{!!$room->room_types->name!!}</td>
+                                <td>{!!$room->roomSizes->size!!}</td>
+                                <td>{!!$room->roomTypes->name!!}</td>
                                 <td>
                                   <img src="{!!url('/images/rooms/'.$room->image1)!!}" alt="" style='width: 50px; height: 30px;'>
                                 </td>
@@ -62,22 +62,6 @@
                             </tr>
                         @endforeach
                         </tbody>
-
-
-
-                        <tfoot>
-                            <tr>
-
-                                <th>Room Name</th>
-                                <th>Price</th>
-                                <th>Status</th>
-                                <th>Description</th>
-                                <th>Room Size</th>
-                                <th>Room Type</th>
-                                <th>Image</th>
-                                <th>Action</th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
                 <!-- /.box-body -->
