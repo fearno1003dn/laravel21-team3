@@ -23,6 +23,7 @@ npm-debug.log
 #MyOnlyBug_LongPathName
 /resources/views/partials/1
 /resources/views/partials/emp
+/resources/views/admins/roomTypes/partials
 
 # Laravel 4 specific
 bootstrap/compiled.php

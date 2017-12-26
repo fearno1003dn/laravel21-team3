@@ -8,7 +8,7 @@ class Room extends Model
 {
     protected $fillable = ['name', 'price', 'status', 'description', 'image1', 'image2', 'image3', 'room_type_id','room_size_id'];
     protected $table = 'rooms';
-    
+
     public function room_types()
     {
       return $this->belongsTo('App\RoomType' , 'room_type_id');

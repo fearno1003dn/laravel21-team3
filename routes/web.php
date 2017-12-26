@@ -34,7 +34,8 @@ Route::put('admins/rooms/{room}', 'RoomController@updateRoom');
 
 Route::get('admins/roomTypes','RoomTypeController@listAllRoomType');
 Route::get('admins/roomTypes/create','RoomTypeController@createRoomType');
-Route::get('admins/roomTypes/edit','RoomTypeController@editRoomType');
+Route::get('admins/roomTypes/{roomTypes}/edit','RoomTypeController@editRoomType');
+Route::post('admins/roomTypes', 'RoomTypeController@saveRoomType');
 
 Route::get('admins/services','ServiceController@listAllService');
 Route::get('admins/services/create','ServiceController@createService');
