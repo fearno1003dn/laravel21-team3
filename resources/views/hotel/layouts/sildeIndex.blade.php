@@ -45,4 +45,7 @@
             </li>
         </ul>
     </div>
+    <div class="special_offer_main">
+        <img src="{{asset('hotel-booking/img/special-offer-main.png')}}" alt="">
+    </div>
 </div>

@@ -62,7 +62,7 @@
 <!-- end header -->
 <!-- start main slider -->
 @include('hotel.layouts.sildeIndex')
-@include('hotel.layouts.slider');
+@include('hotel.layouts.availability');
 <!-- end main slider -->
 
 <!-- start welcome section -->
