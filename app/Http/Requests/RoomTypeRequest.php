@@ -28,9 +28,3 @@ class RoomTypeRequest extends FormRequest
         ];
     }
 }
-
-
-$roomTypes = $this->route('roomTypes');
-return [
-    'name' => 'required|min:3|max:8|unique:room_types,name,'.$roomTypes->id,
-];

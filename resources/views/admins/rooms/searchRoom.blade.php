@@ -26,8 +26,8 @@
 						{!!$room->status ? '<span class="label label-success">Available</span>' : '<span class="label label-danger">Not Available</span>'!!}
 					</td>
 
-					<td>{!!$room->room_sizes->size!!}</td>
-					<td>{!!$room->room_types->name!!}</td>
+					<td>{!!$room->roomSizes->size!!}</td>
+					<td>{!!$room->roomTypes->name!!}</td>
 					<td>
 						<a href="{{url('admins/rooms/'.$room->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a>
 						- <a href="{{url('admins/rooms/'.$room->id.'/delete')}}"><i class="fa fa-trash"></i>Delete</a>

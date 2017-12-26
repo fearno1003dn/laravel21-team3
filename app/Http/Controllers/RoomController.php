@@ -191,10 +191,10 @@ class RoomController extends Controller
             ->Orwhere('price', '=', $search)
             ->Orwhere('status', 'LIKE', '%' . $search . '%')
             ->Orwhere('description', 'LIKE', '%' . $search . '%')
-            ->OrwhereHas('room_types', function ($query) use ($search) {
+            ->OrwhereHas('roomTypes', function ($query) use ($search) {
                 $query->where('name', 'LIKE', '%' . $search . '%');
             })
-            ->OrwhereHas('room_sizes', function ($query) use ($search) {
+            ->OrwhereHas('roomSizes', function ($query) use ($search) {
                 $query->where('name', 'LIKE', '%' . $search . '%');
             })
             ->get();
