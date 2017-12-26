@@ -32,17 +32,15 @@
                             <div class="row">
                                 <div class="form-group col-lg-4 col-md-4 col-sm-4 icon_arrow">
                                     <div class="input-group border-bottom-dark-2">
-                                        <select class="form-control" name="amount_people" id="amount_people">
-                                            <option value="2">Room 2 People</option>
-                                            <option value="4">Room 4 People</option>
-                                            <option value="6">Room 6 People</option>
+                                        <select class="form-control" name="size" id="size">
+                                            @include('hotel.layouts.roomSizeIndex')
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-3 col4-md-3 col-sm-3 icon_arrow">
                                     <div class="input-group border-bottom-dark-2">
                                         <select class="form-control" name="roomType" id="roomType">
-                                            @include('hotel.layouts.menu')
+                                            @include('hotel.layouts.roomTypeIndex')
                                         </select>
                                     </div>
                                 </div>

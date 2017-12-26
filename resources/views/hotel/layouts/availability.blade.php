@@ -17,6 +17,11 @@
                                 <input class="date-picker" required="date" name="arrival" id="datepicker"
                                        placeholder="Arrival"
                                        type="text"/>
+                                    @if ( $errors->has('arrival') )
+                                    <span class="text-warning">
+                                        <strong> {{ $errors->first('arrival') }}</strong>
+                                    </span>
+                                    @endif
                                 <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                             </div>
                         </div>
@@ -25,6 +30,11 @@
                                 <input class="date-picker" required="date" name="departure" id="datepicker1"
                                        placeholder="Departure"
                                        type="text"/>
+                                    @if ( $errors->has('departure') )
+                                        <span class="text-warning">
+                                            <strong> {{ $errors->first('departure') }}</strong>
+                                        </span>
+                                    @endif
                                 <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                             </div>
                         </div>
@@ -32,8 +42,8 @@
                             <div class="row">
                                 <div class="form-group col-lg-4 col-md-4 col-sm-4 icon_arrow">
                                     <div class="input-group border-bottom-dark-2">
-                                        <select class="form-control" name="amount_people" id="amount_people">
-                                            @include('hotel.layouts.amountPeopleIndex')
+                                        <select class="form-control" name="size" id="size">
+                                            @include('hotel.layouts.roomSizeIndex')
                                         </select>
                                     </div>
                                 </div>

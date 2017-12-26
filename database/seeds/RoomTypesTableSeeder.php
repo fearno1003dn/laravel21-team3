@@ -11,10 +11,10 @@ class RoomTypesTableSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('room_types')->insert([
-        ['name'=>'VIP', 'description' => 'VIP Room '],
-        ['name'=>'DELUXE', 'description' => 'DELUXE Room'],
-        ['name'=>'FAMILY', 'description' => 'FAMILY Room']
-      ]);
+        DB::table('room_types')->insert([
+            ['name' => 'VIP', 'description' => 'VIP Room '],
+            ['name' => 'DELUXE', 'description' => 'DELUXE Room'],
+            ['name' => 'FAMILY', 'description' => 'FAMILY Room']
+        ]);
     }
 }

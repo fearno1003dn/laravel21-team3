@@ -8,6 +8,8 @@ use App\Room;
 use App\RoomType;
 use App\Booking;
 use App\BookRoom;
+use App\RoomSize;
+use App\Http\Requests\CheckFindRoomRequest;
 
 class RoomController extends Controller
 {
@@ -23,24 +25,26 @@ class RoomController extends Controller
         return view('hotel.seachRoom.detailRoom', compact('room'));
     }
 
-    public function seachRoom(Request $request)
+    public function seachRoom(CheckFindRoomRequest $request)
     {
         $data = Input::all();
         $arrival = $data['arrival'];
         $from = date("Y-m-d", strtotime($arrival));
         $departure = $data['departure'];
         $to = date("Y-m-d", strtotime($departure));
-        $amount_people = $data['amount_people'];
+        $size = $data['size'];
         $roomType = $data['roomType'];
 
         $request->session()->put('arrival', $arrival);
         $request->session()->put('departure', $departure);
-        $request->session()->put('amount_people', $amount_people);
+        $request->session()->put('size', $size);
         $request->session()->put('roomType', $roomType);
 
 
         $rooms = Room::where('status', '=', 0)
-            ->where('amount_people', '=', $amount_people)
+            ->whereHas('roomSizes', function ($query) use ($size) {
+                $query->where('size', '=', $size);
+            })
             ->whereHas('roomTypes', function ($query) use ($roomType) {
                 $query->where('name', '=', $roomType);
             })

@@ -23,15 +23,14 @@ Route::get('/', function () {
 
 //admin
 Route::get('/admins', function () {
-    if(Auth::check() && Auth::user()->role == 1)
+    if (Auth::check() && Auth::user()->role == 1)
         return view('admins.layouts.index1');
     else
-        return redirect('/index');  
+        return redirect('/index');
 });
 
 //hotel
 Route::get('/index', function () {
-    $roomtypes = RoomType::all();
     return view('index', compact('roomtypes'));
 });
 
