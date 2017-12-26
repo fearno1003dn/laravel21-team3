@@ -12,7 +12,7 @@
                 <div class="col-md-7">
                     <ul style="padding-top: 15px;">
                         <li>
-                            <strong>Room Type </strong>: {!!$room->room_types->name!!}
+                            <strong>Room Type </strong>: {!!$room->roomTypes->name!!}
                         </li>
 
                         <li>
@@ -23,7 +23,7 @@
                             {!!$room->status ? '<span class="label label-success">Available</span>' : '<span class="label label-danger">Not Available</span>'!!}
                         </li>
                         <li>
-                            <strong>Room Size </strong>: <span class="label label-warning">{!!$room->room_sizes->size!!}</span></li>
+                            <strong>Room Size </strong>: <span class="label label-warning">{!!$room->roomSizes->size!!}</span></li>
                         <li>
                             <strong>Description </strong>:{!!$room->description!!}
                         </li>
