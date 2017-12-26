@@ -1,4 +1,10 @@
 <?php
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use App\Room;
+use App\RoomType;
+use App\Booking;
+use App\BookRoom;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +23,7 @@ Route::get('/', function () {
 
 //admin
 Route::get('/admins', function () {
-    if(Auth::check() && Auth::user()->role == 1)
+    if (Auth::check() && Auth::user()->role == 1)
         return view('admins.layouts.index1');
     else
         return redirect('/index');
@@ -52,10 +58,16 @@ Route::put('admins/users/', 'userController@updateUser');
 
 //hotel
 Route::get('/index', function () {
-    return view('index');
+    return view('index', compact('roomtypes'));
 });
 
+Route::group(['prefix' => 'seachroom'], function () {
+    Route::get('/roomType/{name}', ['as' => 'room.TypeVip', 'uses' => 'RoomController@allRoomType']);
+    Route::get('/detailRoom/{id}', ['as' => 'room.detailRoom', 'uses' => 'RoomController@detailRoom']);
+    Route::get('/seach', ['as' => 'room.seach', 'uses' => 'RoomController@seachRoomIndex']);
+});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
