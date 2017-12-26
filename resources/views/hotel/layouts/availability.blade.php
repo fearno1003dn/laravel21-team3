@@ -32,7 +32,7 @@
                                        type="text"/>
                                     @if ( $errors->has('departure') )
                                         <span class="text-warning">
-                                            <strong> {{ $errors->first('departure') }}</strong>
+                                            <p> {{ $errors->first('departure') }}</p>
                                         </span>
                                     @endif
                                 <div class="input-group-addon"><i class="fa fa-calendar"></i></div>

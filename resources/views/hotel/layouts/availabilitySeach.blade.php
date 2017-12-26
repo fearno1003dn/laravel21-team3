@@ -17,6 +17,11 @@
                                 <input class="date-picker" required="date" name="arrival" id="datepicker"
                                        placeholder="{!!session()->get('arrival')!!}"
                                        type="text"/>
+                                @if ( $errors->has('arrival') )
+                                    <span class="text-warning">
+                                        <strong> {{ $errors->first('arrival') }}</strong>
+                                    </span>
+                                @endif
                                 <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                             </div>
                         </div>
@@ -25,6 +30,11 @@
                                 <input class="date-picker" required="date" name="departure" id="datepicker1"
                                        placeholder="{!!session()->get('departure')!!}"
                                        type="text"/>
+                                @if ( $errors->has('departure') )
+                                    <span class="text-warning">
+                                            <strong> {{ $errors->first('departure') }}</strong>
+                                        </span>
+                                @endif
                                 <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                             </div>
                         </div>
