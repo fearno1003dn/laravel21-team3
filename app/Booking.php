@@ -24,8 +24,4 @@ class Booking extends Model
         return $this->belongsToMany('App\Room', 'book_rooms');
     }
 
-    public function promotions()
-    {
-        return $this->belongsTo('App\Promotion', 'promotion_id');
-    }
 }
