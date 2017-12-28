@@ -1,9 +1,9 @@
 @extends('admins.layouts.index1')
 @section('content_header')
-    <h1>Edit {{$roomTypes->name}} Room Type</h1>
+    <h1>Edit {{$roomType->name}} Room Type</h1>
 @stop
 @section('content')
-    {!! Form::model($roomTypes,['url'=>'admins/roomTypes/'.$roomTypes->id,'method'=>'put']) !!}
+    {!! Form::model($roomType,['url'=>'admins/roomTypes/'.$roomType->id,'method'=>'put','class' => 'form-horizontal']) !!}
         @include('partials.forms.roomTypes')
     {!! Form::close() !!}
 @stop

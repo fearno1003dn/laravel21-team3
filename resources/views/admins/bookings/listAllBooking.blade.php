@@ -10,24 +10,12 @@
             <div class="box-header">
                 <a href="{{url('admins/bookings')}}" class="btn btn-primary fa fa-heart-o"> List All Booking</a>
                 <!-- <form class="form-inline" style="float: right;" action="{{asset('admins/bookings/search')}}" method="get" role="searchBooking"> -->
-                {!! Form::open(['class' => 'form-inline', 'name' => 'search', 'style' => 'float: right;', 'url' => 'admins/bookings/search', 'method' => 'get']) !!}    
-                    {{ csrf_field() }}
-
-                    <label class="">Check In :</label>
-                    <input type="date" name="search1" class="form-control" value="{{ isset($_GET['search1']) ? $_GET['search1'] : '' }}">
-
-                    <label class="">Check Out :</label>
-                    <input type="date" name="search2" class="form-control" value="{{ isset($_GET['search2']) ? $_GET['search2'] : '' }}">
-
-                    <input type="text" name="search" class="form-control" value="{{ isset($_GET['search']) ? $_GET['search'] : '' }}" placeholder="Search...">
-
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                {!! Form::close() !!}    
+              
                 <!-- </form> -->
                 <div class="box">
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table  class="table table-bordered table-striped" style="text-align:center; ">
+                        <table id="example2" class="table table-bordered table-striped" style="text-align:center; ">
                             <thead>
                                 <tr>
                                     <th style="text-align:center; ">User Name</th>
@@ -66,5 +54,31 @@
         </div>
         <!-- /.col -->
     </div>
+
+@stop
+
+@section('script')
+<script>
+  $(function () {
+    $('#example2').DataTable({
+
+      // "dom":' <"search"fl><"top">rt<"bottom"ip><"clear">'
+    // "dom": '<"top"l><"top-right"f>t<"bottom"pi><"clear">',
+    // "dom": '<"wrapper"flipt>'
+    // "dom": 't',
+    // "dom": ' <"top pull-right"f>t<"bottom"li><"bottom pull-right"p><"clear">',
+    // "dom":  '<"pull-left top"l>&<"pull-right top"f>t<"pull-left bottom"i>&<"pull-right bottom"p><"clear">',
+    "dom":  '<"pull-left top"l>&<"pull-right top"f>t<"pull-left bottom"ip><"clear">',
+    language: {
+    searchPlaceholder: "Search me plz ahihi"
+}
+    })
+
+  })
+
+
+
+</script>
+
 
 @stop

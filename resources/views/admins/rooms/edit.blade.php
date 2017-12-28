@@ -3,7 +3,7 @@
     <h1>Edit "{{$room->name}}" Room</h1>
 @stop
 @section('content')
-    {!! Form::model($room,['url'=>'admins/rooms/'.$room->id,'files' => true,'enctype' => 'multipart/form-data','method'=>'put']) !!}
-        @include('partials.forms.rooms')
+    {!! Form::model($room,['url'=>'admins/rooms/'.$room->id,'files' => true,'enctype' => 'multipart/form-data','method'=>'put','class' => 'form-horizontal']) !!}
+        @include('partials.forms.editRoom')
     {!! Form::close() !!}
 @stop
