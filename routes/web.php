@@ -29,6 +29,16 @@ Route::get('/admins', function () {
         return redirect('/index');
 });
 
+Route::get('/user/index','userController@userShow'); 
+Route::get('/user/bookings','userController@userListBooking');
+
+// 	function () {
+//     if (Auth::check())
+//         return view('hotel.users.index');
+//     else
+//         return redirect('/index');
+// });
+
 Route::get('admins/rooms','RoomController@listAllRoom');
 Route::get('admins/rooms/create','RoomController@createRoom');
 Route::get('admins/rooms/{room}/edit','RoomController@editRoom');

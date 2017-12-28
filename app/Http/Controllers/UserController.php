@@ -6,6 +6,8 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Pagination\Paginator;
+use Auth;
+use App\Booking;
 
 class UserController extends Controller
 {
@@ -16,8 +18,6 @@ class UserController extends Controller
         return view('admins.userManagement.listAllUsers',compact('users'));
 
     }
-
-
 
     public function editUser(User $user)
     {
@@ -60,4 +60,24 @@ class UserController extends Controller
           return view('admins.rooms.searchUser',compact('rooms'));
    }
 
+   public function userShow()
+    {
+        if (Auth::check()){
+            $user = Auth::user();
+            return view('hotel.users.detail',compact('user'));
+        }
+        else
+            return redirect('/index');
+    }
+
+    public function userListBooking()
+    {
+        if (Auth::check()){
+            $user = Auth::user();
+            $bookings = Booking::where('user_id', '=', $user->id)->paginate(10);
+            return view('hotel.users.bookings',compact('bookings'));
+        }
+        else
+            return redirect('/index');
+    }
 }
