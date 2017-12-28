@@ -23,7 +23,7 @@ class CheckRoomTypeEditRequest extends FormRequest
      */
     public function rules()
     {
-      $roomTypes = $this->route('roomTypes');
+      $roomTypes = $this->route('roomType');
       return [
           'name' => 'required|min:3|max:8|unique:room_types,name,'.$roomTypes->id,
       ];

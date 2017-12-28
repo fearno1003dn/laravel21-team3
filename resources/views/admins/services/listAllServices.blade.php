@@ -14,7 +14,7 @@
                 <div class="box">
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table  class="table table-bordered table-striped">
+                        <table id="example2" class="table table-bordered table-striped">
                             <thead>
                             <tr>
 
@@ -33,27 +33,47 @@
                                     <td>{!!number_format($service->price)!!}đ</td>
                                     <td>{!!$service->description!!}</td>
 
-                                    <td><a href="{{url('admins/services/'.$service->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/services/'.$service->id.'/delete')}}"><i class="fa fa-trash"></i>Delete</a></td>
+                                    <td><a href="{{url('admins/services/'.$service->id.'/edit')}}" ><i class="fa fa-edit" ></i>Edit</a> - <a href="{{url('admins/services/'.$service->id.'/delete')}}" onclick="return confirm('Are you sure you want to delete this service?');"><i class="fa fa-trash"></i>Delete</a></td>
                                 </tr>
                             @endforeach
                             </tbody>
 
-                            <tfoot>
-                            <tr>
-                                <th>Service Name</th>
-                                <th>Price</th>
-                                <th>Description</th>
-                                <th>Action</th>
-                            </tr>
-                            </tfoot>
+                            
                         </table>
                     </div>
-                    {!! $services->links()!!}
+
                     <!-- /.box-body -->
                 </div>
                 <!-- /.box -->
             </div>
             <!-- /.col -->
         </div>
+
+@stop
+
+
+@section('script')
+<script>
+  $(function () {
+    $('#example2').DataTable({
+
+      // "dom":' <"search"fl><"top">rt<"bottom"ip><"clear">'
+    // "dom": '<"top"l><"top-right"f>t<"bottom"pi><"clear">',
+    // "dom": '<"wrapper"flipt>'
+    // "dom": 't',
+    // "dom": ' <"top pull-right"f>t<"bottom"li><"bottom pull-right"p><"clear">',
+    // "dom":  '<"pull-left top"l>&<"pull-right top"f>t<"pull-left bottom"i>&<"pull-right bottom"p><"clear">',
+    "dom":  '<"pull-left top"l>&<"pull-right top"f>t<"pull-left bottom"ip><"clear">',
+    language: {
+    searchPlaceholder: "Search me plz ahihi"
+}
+    })
+
+  })
+
+
+
+</script>
+
 
 @stop

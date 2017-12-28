@@ -16,6 +16,11 @@
                             <div class="col-md-6">
                               {!! Form::text('name',null,['class'=>'form-control']) !!}
                             </div>
+                            @if ($errors->has('name'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </span>
+                            @endif
                         </div>
 
                         <div class="form-group">
@@ -24,6 +29,11 @@
                             <div class="col-md-6">
                               {!! Form::text('price',null,['class'=>'form-control']) !!}
                             </div>
+                            @if ($errors->has('price'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('price') }}</strong>
+                                </span>
+                            @endif
                         </div>
 
                         <div class="form-group">
@@ -32,6 +42,11 @@
                             <div class="col-md-6">
                               {!! Form::text('description',null,['class'=>'form-control']) !!}
                             </div>
+                            @if ($errors->has('description'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('description') }}</strong>
+                                </span>
+                            @endif
                         </div>
 
                         <div class="form-group">
@@ -43,11 +58,18 @@
                         </div>
 
                         @if ( $errors->any() )
+                        <div class="form-group">
+                          <label for="errors" class="col-md-4 control-label">Summary All Errors</label>
+                          <div class="col-md-6">
+                        @if ( $errors->any() )
                             <ul>
                               @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
                               @endforeach
                             </ul>
+                        @endif
+                      </div>
+                      </div>
                         @endif
 
                     </form>
