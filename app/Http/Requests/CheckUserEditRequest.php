@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\User;
 
-class UserRequest extends FormRequest
+class CheckUserEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +24,13 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        $user = $this->route('user');
         return [
-            'fisrt_name' => 'required|min:3|max:8',
-            'last_name' => 'required|min:3|max:8',
-            'email' => 'required||email|unique:users,email|',
-            'address' => 'required',
-            'phone_number' => 'required|numeric',
-
+          'fisrt_name' => 'required|min:3|max:8',
+          'last_name' => 'required|min:3|max:8',
+          'email' => 'required||email|unique:users,email,'.$user->id,
+          'address' => 'required',
+          'phone_number' => 'required|numeric',
         ];
     }
 }

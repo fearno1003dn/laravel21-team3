@@ -1,21 +1,26 @@
 @extends('admins.layouts.index1')
 @section('content_header')
-    <h1>List All Room</h1>
+    <h1>All Results</h1>
 @stop
 
 @section('content')
 
+
+      @if(count($rooms)==0)
+      <div class="row">
+      <p>Sorry we found nothing</p>
+      </div>
+      @endif
+
+    @if(count($rooms)!=0)
     <div class="row">
+      <p>   Here are results that match your search</p>
 
-        <div class="col-xs-12">
           <div class="box-header">
-            <a href="{{ url('admins/rooms/create') }}" class="btn btn-primary fa fa-heart-o"> Create Room</a>
-
-
 
             @include('partials.forms.search',['url'=>'admins/rooms/search'])
-
-
+          </div>
+          <div class="col-xs-12">
             <div class="box">
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -49,7 +54,7 @@
                                 <td>
                                   <img src="{!!url('/images/rooms/'.$room->image1)!!}" alt="" style='width: 50px; height: 30px;'>
                                 </td>
-                                <td><a href="{{url('admins/rooms/'.$room->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/rooms/'.$room->id.'/delete')}}"><i class="fa fa-trash" id="deleteGroup"></i>Delete</a>
+                                <td><a href="{{url('admins/rooms/'.$room->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/rooms/'.$room->id.'/delete')}}"><i class="fa fa-trash"></i>Delete</a>
                                 - <a href="{{url('admins/rooms/'.$room->id)}}"><i class="fa fa-book"></i>Detail</a></td>
                             </tr>
                         @endforeach
@@ -63,15 +68,6 @@
         </div>
         <!-- /.col -->
     </div>
+    @endif
 
-@stop
-
-@section('script')
-jQuery(document).ready(function($){
-     $('.deleteGroup').on('submit',function(e){
-        if(!confirm('Do you want to delete this item?')){
-              e.preventDefault();
-        }
-      });
-});
 @stop

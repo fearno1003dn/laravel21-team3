@@ -4,7 +4,7 @@
 @stop
 @section('content')
 
-    {!! Form::open(['url'=>'admins/services']) !!}
+    {!! Form::open(['url'=>'admins/services','class' => 'form-horizontal']) !!}
     @include('partials.forms.services')
     {!! Form::close() !!}
 @stop

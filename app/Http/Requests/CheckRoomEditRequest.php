@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class CheckRoomEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +23,13 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        $rooms = $this->route('room');
         return [
-            'fisrt_name' => 'required|min:3|max:8',
-            'last_name' => 'required|min:3|max:8',
-            'email' => 'required||email|unique:users,email|',
-            'address' => 'required',
-            'phone_number' => 'required|numeric',
-
+              'name' => 'required|min:3|max:8|unique:rooms,name,'.$rooms->id,
+              'price'=> 'required|numeric',
+              'image1'=>'image|mimes:jpeg,png,jpg,gif,svg',
+              'image2'=>'image|mimes:jpeg,png,jpg,gif,svg',
+              'image3'=>'image|mimes:jpeg,png,jpg,gif,svg',
         ];
     }
 }

@@ -14,7 +14,7 @@ class ServiceController extends Controller
     public function listAllService()
     {
 
-        $services = Service::paginate(1);
+        $services = Service::all();
         return view('admins.services.listAllServices',compact('services'));
 
     }

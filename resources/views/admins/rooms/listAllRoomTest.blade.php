@@ -13,20 +13,16 @@
 
 
 
-            @include('partials.forms.search',['url'=>'admins/rooms/search'])
-
-
             <div class="box">
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table  class="table table-bordered table-striped">
+                    <table id="example2" class="table table-bordered table-striped" >
                         <thead>
                             <tr>
 
                                 <th>Room Name</th>
                                 <th>Price</th>
                                 <th>Status</th>
-                                <th>Description</th>
                                 <th>Room size</th>
                                 <th>Room Type</th>
                                 <th>Image</th>
@@ -43,13 +39,13 @@
                                 <td>
                                     {!!$room->status ? '<a>Available</a>' : '<a>Not Available</a>'!!}
                                 </td>
-                                <td>{!!$room->description!!}</td>
                                 <td>{!!$room->roomSizes->size!!}</td>
                                 <td>{!!$room->roomTypes->name!!}</td>
                                 <td>
                                   <img src="{!!url('/images/rooms/'.$room->image1)!!}" alt="" style='width: 50px; height: 30px;'>
                                 </td>
-                                <td><a href="{{url('admins/rooms/'.$room->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/rooms/'.$room->id.'/delete')}}"><i class="fa fa-trash" id="deleteGroup"></i>Delete</a>
+                                <td><a href="{{url('admins/rooms/'.$room->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a>
+                                - <a href="{{url('admins/rooms/'.$room->id.'/delete')}}" class="fa fa-trash" onclick="return confirm('Are you sure you want to delete this room?');" data-confirm="Are you sure to delete this room?">Delete</a>
                                 - <a href="{{url('admins/rooms/'.$room->id)}}"><i class="fa fa-book"></i>Detail</a></td>
                             </tr>
                         @endforeach
@@ -59,7 +55,7 @@
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
-            {!! $rooms->appends($_GET)->links()!!}
+
         </div>
         <!-- /.col -->
     </div>
@@ -67,11 +63,27 @@
 @stop
 
 @section('script')
-jQuery(document).ready(function($){
-     $('.deleteGroup').on('submit',function(e){
-        if(!confirm('Do you want to delete this item?')){
-              e.preventDefault();
-        }
-      });
-});
+<script>
+  $(function () {
+    $('#example2').DataTable({
+
+      // "dom":' <"search"fl><"top">rt<"bottom"ip><"clear">'
+    // "dom": '<"top"l><"top-right"f>t<"bottom"pi><"clear">',
+    // "dom": '<"wrapper"flipt>'
+    // "dom": 't',
+    // "dom": ' <"top pull-right"f>t<"bottom"li><"bottom pull-right"p><"clear">',
+    // "dom":  '<"pull-left top"l>&<"pull-right top"f>t<"pull-left bottom"i>&<"pull-right bottom"p><"clear">',
+    "dom":  '<"pull-left top"l>&<"pull-right top"f>t<"pull-left bottom"ip><"clear">',
+    language: {
+    searchPlaceholder: "Search me plz ahihi"
+}
+    })
+
+  })
+
+
+
+</script>
+
+
 @stop

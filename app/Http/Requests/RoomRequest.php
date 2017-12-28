@@ -26,7 +26,7 @@ class RoomRequest extends FormRequest
         return [
           'name' => 'required|unique:rooms,name|min:3|max:8',
           'price'=> 'required|numeric',
-          'image1'=>'image|mimes:jpeg,png,jpg,gif,svg',
+          'image1'=>'required|image|mimes:jpeg,png,jpg,gif,svg',
           'image2'=>'image|mimes:jpeg,png,jpg,gif,svg',
           'image3'=>'image|mimes:jpeg,png,jpg,gif,svg',
         ];
