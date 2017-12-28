@@ -45,6 +45,11 @@
                     <i class="fa fa-user"></i> <span>USER MANAGEMENT</span>
                 </a>
             </li>
+            <li>
+                <a href="{{url('admins/bookings')}}">
+                    <i class="fa fa-book"></i> <span>BOOKING MANAGEMENT</span>
+                </a>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

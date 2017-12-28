@@ -29,6 +29,7 @@ Route::get('/admins', function () {
         return redirect('/index');
 });
 
+<<<<<<< HEAD
 Route::get('/user/index','userController@userShow'); 
 Route::get('/user/bookings','userController@userListBooking');
 
@@ -42,36 +43,51 @@ Route::get('/user/bookings','userController@userListBooking');
 Route::get('admins/rooms','RoomController@listAllRoom');
 Route::get('admins/rooms/create','RoomController@createRoom');
 Route::get('admins/rooms/{room}/edit','RoomController@editRoom');
+=======
+Route::get('admins/rooms', 'RoomController@listAllRoom');
+Route::get('admins/rooms/create', 'RoomController@createRoom');
+Route::get('admins/rooms/{room}/edit', 'RoomController@editRoom');
+>>>>>>> bde0ae436d49e0a1a95eb2232f68d1607ff11c5e
 Route::get('admins/rooms/{room}/delete', 'RoomController@deleteRoom');
 Route::get('admins/rooms/{room}', 'RoomController@roomDetail');
-Route::post('admins/rooms/search','RoomController@searchRoom');
+Route::post('admins/rooms/search', 'RoomController@searchRoom');
 Route::post('admins/rooms', 'RoomController@saveRoom');
 Route::put('admins/rooms/{room}', 'RoomController@updateRoom');
 
-Route::get('admins/roomTypes','RoomTypeController@listAllRoomType');
-Route::get('admins/roomTypes/create','RoomTypeController@createRoomType');
-Route::get('admins/roomTypes/{roomTypes}/edit','RoomTypeController@editRoomType');
+Route::get('admins/roomTypes', 'RoomTypeController@listAllRoomType');
+Route::get('admins/roomTypes/create', 'RoomTypeController@createRoomType');
+Route::get('admins/roomTypes/{roomTypes}/edit', 'RoomTypeController@editRoomType');
 Route::post('admins/roomTypes', 'RoomTypeController@saveRoomType');
 Route::get('admins/roomTypes/{roomTypes}/delete', 'RoomTypeController@deleteRoomType');
 Route::put('admins/roomTypes/{roomTypes}', 'RoomTypeController@updateRoomType');
 
-Route::get('admins/services','ServiceController@listAllService');
-Route::get('admins/services/create','ServiceController@createService');
-Route::get('admins/services/{service}/edit','ServiceController@editService');
+Route::get('admins/services', 'ServiceController@listAllService');
+Route::get('admins/services/create', 'ServiceController@createService');
+Route::get('admins/services/{service}/edit', 'ServiceController@editService');
 Route::post('admins/services', 'ServiceController@saveService');
 Route::get('admins/services/{service}/delete', 'ServiceController@deleteService');
 Route::put('admins/services/{service}', 'ServiceController@updateService');
 
 
-Route::get('admins/users','userController@listAllUser');
-Route::get('admins/users/{user}/edit','userController@editUser');
+Route::get('admins/users', 'userController@listAllUser');
+Route::get('admins/users/{user}/edit', 'userController@editUser');
 Route::post('admins/users', 'userController@saveUser');
 Route::get('admins/users/{user}/delete', 'userController@deleteUser');
 Route::put('admins/users/', 'userController@updateUser');
 
+
+Route::get('admins/bookings','BookingController@listAllBooking');
+Route::get('admins/bookings/edit/{booking}','BookingController@editBooking');
+Route::get('admins/bookings/detail/{booking}', 'BookingController@detailBooking');
+Route::put('admins/bookings/update/{booking}', 'BookingController@updateBooking');
+Route::get('admins/bookings/delete/{booking}', 'BookingController@deleteBooking');
+Route::get('admins/bookings/search','BookingController@searchBooking');
+
+
+
 //hotel
 Route::get('/index', function () {
-    return view('index', compact('roomtypes'));
+    return view('index');
 });
 
 Route::group(['prefix' => 'seachroom'], function () {
