@@ -51,7 +51,7 @@ Route::get('admins/services/{service}/edit', 'ServiceController@editService');
 Route::post('admins/services', 'ServiceController@saveService');
 Route::get('admins/services/{service}/delete', 'ServiceController@deleteService');
 Route::put('admins/services/{service}', 'ServiceController@updateService');
-Route::get('admins/services/{service}', 'ServiceController@serviceDetail');
+
 
 Route::get('admins/users', 'userController@listAllUser');
 Route::get('admins/users/{user}/edit', 'userController@editUser');

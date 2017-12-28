@@ -30,7 +30,7 @@ class ServiceController extends Controller
         return view('admins.services.edit',compact('service'));
     }
 
-    public function saveService(CheckServiceEditRequest $request)
+    public function saveService(ServiceRequest $request)
     {
         $inputs = $request->all();
         $service = Service::create($inputs);
