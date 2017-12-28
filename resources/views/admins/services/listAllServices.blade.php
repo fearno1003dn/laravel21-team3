@@ -38,17 +38,10 @@
                             @endforeach
                             </tbody>
 
-                            <tfoot>
-                            <tr>
-                                <th>Service Name</th>
-                                <th>Price</th>
-                                <th>Description</th>
-                                <th>Action</th>
-                            </tr>
-                            </tfoot>
+                            
                         </table>
                     </div>
-                    
+
                     <!-- /.box-body -->
                 </div>
                 <!-- /.box -->

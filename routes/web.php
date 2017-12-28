@@ -60,7 +60,7 @@ Route::get('admins/users', 'userController@listAllUser');
 Route::get('admins/users/{user}/edit', 'userController@editUser');
 Route::post('admins/users', 'userController@saveUser');
 Route::get('admins/users/{user}/delete', 'userController@deleteUser');
-Route::put('admins/users/', 'userController@updateUser');
+Route::put('admins/users/{user}/update', 'userController@updateUser');
 
 
 Route::get('admins/bookings','BookingController@listAllBooking');

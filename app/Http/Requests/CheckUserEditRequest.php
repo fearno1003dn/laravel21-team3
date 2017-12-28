@@ -24,13 +24,13 @@ class CheckUserEditRequest extends FormRequest
      */
     public function rules()
     {
-        $user = $this->route('user');
+        $users = $this->route('user');
         return [
-          'fisrt_name' => 'required|min:3|max:8',
-          'last_name' => 'required|min:3|max:8',
-          'email' => 'required||email|unique:users,email,'.$user->id,
+          'fisrt_name' => 'min:3|max:8|unique:users,first_name,'.$users->id,
+          'last_name' => 'required|min:3|max:8|unique:users,last_name,'.$users->id,
+          'email' => 'required||email|unique:users,email,'.$users->id,
           'address' => 'required',
-          'phone_number' => 'required|numeric',
+          'phone_number' => 'required|numeric|min:10000000|max:99999999999',
         ];
     }
 }

@@ -37,9 +37,7 @@ class UserController extends Controller
     {
 
         $inputs = $request->all();
-        
         $user->update($inputs);
-
         return redirect('/admins/users')->withSuccess('Update user success');
     }
 

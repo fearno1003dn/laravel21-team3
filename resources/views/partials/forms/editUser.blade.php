@@ -10,7 +10,6 @@
                       <table  class="table table-bordered table-striped">
 
 
-
                         <div class="form-group">
                             <label for="first_name" class="col-md-4 control-label">First Name</label>
 
@@ -23,6 +22,7 @@
                                 </span>
                             @endif
                         </div>
+
 
                         <div class="form-group">
                             <label for="last_name" class="col-md-4 control-label">Last Name</label>
