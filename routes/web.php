@@ -29,25 +29,14 @@ Route::get('/admins', function () {
         return redirect('/index');
 });
 
-<<<<<<< HEAD
+
 Route::get('/user/index','userController@userShow'); 
 Route::get('/user/bookings','userController@userListBooking');
-
-// 	function () {
-//     if (Auth::check())
-//         return view('hotel.users.index');
-//     else
-//         return redirect('/index');
-// });
 
 Route::get('admins/rooms','RoomController@listAllRoom');
 Route::get('admins/rooms/create','RoomController@createRoom');
 Route::get('admins/rooms/{room}/edit','RoomController@editRoom');
-=======
-Route::get('admins/rooms', 'RoomController@listAllRoom');
-Route::get('admins/rooms/create', 'RoomController@createRoom');
-Route::get('admins/rooms/{room}/edit', 'RoomController@editRoom');
->>>>>>> bde0ae436d49e0a1a95eb2232f68d1607ff11c5e
+
 Route::get('admins/rooms/{room}/delete', 'RoomController@deleteRoom');
 Route::get('admins/rooms/{room}', 'RoomController@roomDetail');
 Route::post('admins/rooms/search', 'RoomController@searchRoom');
