@@ -13,7 +13,7 @@
 
 
 
-            <form class="box-tools" action="/admins/rooms/search" method="POST" role="search">
+            <form class="box-tools" action="{{asset('admins/rooms/search')}}" method="GET" role="search">
         			{{ csrf_field() }}
               <div class="input-group input-group-sm" style="width: 150px;">
                   <input type="text" name="search" class="form-control pull-right" placeholder="Search...">

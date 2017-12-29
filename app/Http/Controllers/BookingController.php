@@ -65,7 +65,7 @@ class BookingController extends Controller
         }
 
         if (isset($search) && isset($search1)) {
-            $bookings = Booking::where('check_in', '=', $search1)
+            $bookings = Booking::where('check_in', '>=', $search1)
                     ->whereHas('users', function ($query) use ($search) {
                         $query->where('last_name', 'LIKE', '%' . $search . '%')
                               ->Orwhere('first_name', 'LIKE', '%' . $search . '%');
@@ -99,12 +99,12 @@ class BookingController extends Controller
         } 
 
         if (isset($search1)) {
-            $bookings = Booking::where('check_in', '=', $search1)->paginate(25); 
+            $bookings = Booking::where('check_in', '>=', $search1)->orderBy('check_in', 'asc')->paginate(25); 
             return view('admins.bookings.listAllBooking', compact('bookings'));
         } 
 
         if (isset($search2)) {
-            $bookings = Booking::where('check_out', '=', $search2)->paginate(25); 
+            $bookings = Booking::where('check_out', '>=', $search2)->orderBy('check_out', 'asc')->paginate(25); 
             return view('admins.bookings.listAllBooking', compact('bookings'));
         }
         
