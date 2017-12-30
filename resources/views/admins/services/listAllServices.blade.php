@@ -6,15 +6,17 @@
 @section('content')
 
     <div class="row">
-
         <div class="col-xs-12">
+          <div class="box-header">
             <a href="{{ url('admins/services/create') }}" class="btn btn-primary fa fa-heart-o"> Create Service</a>
+
+              @include('partials.forms.search',['url'=>'admins/services/search'])
             <div class="box">
 
                 <div class="box">
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table id="example2" class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped">
                             <thead>
                             <tr>
 
@@ -38,7 +40,7 @@
                             @endforeach
                             </tbody>
 
-                            
+
                         </table>
                     </div>
 
@@ -47,12 +49,14 @@
                 <!-- /.box -->
             </div>
             <!-- /.col -->
+          </div>
         </div>
+      </div>
 
 @stop
 
 
-@section('script')
+<!-- @section('script')
 <script>
   $(function () {
     $('#example2').DataTable({
@@ -76,4 +80,4 @@
 </script>
 
 
-@stop
+@stop -->

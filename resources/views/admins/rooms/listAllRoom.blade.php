@@ -11,11 +11,8 @@
           <div class="box-header">
             <a href="{{ url('admins/rooms/create') }}" class="btn btn-primary fa fa-heart-o"> Create Room</a>
 
-
-
-            @include('partials.forms.search',['url'=>'admins/rooms/search'])
-
-
+              @include('partials.forms.search',['url'=>'admins/rooms/search'])
+              
             <div class="box">
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -26,7 +23,6 @@
                                 <th>Room Name</th>
                                 <th>Price</th>
                                 <th>Status</th>
-                                <th>Description</th>
                                 <th>Room size</th>
                                 <th>Room Type</th>
                                 <th>Image</th>
@@ -43,7 +39,6 @@
                                 <td>
                                     {!!$room->status ? '<a>Available</a>' : '<a>Not Available</a>'!!}
                                 </td>
-                                <td>{!!$room->description!!}</td>
                                 <td>{!!$room->roomSizes->size!!}</td>
                                 <td>{!!$room->roomTypes->name!!}</td>
                                 <td>
@@ -69,7 +64,7 @@
 @section('script')
 jQuery(document).ready(function($){
      $('.deleteGroup').on('submit',function(e){
-        if(!confirm('Do you want to delete this item?')){
+        if(!confirm('Do you really want to delete this item?')){
               e.preventDefault();
         }
       });

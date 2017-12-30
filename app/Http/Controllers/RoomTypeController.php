@@ -48,4 +48,18 @@ class RoomTypeController extends Controller
       $roomType->delete();
       return redirect('admins/roomTypes')->withSuccess('User has been delete');
   }
+
+  public function searchRoomType(Request $search)
+  {
+
+      // $search = \Request::get('search');
+      $search = Input::get('search');
+
+      $roomTypes = RoomType::where('name', 'LIKE', '%' . $search . '%')
+          ->Orwhere('description', 'LIKE', '%' . $search . '%')
+          ->paginate(1);
+
+
+      return view('admins.roomTypes.listAllSearchRoomType', compact('roomTypes'));
+  }
 }
