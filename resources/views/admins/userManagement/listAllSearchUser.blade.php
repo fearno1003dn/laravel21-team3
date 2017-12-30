@@ -20,7 +20,7 @@
           <p>   Here are results that match your search</p>
 
 
-            @include('partials.forms.search',['url'=>'admins/roomTypess/search'])
+            @include('partials.forms.search',['url'=>'admins/users/search'])
           </div>
           <div class="col-xs-12">
             <div class="box">
@@ -40,14 +40,17 @@
                         </thead>
 
                         <tbody>
-                        @foreach ($roomTypes as $roomType)
+                        @foreach ($users as $user)
                             <tr>
-                              <td>{!!$roomType->name!!}</td>
-                              <td>{!!$roomType->description!!}</td>
-                              <td><a href="{{url('admins/roomTypes/'.$roomType->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a>
-                                - <a href="{{url('admins/roomTypes/'.$roomType->id.'/delete')}}" onclick="return confirm('Are you sure you want to delete this room type?');">
-                                  <i class="fa fa-trash"></i>Delete</a></td>
-                            </tr>
+                              <td>{!!$user->first_name!!} {!!$user->last_name!!} </td>
+                              <td>{!!$user->address!!}</td>
+                              <td>{!!$user->email!!}</td>
+                              <td>{!!$user->phone_number!!}</td>
+                              <td>
+                                  {!!$user->role ? '<a>Admin User</a>' : '<a>Normal User</a>'!!}
+                              </td>
+                              <td><a href="{{url('admins/users/'.$user->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/users/'.$user->id.'/delete')}}" class="fa fa-trash" onclick="return confirm('Are you sure you want to delete this user?');" data-confirm="Are you sure to delete this user?">Delete</a></td>
+                          </tr>
                         @endforeach
                         </tbody>
                     </table>
