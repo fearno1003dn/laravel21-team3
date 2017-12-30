@@ -12,12 +12,14 @@
                           {!! Form::label('name','Room Name',['class'=>'col-md-4 control-label']) !!}
                           <div class="col-md-6">
                             {!! Form::text('name',null,['class'=>'form-control']) !!}
+                            @if ($errors->has('name'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </span>
+                            @endif
                           </div>
-                          @if ($errors->has('name'))
-                              <span class="help-block">
-                                  <strong>{{ $errors->first('name') }}</strong>
-                              </span>
-                          @endif
+
+
 
                       </div>
 
@@ -31,7 +33,7 @@
                               {!! Form::select('room_type_id',$roomTypes,null,['class'=>'form-control']) !!}
                             </div>
                             @if ($errors->has('room_type_id'))
-                                <span class="help-block">
+                                <span class="text-danger">
                                     <strong>{{ $errors->first('room_type_id') }}</strong>
                                 </span>
                             @endif
@@ -127,6 +129,7 @@
                               </td>
                               {!! Form::file('image2',['class'=>'form-control', 'id' => 'imageUpload']) !!}
                             </div>
+                          </br>
                             @if ($errors->has('image2'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('image2') }}</strong>
@@ -162,7 +165,7 @@
                             </div>
                         </div>
 
-                        @if ( $errors->any() )
+                        <!-- @if ( $errors->any() )
                         <div class="form-group">
                           <label for="errors" class="col-md-4 control-label">Summary All Errors</label>
                           <div class="col-md-6">
@@ -175,7 +178,7 @@
                         @endif
                       </div>
                       </div>
-                        @endif
+                        @endif -->
 
                     </form>
                 </div>
