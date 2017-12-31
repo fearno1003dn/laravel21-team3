@@ -32,6 +32,7 @@ Route::get('/admins', function () {
 
 Route::get('/user/index','userController@userShow'); 
 Route::get('/user/bookings','userController@userListBooking');
+Route::get('/user/bookings/cancel/{booking}','userController@userCancelBooking');
 
 Route::get('admins/rooms','RoomController@listAllRoom');
 Route::get('admins/rooms/create','RoomController@createRoom');

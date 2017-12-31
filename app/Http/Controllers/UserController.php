@@ -76,10 +76,26 @@ class UserController extends Controller
     {
         if (Auth::check()){
             $user = Auth::user();
-            $bookings = Booking::where('user_id', '=', $user->id)->paginate(10);
+            $bookings = Booking::where('user_id', '=', $user->id)->orderBy('created_at', 'dec')->paginate(10);
             return view('hotel.users.bookings',compact('bookings'));
         }
         else
             return redirect('/index');
+    }
+
+    public function userCancelBooking(Booking $booking)
+    {
+      if (Auth::check()){
+        $user = Auth::user();
+            //dd($booking);
+        if ($booking->status == 1 )
+          $booking->update(['status' => 0]);
+            //$booking->update('$booking');
+        else
+          $booking->update(['status' => 1]);
+        return redirect('/user/bookings');
+        }
+      else
+        return redirect('/index');
     }
 }

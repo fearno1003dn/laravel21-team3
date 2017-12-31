@@ -24,7 +24,7 @@
                         <table  class="table table-bordered table-striped" style="text-align:center; ">
                             <thead>
                                 <tr>
-                                    <th style="text-align:center; ">User Name</th>
+                                    <th style="text-align:center; ">Date created</th>
                                     <th style="text-align:center; ">Check In</th>
                                     <th style="text-align:center; ">Check Out</th>
                                     <th style="text-align:center; ">Promotion Code</th>
@@ -38,16 +38,18 @@
                             <tbody>
                             @foreach ($bookings as $booking)
                                 <tr>
-                                    <td>{!! $booking->users->first_name !!}</td>
+                                    <td>{!! $booking->created_at !!}</td>
                                     <td>{!! $booking->check_in !!}</td>
                                     <td>{!! $booking->check_out !!}</td>
                                     <td>{!! $booking->promotions->code !!}</td>
                                     <td>
-                                        {!!$booking->status ? '<a>Available</a>' : '<a>Not Available</a>'!!}
+                                        {!!$booking->status ? '<a></i>Available</a>' : '<a>Not Available</a>'!!}
                                     </td>
                                     <td>{!! $booking->code !!}</td>
                                     <td>{!! number_format($booking->total) !!}đ</td>
-                                    <td><a href="" ><i class="fa fa-edit"></i>Edit</a> - <a href=""><i class="fa fa-trash"></i>Delete</a> - <a href=""><i class="fa fa-book"></i>Detail</a></td>
+                                    <td>@if($booking->status == 1) <a href="{{url('/user/bookings/cancel/'.$booking->id)}}" >Cancel Booking</a>
+                                        @else <a href="{{url('/user/bookings/cancel/'.$booking->id)}}" ></i>Apply Booking</a>
+                                    @endif</td>        
                                 </tr>
                             @endforeach
                             </tbody>
