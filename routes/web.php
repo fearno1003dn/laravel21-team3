@@ -29,12 +29,15 @@ Route::get('/admins', function () {
         return redirect('/index');
 });
 
+
+
 Route::get('admins/rooms/search','RoomController@searchRoom'); //chuyen cai ni xuong duoi cung thi deo chay gg
 Route::get('admins/rooms', 'RoomController@listAllRoom');
 Route::get('admins/rooms/create', 'RoomController@createRoom');
 Route::get('admins/rooms/{room}/edit', 'RoomController@editRoom');
 Route::get('admins/rooms/{room}/delete', 'RoomController@deleteRoom');
 Route::get('admins/rooms/{room}', 'RoomController@roomDetail');
+
 Route::post('admins/rooms', 'RoomController@saveRoom');
 Route::put('admins/rooms/{room}', 'RoomController@updateRoom');
 
