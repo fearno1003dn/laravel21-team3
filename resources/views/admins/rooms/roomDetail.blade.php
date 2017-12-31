@@ -28,6 +28,33 @@
                             <strong>Description </strong>:{!!$room->description!!}
                         </li>
 
+                        <li>
+                          <strong>Image 1</strong>:  <img src="{!!url('/images/rooms/'.$room->image1)!!}">
+                        </li>
+
+                        @if($room->image2)
+                        <li>
+                          <strong>Image 2</strong>:  <img src="{!!url('/images/rooms/'.$room->image2)!!}">
+                        </li>
+                        @endif
+                        @if(!$room->image2)
+                        <li>
+                          <strong>This room not have for more than one image <a href="{{url('admins/rooms/'.$room->id.'/edit')}}" >Edit Now</a> </strong>
+                        </li>
+                        @endif
+
+                        @if($room->image3)
+                        <li>
+                          <strong>Image 3</strong>:  <img src="{!!url('/images/rooms/'.$room->image3)!!}">
+                        </li>
+                        @endif
+                        @if($room->image2 && !$room->image3)
+                        <li>
+                          <strong>This room not have for more than two image <a href="{{url('admins/rooms/'.$room->id.'/edit')}}" >Edit Now</a> </strong>
+                        </li>
+                        @endif
+
+
                         <li style="list-style: none;">
                             <a href="{{url('admins/rooms/'.$room->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/rooms'.$room->id.'/delete')}}"><i class="fa fa-trash"></i>Delete</a>
                         </li>
@@ -35,7 +62,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
     <div class="box box-default">
         <div class="box-header with-border">
             <h3 class="box-title"><strong>Booking Calendar</strong></h3>
@@ -51,4 +78,7 @@
         </div>
     </div>
     </div>
+  </div
+</div>
+
 @stop

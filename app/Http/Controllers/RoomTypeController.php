@@ -19,33 +19,47 @@ class RoomTypeController extends Controller
 
   }
 
-  public function createRoomType()
+  public function createRoomType(RoomType $roomType)
   {
-      return view('admins.roomTypes.create');
+      return view('admins.roomTypes.create',compact('roomType'));
   }
 
-  public function editRoomType(RoomType $roomTypes)
+  public function editRoomType(RoomType $roomType)
   {
-      return view('admins.roomTypes.edit',compact('roomTypes'));
+      return view('admins.roomTypes.edit',compact('roomType'));
   }
 
   public function saveRoomType(RoomTypeRequest $request)
   {
       $inputs = $request->all();
-      $roomTypes = RoomType::create($inputs);
+      $roomType = RoomType::create($inputs);
       return redirect('admins/roomTypes')->withSuccess('Success');
   }
 
-  public function updateRoomType(RoomType $roomTypes,RoomTypeRequest $request)
+  public function updateRoomType(RoomType $roomType,CheckRoomTypeEditRequest $request)
   {
       $inputs =  $request->all();
-      $roomTypes->update($inputs);
+      $roomType->update($inputs);
       return redirect('/admins/roomTypes')->withSuccess('Update user success');
   }
 
-  public function deleteRoomType(RoomType $roomTypes)
+  public function deleteRoomType(RoomType $roomType)
   {
-      $roomTypes->delete();
+      $roomType->delete();
       return redirect('admins/roomTypes')->withSuccess('User has been delete');
+  }
+
+  public function searchRoomType(Request $search)
+  {
+
+      // $search = \Request::get('search');
+      $search = Input::get('search');
+
+      $roomTypes = RoomType::where('name', 'LIKE', '%' . $search . '%')
+          ->Orwhere('description', 'LIKE', '%' . $search . '%')
+          ->paginate(1);
+
+
+      return view('admins.roomTypes.listAllSearchRoomType', compact('roomTypes'));
   }
 }

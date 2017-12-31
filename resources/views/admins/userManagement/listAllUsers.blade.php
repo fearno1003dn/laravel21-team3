@@ -5,16 +5,27 @@
 
 @section('content')
 
+    @if(count($users)==0)
     <div class="row">
+      <div class="box-header">
+          <p>Sorry we found nothing</p>
+      </div>
+    </div>
+    @endif
 
-        <div class="col-xs-12">
-
+    @if(count($users)!=0)
+    <div class="row">
+      <div class="col-xs-12">
+          <div class="box-header">
+            <a>.</a>
+              @include('partials.forms.search',['url'=>'admins/users/search'])
+            </div>
             <div class="box">
 
                 <div class="box">
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table  class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped">
                             <thead>
                             <tr>
 
@@ -38,7 +49,7 @@
                                     <td>
                                         {!!$user->role ? '<a>Admin User</a>' : '<a>Normal User</a>'!!}
                                     </td>
-                                    <td><a href="{{url('admins/users/'.$user->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/users/'.$user->id.'/delete')}}"><i class="fa fa-trash"></i>Delete</a></td>
+                                    <td><a href="{{url('admins/users/'.$user->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/users/'.$user->id.'/delete')}}" class="fa fa-trash" onclick="return confirm('Are you sure you want to delete this user?');" data-confirm="Are you sure to delete this user?">Delete</a></td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -46,13 +57,42 @@
 
                         </table>
                     </div>
-                    <!-- /.box-body -->
-                      {!! $users->links()!!}
+                    <!-- /.box-body links-->
+
                 </div>
                 <!-- /.box -->
 
             </div>
             <!-- /.col -->
+          </div>
         </div>
+    @endif
 
 @stop
+
+
+<!-- @section('script')
+<script>
+  $(function () {
+    $('#example2').DataTable({
+
+      // "dom":' <"search"fl><"top">rt<"bottom"ip><"clear">'
+    // "dom": '<"top"l><"top-right"f>t<"bottom"pi><"clear">',
+    // "dom": '<"wrapper"flipt>'
+    // "dom": 't',
+    // "dom": ' <"top pull-right"f>t<"bottom"li><"bottom pull-right"p><"clear">',
+    // "dom":  '<"pull-left top"l>&<"pull-right top"f>t<"pull-left bottom"i>&<"pull-right bottom"p><"clear">',
+    "dom":  '<"pull-left top"l>&<"pull-right top"f>t<"pull-left bottom"ip><"clear">',
+    language: {
+    searchPlaceholder: "Search me plz ahihi"
+}
+    })
+
+  })
+
+
+
+</script>
+
+
+@stop -->

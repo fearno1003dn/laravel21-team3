@@ -9,12 +9,12 @@
 
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active">
+                        <lizz role="presentation" class="active">
                             <div aria-controls="restaurant" role="tab" data-toggle="tab"></div>
                             <a href="#restaurant" aria-controls="restaurant" role="tab" data-toggle="tab"><img
                                         src="{{asset('hotel-booking/img/home-facilities-icon-eleven.png')}}"
                                         alt="restaurant"><span>restaurant</span></a>
-                        </li>
+                        </lizz>
                         <li role="presentation">
                             <a href="#sports-club" aria-controls="sports-club" role="tab" data-toggle="tab"><img
                                         src="{{asset('hotel-booking/img/home-facilities-icon-seven.png')}}"
