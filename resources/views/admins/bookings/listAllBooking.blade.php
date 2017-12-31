@@ -15,7 +15,7 @@
                 <div class="box">
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table id="example2" class="table table-bordered table-striped" style="text-align:center; ">
+                        <table class="table table-bordered table-striped" style="text-align:center; ">
                             <thead>
                                 <tr>
                                     <th style="text-align:center; ">User Name</th>
@@ -57,7 +57,7 @@
 
 @stop
 
-@section('script')
+<!-- @section('script')
 <script>
   $(function () {
     $('#example2').DataTable({
@@ -81,4 +81,4 @@
 </script>
 
 
-@stop
+@stop -->
