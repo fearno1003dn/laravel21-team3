@@ -8,16 +8,17 @@
 
       @if(count($rooms)==0)
       <div class="row">
-      <p>Sorry we found nothing</p>
+        <div class="box-header">
+            <p>Sorry we found nothing</p>
+        </div>
       </div>
       @endif
 
     @if(count($rooms)!=0)
     <div class="row">
-      <p>   Here are results that match your search</p>
-
-          <div class="box-header">
-
+        <div class="box-header">
+          <p>   Here are results that match your search</p>
+        
             @include('partials.forms.search',['url'=>'admins/rooms/search'])
           </div>
           <div class="col-xs-12">

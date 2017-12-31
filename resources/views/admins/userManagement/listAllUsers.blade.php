@@ -5,16 +5,27 @@
 
 @section('content')
 
+    @if(count($users)==0)
     <div class="row">
+      <div class="box-header">
+          <p>Sorry we found nothing</p>
+      </div>
+    </div>
+    @endif
 
-        <div class="col-xs-12">
-
+    @if(count($users)!=0)
+    <div class="row">
+      <div class="col-xs-12">
+          <div class="box-header">
+            <a>.</a>
+              @include('partials.forms.search',['url'=>'admins/users/search'])
+            </div>
             <div class="box">
 
                 <div class="box">
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table id="example2" class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped">
                             <thead>
                             <tr>
 
@@ -53,12 +64,14 @@
 
             </div>
             <!-- /.col -->
+          </div>
         </div>
+    @endif
 
 @stop
 
 
-@section('script')
+<!-- @section('script')
 <script>
   $(function () {
     $('#example2').DataTable({
@@ -82,4 +95,4 @@
 </script>
 
 
-@stop
+@stop -->

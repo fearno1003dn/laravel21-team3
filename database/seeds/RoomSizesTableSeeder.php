@@ -12,9 +12,9 @@ class RoomSizesTableSeeder extends Seeder
     public function run()
     {
         DB::table('room_sizes')->insert([
-            ['name' => 'Room for 2 Pepple', 'size' => '2'],
-            ['name' => 'Room for 4 Pepple', 'size' => '4'],
-            ['name' => 'Room for 6 Pepple', 'size' => '6'],
+            ['name' => 'Room for 2 People', 'size' => '2'],
+            ['name' => 'Room for 4 People', 'size' => '4'],
+            ['name' => 'Room for 6 People', 'size' => '6'],
         ]);
     }
 }

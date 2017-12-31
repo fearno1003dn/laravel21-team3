@@ -11,23 +11,12 @@
           <div class="box-header">
             <a href="{{ url('admins/roomTypes/create') }}" class="btn btn-primary fa fa-heart-o"> Create Room Type</a>
 
-
-<!--
-            <form class="box-tools">
-        			{{ csrf_field() }}
-              <div class="input-group input-group-sm" style="width: 150px;">
-                  <input type="text" name="search" class="form-control pull-right" placeholder="Search...">
-
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                  </div>
-                </div>
-        		</form> -->
+              @include('partials.forms.search',['url'=>'admins/roomTypes/search'])
 
             <div class="box">
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="example2" class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
 
@@ -60,7 +49,7 @@
 
 @stop
 
-@section('script')
+<!-- @section('script')
 <script>
   $(function () {
     $('#example2').DataTable({
@@ -84,4 +73,4 @@
 </script>
 
 
-@stop
+@stop -->

@@ -82,8 +82,8 @@ class RoomController extends Controller
     public function listAllRoom()
     {
 
-        $rooms = Room::all();
-        return view('admins.rooms.listAllRoomTest', compact('rooms'));
+        $rooms = Room::paginate(25);
+        return view('admins.rooms.listAllRoom', compact('rooms'));
 
     }
 
@@ -188,21 +188,22 @@ class RoomController extends Controller
     {
 
         // $search = \Request::get('search');
+        $search = Input::get('search');
 
-        $rooms = Room::where('name', 'LIKE', '%' . $search->search . '%')
-            ->Orwhere('price', '=', $search->search)
-            ->Orwhere('status', 'LIKE', '%' . $search->search . '%')
-            ->Orwhere('description', 'LIKE', '%' . $search->search . '%')
+        $rooms = Room::where('name', 'LIKE', '%' . $search . '%')
+            ->Orwhere('price', '=', $search)
+            ->Orwhere('status', 'LIKE', '%' . $search . '%')
+            ->Orwhere('description', 'LIKE', '%' . $search . '%')
             ->OrwhereHas('roomTypes', function ($query) use ($search) {
-                $query->where('name', 'LIKE', '%' . $search->search . '%');
+                $query->where('name', 'LIKE', '%' . $search . '%');
             })
             ->OrwhereHas('roomSizes', function ($query) use ($search) {
-                $query->where('name', 'LIKE', '%' . $search->search . '%');
+                $query->where('name', 'LIKE', '%' . $search . '%');
             })
             ->paginate(1);
 
 
-        return view('admins.rooms.listAllRoom', compact('rooms'))->with('search',old('search'));
+        return view('admins.rooms.listAllSearchRoom', compact('rooms'));
     }
 
 }

@@ -57,9 +57,9 @@ class UserController extends Controller
          ->Orwhere('role','=', $search)
          ->Orwhere('phone_number','LIKE','%'.$search.'%')
          ->Orwhere('address','LIKE','%'.$search.'%')
-         ;
+         ->paginate(1);
 
-          return view('admins.rooms.searchUser',compact('rooms'));
+          return view('admins.userManagement.listAllSearchUser',compact('users'));
    }
 
    public function userShow()

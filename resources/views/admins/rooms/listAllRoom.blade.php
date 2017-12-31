@@ -11,10 +11,23 @@
           <div class="box-header">
             <a href="{{ url('admins/rooms/create') }}" class="btn btn-primary fa fa-heart-o"> Create Room</a>
 
+<!-- <<<<<<< HEAD
 
 
-            @include('partials.forms.search',['url'=>'admins/rooms/search'])
+            <form class="box-tools" action="{{asset('admins/rooms/search')}}" method="GET" role="search">
+        			{{ csrf_field() }}
+              <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="search" class="form-control pull-right" placeholder="Search...">
 
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+        		</form>
+
+======= -->
+              @include('partials.forms.search',['url'=>'admins/rooms/search'])
+              
 
             <div class="box">
                 <!-- /.box-header -->
@@ -26,7 +39,6 @@
                                 <th>Room Name</th>
                                 <th>Price</th>
                                 <th>Status</th>
-                                <th>Description</th>
                                 <th>Room size</th>
                                 <th>Room Type</th>
                                 <th>Image</th>
@@ -43,7 +55,6 @@
                                 <td>
                                     {!!$room->status ? '<a>Available</a>' : '<a>Not Available</a>'!!}
                                 </td>
-                                <td>{!!$room->description!!}</td>
                                 <td>{!!$room->roomSizes->size!!}</td>
                                 <td>{!!$room->roomTypes->name!!}</td>
                                 <td>
@@ -69,7 +80,7 @@
 @section('script')
 jQuery(document).ready(function($){
      $('.deleteGroup').on('submit',function(e){
-        if(!confirm('Do you want to delete this item?')){
+        if(!confirm('Do you really want to delete this item?')){
               e.preventDefault();
         }
       });
