@@ -78,6 +78,7 @@ Route::get('admins/bookings/search','BookingController@searchBooking');
 Route::get('admins/bookings/detail/{booking}/{room_id}/addservice','BookingController@addService');
 Route::post('admins/bookings/detail/{booking}/{room_id}','BookingController@saveService');
 Route::get('admins/bookings/detail/{booking}/{room_id}/{service}/delete','BookingController@deleteService');
+Route::get('admins/bookings/detail/{booking}/checkout','BookingController@adminCheckout');
 
 
 
