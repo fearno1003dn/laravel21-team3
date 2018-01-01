@@ -1,6 +1,6 @@
 @extends('admins.layouts.index1')
 @section('content_header')
-    <h1>Booking {!!$booking->name!!}</h1>
+    <h1>Booking {!!$booking->name!!} ID {!! $booking->code !!}</h1>
 @stop
 @section('content')
     <div class="box box-default">
@@ -11,8 +11,13 @@
             <div class="row">
                 <div class="col-md-7">
                     <ul style="padding-top: 15px;">
+
                         <li>
                             <strong>User Name </strong>: {!! $booking->users->first_name !!}
+                        </li>
+
+                        <li>
+                            <strong>Booking ID </strong> : {!! $booking->code !!}
                         </li>
 
                         <li>
@@ -20,20 +25,28 @@
                         </li>
 
                         <li>
-                            <strong>Check Out </strong> : {!! $booking->check_out !!}
+                            <strong>Expected Check Out </strong> : {!! $booking->check_out !!}
                         </li>
 
                         <li>
-                            <strong>Promotion Code </strong> : {!! $booking->promotions->code !!}
+                            <strong>Time Now </strong> : {!! $now !!}
+                        </li>
+
+                        <li>
+                            <strong>Expected Days</strong> : {!! $diff1 !!}
+                        </li>
+
+                        <li>
+                            <strong>Reality Days</strong> : {!! $diff2 !!}
+                        </li>
+
+                        <li>
+                            <strong>Promotion Code </strong> : {!! $booking->promotions->code !!}  <strong>Discount</strong> : {!! $booking->promotions->discount !!}%
                         </li>
 
                         <li>
                             <strong>Status </strong> :
-                            {!!$booking->status ? '<span class="label label-success">Available</span>' : '<span class="label label-danger">Not Available</span>'!!}
-                        </li>
-                        
-                        <li>
-                            <strong>Code </strong> : {!! $booking->code !!}
+                            {!!$booking->status ? '<span>Available</span>' : '<span>Not Available</span>'!!}
                         </li>
 
                         <li>
@@ -67,4 +80,19 @@
         </div>
     </div>
     </div>
+@stop
+
+@section('script')
+<script>
+function dateDifference($date_1 , $date_2 , $differenceFormat = '%a' )
+{
+  $datetime1 = date_create($date_1);
+  $datetime2 = date_create($date_2);
+
+  $interval = date_diff($datetime1, $datetime2);
+
+  return $interval->format($differenceFormat);
+
+}
+</script>
 @stop
