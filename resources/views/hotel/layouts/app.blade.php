@@ -67,7 +67,6 @@
     <!-- start main slider -->
 @yield('slider')
 <!-- end main slider -->
-@yield('content')
 <!-- FOOTER -->
 @include('hotel.layouts.footer')
 <!-- END / FOOTER -->

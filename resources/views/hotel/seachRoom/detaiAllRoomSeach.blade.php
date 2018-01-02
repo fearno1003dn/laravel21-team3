@@ -1,9 +1,7 @@
 @extends('hotel.layouts.app')
-@section('slider')
+@section('content')
     @include('hotel.layouts.availabilitySeach')
     <br>
-@endsection
-@section('content')
     <!-- start other detect room section -->
     <section class="other_room_area">
         <div class="container">
@@ -30,7 +28,7 @@
                                                         <p>${{$room->price}}/ <span>DAY</span></p>
                                                     </div>
                                                     <div class="left_room_title floatright">
-                                                        <a href="#" class="btn">Book</a>
+                                                        <a href="{{route('bookings.add', $room->id)}}"><button class="btn btn-primary floatright" type="button" name="button">BOOK</button></a>
                                                     </div>
                                                 </div>
                                             </figure>
@@ -38,33 +36,11 @@
                                     </div>
                                     @endforeach
                                 </div>
-                                <div class="row">
-                                    <nav class="text-center margin-top-65 margin-bottom-75">
-                                        <ul class="pagination">
-                                            <li>
-                                                <a href="#" aria-label="Previous">
-                                                    <i class="fa fa-angle-left"></i>prev
-                                                </a>
-                                            </li>
-                                            <li class="active"><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">4</a></li>
-                                            <li><a href="#">5</a></li>
-                                            <li>
-                                                <a href="#" aria-label="Next">next
-                                                    <i class="fa fa-angle-right"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
                             </div>
                         </div>
                         <!-- end single room details -->
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
