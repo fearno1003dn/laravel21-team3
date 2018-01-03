@@ -114,19 +114,19 @@ class UserController extends Controller
 
         if (isset($search1) && isset($search2) ) {
           $bookings = Booking::where('user_id', '=', $user->id)->whereBetween('created_at', array($search1, $search2))->orderBy('created_at', 'asc')->paginate(25);
-    
+
           return view('hotel.users.bookings',compact('bookings'));
         }
 
         if (isset($search1)) {
           $bookings = Booking::where('user_id', '=', $user->id)->where('created_at', '>=', $search1)->orderBy('created_at', 'asc')->paginate(25);
-    
+
           return view('hotel.users.bookings',compact('bookings'));
         }
 
         if (isset($search2)) {
           $bookings = Booking::where('user_id', '=', $user->id)->where('created_at', '=', $search2)->orderBy('created_at', 'asc')->paginate(25);
-    
+
           return view('hotel.users.bookings',compact('bookings'));
         }
 
