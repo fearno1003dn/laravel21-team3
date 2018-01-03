@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\CheckUserEditRequest;
 use Illuminate\Pagination\Paginator;
+use Auth;
+use App\Booking;
+use DateTime;
 
 class UserController extends Controller
 {
@@ -17,8 +20,6 @@ class UserController extends Controller
         return view('admins.userManagement.listAllUsers',compact('users'));
 
     }
-
-
 
     public function editUser(User $user)
     {
@@ -62,4 +63,76 @@ class UserController extends Controller
           return view('admins.userManagement.listAllSearchUser',compact('users'));
    }
 
+   public function userShow()
+    {
+        if (Auth::check()){
+            $user = Auth::user();
+            return view('hotel.users.detail',compact('user'));
+        }
+        else
+            return redirect('/index');
+    }
+
+    public function userListBooking()
+    {
+        if (Auth::check()){
+            $date = new DateTime();
+            $date = date("Y-m-d");
+            $user = Auth::user();
+            $bookings = Booking::where('user_id', '=', $user->id)->orderBy('created_at', 'dec')->paginate(10);
+            foreach ($bookings as $booking) {
+              //dd($booking->check_in);
+            }
+            return view('hotel.users.bookings',compact('bookings', 'date'));
+        }
+        else
+            return redirect('/index');
+    }
+
+    public function userCancelBooking(Booking $booking)
+    {
+      if (Auth::check()){
+        $user = Auth::user();
+        $admin = User::where('role', '=', 1)->first();
+        $booking->update(['status' => 0]);
+        $user->deposit = $user->deposit + $booking->total * 0.8;
+        $user->save();
+        $admin->deposit = $admin->deposit + $booking->total * 0.2;
+        $admin->save();
+        return redirect('/user/bookings');
+        }
+      else
+        return redirect('/index');
+    }
+
+    public function userSearchBooking()
+    {
+      if (Auth::check()){
+        $search1 = Input::get('search1');
+        $search2 = Input::get('search2');
+        $user = Auth::user();
+
+        if (isset($search1) && isset($search2) ) {
+          $bookings = Booking::where('user_id', '=', $user->id)->whereBetween('created_at', array($search1, $search2))->orderBy('created_at', 'asc')->paginate(25);
+    
+          return view('hotel.users.bookings',compact('bookings'));
+        }
+
+        if (isset($search1)) {
+          $bookings = Booking::where('user_id', '=', $user->id)->where('created_at', '>=', $search1)->orderBy('created_at', 'asc')->paginate(25);
+    
+          return view('hotel.users.bookings',compact('bookings'));
+        }
+
+        if (isset($search2)) {
+          $bookings = Booking::where('user_id', '=', $user->id)->where('created_at', '=', $search2)->orderBy('created_at', 'asc')->paginate(25);
+    
+          return view('hotel.users.bookings',compact('bookings'));
+        }
+
+        return redirect('/user/bookings');
+      }
+      else
+          return redirect('/index');
+    }
 }

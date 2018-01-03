@@ -25,4 +25,5 @@ class Booking extends Model
     {
         return $this->belongsTo('App\Promotion', 'promotion_id','id');
     }
+
 }
