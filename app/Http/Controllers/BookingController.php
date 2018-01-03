@@ -274,6 +274,8 @@ class BookingController extends Controller
                      $totalPrice = $roomTotal + $serviceTotal - $paid  ;
                  }
     $booking->update(['total' => $totalPrice]);
-    return redirect('admins/bookings/detail/'.$booking->id.'/checkout');
+    // dd($totalPrice);
+    // return redirect('admins/bookings/detail/'.$booking->id.'/checkout');
+    return redirect('admins/bookings')->withSuccess('Room has been delete');
   }
 }
