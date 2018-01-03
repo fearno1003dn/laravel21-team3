@@ -14,7 +14,7 @@ class ServiceController extends Controller
     public function listAllService()
     {
 
-        $services = Service::paginate(1);
+        $services = Service::all();
         return view('admins.services.listAllServices',compact('services'));
 
     }
@@ -61,8 +61,9 @@ class ServiceController extends Controller
 
          $services = Service::where('name', 'LIKE', '%'. $search.'%')
          ->Orwhere('price','=',$search)
-         ->Orwhere('description','LIKE','%'.$search.'%');
+         ->Orwhere('description','LIKE','%'.$search.'%')
+         ->paginate(1);
 
-          return view('admins.rooms.searchService',compact('services'));
+          return view('admins.services.listAllSearchService',compact('services'));
    }
 }

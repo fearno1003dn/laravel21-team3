@@ -11,23 +11,12 @@
           <div class="box-header">
             <a href="{{ url('admins/roomTypes/create') }}" class="btn btn-primary fa fa-heart-o"> Create Room Type</a>
 
-
-
-            <form class="box-tools">
-        			{{ csrf_field() }}
-              <div class="input-group input-group-sm" style="width: 150px;">
-                  <input type="text" name="search" class="form-control pull-right" placeholder="Search...">
-
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                  </div>
-                </div>
-        		</form>
+              @include('partials.forms.search',['url'=>'admins/roomTypes/search'])
 
             <div class="box">
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table  class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
 
@@ -43,8 +32,8 @@
 
                                 <td>{!!$roomType->name!!}</td>
                                 <td>{!!$roomType->description!!}</td>
-                                <td><a href="{{url('admins/roomTypes/'.$roomType->id.'/edit')}}" >
-                                  <i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/roomTypes/'.$roomType->id.'/delete')}}">
+                                <td><a href="{{url('admins/roomTypes/'.$roomType->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a>
+                                  - <a href="{{url('admins/roomTypes/'.$roomType->id.'/delete')}}" onclick="return confirm('Are you sure you want to delete this room type?');">
                                     <i class="fa fa-trash"></i>Delete</a></td>
                             </tr>
                         @endforeach
@@ -59,3 +48,29 @@
     </div>
 
 @stop
+
+<!-- @section('script')
+<script>
+  $(function () {
+    $('#example2').DataTable({
+
+      // "dom":' <"search"fl><"top">rt<"bottom"ip><"clear">'
+    // "dom": '<"top"l><"top-right"f>t<"bottom"pi><"clear">',
+    // "dom": '<"wrapper"flipt>'
+    // "dom": 't',
+    // "dom": ' <"top pull-right"f>t<"bottom"li><"bottom pull-right"p><"clear">',
+    // "dom":  '<"pull-left top"l>&<"pull-right top"f>t<"pull-left bottom"i>&<"pull-right bottom"p><"clear">',
+    "dom":  '<"pull-left top"l>&<"pull-right top"f>t<"pull-left bottom"ip><"clear">',
+    language: {
+    searchPlaceholder: "Search me plz ahihi"
+}
+    })
+
+  })
+
+
+
+</script>
+
+
+@stop -->

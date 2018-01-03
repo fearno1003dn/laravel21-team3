@@ -12,6 +12,7 @@ use App\RoomSize;
 use App\Http\Requests\CheckFindRoomRequest;
 use App\Service;
 use App\Http\Requests\RoomRequest;
+use App\Http\Requests\CheckRoomEditRequest;
 use Illuminate\Pagination\Paginator;
 
 class RoomController extends Controller
@@ -52,6 +53,8 @@ class RoomController extends Controller
             ->whereHas('roomTypes', function ($query) use ($roomType) {
                 $query->where('name', '=', $roomType);
             })
+            ->whereDoesntHave('bookings', function ($query){
+                $query->where('status', '=', 1);
             ->whereDoesntHave('bookings', function ($query) use ($from) {
                 $query->where('check_in', '<=', $from)->where('check_out', '>=', $from);
             })
@@ -81,16 +84,16 @@ class RoomController extends Controller
     public function listAllRoom()
     {
 
-        $rooms = Room::paginate(1);
+        $rooms = Room::paginate(25);
         return view('admins.rooms.listAllRoom', compact('rooms'));
 
     }
 
-    public function createRoom()
+    public function createRoom(Room $room)
     {
         $roomTypes = RoomType::all()->pluck('name', 'id');
         $roomSizes = RoomSize::all()->pluck('name', 'id');
-        return view('admins.rooms.create', compact('roomTypes', 'roomSizes'));
+        return view('admins.rooms.create', compact('room','roomTypes', 'roomSizes'));
     }
 
     public function editRoom(Room $room)
@@ -134,7 +137,7 @@ class RoomController extends Controller
         return redirect('admins/rooms')->withSuccess('Room has been created');
     }
 
-    public function updateRoom(Room $room, RoomRequest $request)
+    public function updateRoom(Room $room, CheckRoomEditRequest $request)
     {
         $data = Input::all();
 
@@ -183,8 +186,10 @@ class RoomController extends Controller
         return view('admins.rooms.roomDetail', compact('room'));
     }
 
-    public function searchRoom()
+    public function searchRoom(Request $search)
     {
+
+        // $search = \Request::get('search');
         $search = Input::get('search');
 
         $rooms = Room::where('name', 'LIKE', '%' . $search . '%')
@@ -197,10 +202,10 @@ class RoomController extends Controller
             ->OrwhereHas('roomSizes', function ($query) use ($search) {
                 $query->where('name', 'LIKE', '%' . $search . '%');
             })
-            ->get();
+            ->paginate(1);
 
 
-        return view('admins.rooms.searchRoom', compact('rooms'));
+        return view('admins.rooms.listAllSearchRoom', compact('rooms'));
     }
 
 }

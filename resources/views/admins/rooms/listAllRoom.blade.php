@@ -11,9 +11,10 @@
           <div class="box-header">
             <a href="{{ url('admins/rooms/create') }}" class="btn btn-primary fa fa-heart-o"> Create Room</a>
 
+<!-- <<<<<<< HEAD
 
 
-            <form class="box-tools" action="/admins/rooms/search" method="POST" role="search">
+            <form class="box-tools" action="{{asset('admins/rooms/search')}}" method="GET" role="search">
         			{{ csrf_field() }}
               <div class="input-group input-group-sm" style="width: 150px;">
                   <input type="text" name="search" class="form-control pull-right" placeholder="Search...">
@@ -23,6 +24,10 @@
                   </div>
                 </div>
         		</form>
+
+======= -->
+              @include('partials.forms.search',['url'=>'admins/rooms/search'])
+
 
             <div class="box">
                 <!-- /.box-header -->
@@ -34,7 +39,6 @@
                                 <th>Room Name</th>
                                 <th>Price</th>
                                 <th>Status</th>
-                                <th>Description</th>
                                 <th>Room size</th>
                                 <th>Room Type</th>
                                 <th>Image</th>
@@ -51,13 +55,12 @@
                                 <td>
                                     {!!$room->status ? '<a>Available</a>' : '<a>Not Available</a>'!!}
                                 </td>
-                                <td>{!!$room->description!!}</td>
                                 <td>{!!$room->roomSizes->size!!}</td>
                                 <td>{!!$room->roomTypes->name!!}</td>
                                 <td>
                                   <img src="{!!url('/images/rooms/'.$room->image1)!!}" alt="" style='width: 50px; height: 30px;'>
                                 </td>
-                                <td><a href="{{url('admins/rooms/'.$room->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/rooms/'.$room->id.'/delete')}}"><i class="fa fa-trash"></i>Delete</a>
+                                <td><a href="{{url('admins/rooms/'.$room->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/rooms/'.$room->id.'/delete')}}" onclick="return confirm('Are you sure you want to delete this room type?');"><i class="fa fa-trash" id="deleteGroup"></i>Delete</a>
                                 - <a href="{{url('admins/rooms/'.$room->id)}}"><i class="fa fa-book"></i>Detail</a></td>
                             </tr>
                         @endforeach
@@ -67,9 +70,19 @@
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
-            {!! $rooms->links()!!}
+            {!! $rooms->appends($_GET)->links()!!}
         </div>
         <!-- /.col -->
     </div>
 
+@stop
+
+@section('script')
+jQuery(document).ready(function($){
+     $('.deleteGroup').on('submit',function(e){
+        if(!confirm('Do you really want to delete this item?')){
+              e.preventDefault();
+        }
+      });
+});
 @stop
