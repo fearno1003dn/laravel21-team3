@@ -80,6 +80,12 @@ Route::get('admins/bookings/detail/{booking}', 'BookingController@detailBooking'
 Route::put('admins/bookings/update/{booking}', 'BookingController@updateBooking');
 Route::get('admins/bookings/delete/{booking}', 'BookingController@deleteBooking');
 Route::get('admins/bookings/search','BookingController@searchBooking');
+Route::get('admins/bookings/detail/{booking}/{room_id}/addservice','BookingController@addService');
+Route::post('admins/bookings/detail/{booking}/{room_id}','BookingController@saveService');
+Route::get('admins/bookings/detail/{booking}/{room_id}/{service}/delete','BookingController@deleteService');
+
+
+
 
 
 

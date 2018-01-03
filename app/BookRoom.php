@@ -18,4 +18,19 @@ class BookRoom extends Model
     {
         return $this->belongsTo('App\Room', 'room_id');
     }
+
+
+
+    public function services()
+    {
+      return $this->belongsToMany('App\Service','book_room_services', 'book_room_id', 'service_id','id','id')->withPivot('quantity','id');
+    }
+
+
+    public function bookRoomServices()
+    {
+        return $this->hasMany('App\BookRoomService', 'book_room_id','id');
+    }
+
+
 }
