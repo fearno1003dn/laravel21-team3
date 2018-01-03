@@ -18,6 +18,10 @@
                         <li style="padding-top: 15px;">
                             <strong style="padding-left: 400px">E-Mail Address :</strong> <b>{!!$user->email!!}</b>
                         </li>
+
+                        <li style="padding-top: 15px;">
+                            <strong style="padding-left: 400px">Deposit :</strong> <b>{!! number_format($user->deposit) !!} $</b>
+                        </li>
                         
                         <li style="padding-top: 15px;">
                             <strong style="padding-left: 400px">Phone Number :</strong> <b>{!!$user->phone_number!!}</b>

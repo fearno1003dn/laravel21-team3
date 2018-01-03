@@ -34,6 +34,7 @@ Route::get('/admins', function () {
 Route::get('/user/index','userController@userShow'); 
 Route::get('/user/bookings','userController@userListBooking');
 Route::get('/user/bookings/cancel/{booking}','userController@userCancelBooking');
+Route::get('/user/bookings/search','userController@userSearchBooking');
 
 
 Route::get('admins/rooms/search','RoomController@searchRoom'); //chuyen cai ni xuong duoi cung thi deo chay gg

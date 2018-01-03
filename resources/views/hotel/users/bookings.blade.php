@@ -6,13 +6,13 @@
             <div class="box-header">
                 <a href="{{url('/user/bookings')}}" class="btn btn-primary fa fa-heart-o"> List All Booking</a>
                 <!-- <form class="form-inline" style="float: right;" action="{{asset('admins/bookings/search')}}" method="get" role="searchBooking"> -->
-                {!! Form::open(['class' => 'form-inline', 'name' => 'search', 'style' => 'float: right;', 'url' => 'admins/bookings/search', 'method' => 'get']) !!}    
+                {!! Form::open(['class' => 'form-inline', 'name' => 'search', 'style' => 'float: right;', 'url' => 'user/bookings/search', 'method' => 'get']) !!}    
                     {{ csrf_field() }}
 
-                    <label class="">Check In :</label>
+                    <label class="">From :</label>
                     <input type="date" name="search1" class="form-control" value="{{ isset($_GET['search1']) ? $_GET['search1'] : '' }}">
 
-                    <label class="">Check Out :</label>
+                    <label class="">To :</label>
                     <input type="date" name="search2" class="form-control" value="{{ isset($_GET['search2']) ? $_GET['search2'] : '' }}">
 
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
@@ -46,9 +46,9 @@
                                         {!!$booking->status ? '<a></i>Available</a>' : '<a>Not Available</a>'!!}
                                     </td>
                                     <td>{!! $booking->code !!}</td>
-                                    <td>{!! number_format($booking->total) !!}đ</td>
-                                    <td>@if($booking->status == 1) <a href="{{url('/user/bookings/cancel/'.$booking->id)}}" >Cancel Booking</a>
-                                        @else <a href="{{url('/user/bookings/cancel/'.$booking->id)}}" ></i>Apply Booking</a>
+                                    <td>{!! number_format($booking->total) !!} $</td>
+                                    <td>@if($booking->status == 1 && $booking->check_in > $date) <a href="{{url('/user/bookings/cancel/'.$booking->id)}}" >Cancel Booking</a>
+                                        @else <a href="#" ></i>Not Active</a>
                                     @endif</td>        
                                 </tr>
                             @endforeach
