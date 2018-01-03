@@ -97,6 +97,12 @@
                     <td>{!!$booking->status ? '<span>Available</span>' : '<span>Not Available</span>'!!}</td>
                   </tr>
 
+                  <tr>
+                    <td>
+                      <a href="{{url('admins/bookings/detail/'.$booking->id.'/checkout')}}" class='btn btn-primary'>Check Out All Rooms</a>
+                  </td>
+                  </tr>
+
                 </ul>
               </table>
 

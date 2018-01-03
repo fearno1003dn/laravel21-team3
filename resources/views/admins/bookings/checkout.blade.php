@@ -1,10 +1,11 @@
-@extends('backend.layout')
-@section('dashboard')
+@extends('admins.layouts.index1')
+@section('content')
+
     <div class="page-content-wrap">
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-6">
-                    <form class="form-horizontal" action="{{url('/admin/bookings/checkout/'.$bookings->id)}}"
+                    <form class="form-horizontal" action="{{url('admins/bookings/detail/'.$booking->id.'/checkout')}}"
                           method="post">
                         {{csrf_field()}}
                         <div class="panel panel-default">
@@ -35,7 +36,7 @@
 
                                     <div class="col-md-6 col-xs-12">
                                         <span class="help-block"
-                                              id="billing">{{$bookings->checkin_time}}</span>
+                                              id="billing">{{$booking->check_in}}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -43,24 +44,16 @@
 
                                     <div class="col-md-6 col-xs-12">
                                         <span class="help-block"
-                                              id="billing">{{$bookings->total_bill }} {{config('app.currency','Dollars')}}</span>
+                                              id="billing">{{$booking->total }} {{config('app.currency','Dollars')}}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 col-xs-12 control-label">Paid Bill</label>
 
-                                    <div class="col-md-6 col-xs-12">
-                                        <span class="help-block"
-                                              id="billing">{{$bookings->paid_bill }} {{config('app.currency','Dollars')}}</span>
-                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 col-xs-12 control-label">Due Bill</label>
 
-                                    <div class="col-md-6 col-xs-12">
-                                        <span class="help-block"
-                                              id="billing">{{$bookings->total_bill-$bookings->paid_bill }} {{config('app.currency','Dollars')}}</span>
-                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 col-xs-12 control-label">Days Stayed</label>
@@ -80,7 +73,7 @@
                                             <span class="input-group-addon"><span
                                                         class="fa fa-money"></span></span>
                                             <input class="form-control"
-                                                   value="{{$bookings->total_bill-$bookings->paid_bill}}" type="number"
+                                                   value="" type="number"
                                                    name="amount"/>
                                         </div>
                                         <span class="help-block">Please pay the due bill and submit the form!</span>
@@ -95,6 +88,7 @@
                         </div>
                     </form>
                 </div>
+
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -110,54 +104,46 @@
                             <table class="table table-responsive">
                                 <tr>
                                     <th>Customer Name</th>
-                                    <td>{{$bookings->customer_name}}</td>
+
                                 </tr>
                                 <tr>
                                     <th>Address</th>
-                                    <td>{{$bookings->customer_address}}</td>
+
                                 </tr>
                                 <tr>
                                     <th>Phone Number</th>
-                                    <td>{{$bookings->customer_phone}}</td>
+
                                 </tr>
                                 <tr>
                                     <th>Email</th>
-                                    <td>{{$bookings->customer_email}}</td>
+
                                 </tr>
-                                <tr>
-                                    <th>Gender</th>
-                                    <td>{{$bookings->gender}}</td>
-                                </tr>
-                                <tr>
-                                    <th>Occupation</th>
-                                    <td>{{$bookings->occupation}}</td>
-                                </tr>
-                                <tr>
-                                    <th>Designation</th>
-                                    <td>{{$bookings->designation}}</td>
-                                </tr>
+
                                 <tr>
                                     <th>Room Information</th>
-                                    <td>{{$bookings->room_name}} - {{$bookings->room_code}} - {{$bookings->type_name}}
-                                        Room
-                                    </td>
+
                                 </tr>
                                 <tr>
                                     <th>Billing</th>
-                                    <td><p><strong>Total Bill</strong> {{ $bookings->total_bill}}</p>
+                                    <td><p><strong>Total Bill</strong> {{ $booking->total}}</p>
 
-                                        <p><strong>Paid</strong> {{$bookings->paid_bill}}</p>
-
-                                        <p><strong>Due</strong> {{$bookings->total_bill-$bookings->paid_bill}}</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Check in Time</th>
-                                    <td>{{ $bookings->checkin_time}}</td>
+
                                 </tr>
                                 <tr>
                                     <th>Expected Check out Time</th>
-                                    <td>{{ $bookings->checkout_time}}</td>
+
+                                </tr>
+                                <tr>
+                                    <th>Realistic Check out Time</th>
+
+                                </tr>
+                                <tr>
+                                    <th>Booking Code</th>
+
                                 </tr>
                             </table>
                         </div>
@@ -170,4 +156,5 @@
         </div>
 
     </div>
+
 @stop

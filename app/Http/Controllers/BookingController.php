@@ -186,4 +186,50 @@ class BookingController extends Controller
        $service->delete();
        return redirect('admins/bookings/detail/'.$booking_id)->withSuccess('Service has been deleted');
     }
+
+    public function adminCheckout($booking_id, BookRoomService $service)
+    {
+     $booking=Booking::where('id',$booking_id)->first();
+     // dd($booking);
+     $bookroom=BookRoom::where('booking_id',$booking_id)->get();
+     $from = new Carbon($booking->check_in);
+     $to = new Carbon($booking->check_out);
+     $now = Carbon::now();
+     $diff1 = $from->diffInDays($to);
+     $diff2 = $from->diffInDays($now);
+     $roomTotal = 0 ;
+     $serviceTotal= 0 ;
+
+     foreach ($bookroom as $br) {
+       $roomTotal = $roomTotal + ($br->rooms->price * $diff2);
+       foreach ($br->services as $service) {
+               $serviceTotal += $service->price * $service->pivot->quantity;
+             }
+     }
+     return view('admins.bookings.checkout1',compact('booking','bookroom','roomTotal','serviceTotal','diff2'));
+   }
+
+
+
+   public function adminCheckoutSingleRoom($booking_id,$room_id, BookRoomService $service)
+   {
+    $booking=Booking::where('id',$booking_id)->first();
+    // dd($booking);
+    $bookroom=BookRoom::where('booking_id',$booking_id)->where('room_id',$room_id)->first();
+    $from = new Carbon($booking->check_in);
+    $to = new Carbon($booking->check_out);
+    $now = Carbon::now();
+    $diff1 = $from->diffInDays($to);
+    $diff2 = $from->diffInDays($now);
+    $roomTotal = 0 ;
+    $serviceTotal= 0 ;
+
+
+      $roomTotal = $roomTotal + ($bookroom->rooms->price * $diff2);
+      foreach ($bookroom->services as $service) {
+              $serviceTotal += $service->price * $service->pivot->quantity;
+            }
+
+    return view('admins.bookings.checkout',compact('booking','bookroom','roomTotal','serviceTotal','diff2'));
+  }
 }
