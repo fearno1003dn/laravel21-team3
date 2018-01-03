@@ -99,7 +99,7 @@
 
                   <tr>
                     <td>
-                      <a href="{{url('admins/bookings/detail/'.$booking->id.'/checkout')}}" class='btn btn-primary'>Check Out</a>
+                      <a href="{{url('admins/bookings/detail/'.$booking->id.'/checkout')}}" class='btn btn-primary'>Check Out All Rooms</a>
                   </td>
                   </tr>
 

@@ -206,6 +206,30 @@ class BookingController extends Controller
                $serviceTotal += $service->price * $service->pivot->quantity;
              }
      }
-     return view('admins.bookings.checkout1',compact('booking','bookroom','roomTotal','serviceTotal'));
+     return view('admins.bookings.checkout1',compact('booking','bookroom','roomTotal','serviceTotal','diff2'));
    }
+
+
+
+   public function adminCheckoutSingleRoom($booking_id,$room_id, BookRoomService $service)
+   {
+    $booking=Booking::where('id',$booking_id)->first();
+    // dd($booking);
+    $bookroom=BookRoom::where('booking_id',$booking_id)->where('room_id',$room_id)->first();
+    $from = new Carbon($booking->check_in);
+    $to = new Carbon($booking->check_out);
+    $now = Carbon::now();
+    $diff1 = $from->diffInDays($to);
+    $diff2 = $from->diffInDays($now);
+    $roomTotal = 0 ;
+    $serviceTotal= 0 ;
+
+
+      $roomTotal = $roomTotal + ($bookroom->rooms->price * $diff2);
+      foreach ($bookroom->services as $service) {
+              $serviceTotal += $service->price * $service->pivot->quantity;
+            }
+
+    return view('admins.bookings.checkout',compact('booking','bookroom','roomTotal','serviceTotal','diff2'));
+  }
 }

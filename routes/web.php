@@ -80,6 +80,7 @@ Route::post('admins/bookings/detail/{booking}/{room_id}','BookingController@save
 Route::get('admins/bookings/detail/{booking}/{room_id}/{service}/delete','BookingController@deleteService');
 Route::get('admins/bookings/detail/{booking}/checkout','BookingController@adminCheckout');
 
+Route::get('admins/bookings/detail/{booking}/{room_id}/checkout','BookingController@adminCheckoutSingleRoom');
 
 
 
