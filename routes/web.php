@@ -31,7 +31,7 @@ Route::get('/admins', function () {
 
 
 
-Route::get('/user/index','userController@userShow'); 
+Route::get('/user/index','userController@userShow');
 Route::get('/user/bookings','userController@userListBooking');
 Route::get('/user/bookings/cancel/{booking}','userController@userCancelBooking');
 Route::get('/user/bookings/search','userController@userSearchBooking');
@@ -83,6 +83,10 @@ Route::get('admins/bookings/search','BookingController@searchBooking');
 Route::get('admins/bookings/detail/{booking}/{room_id}/addservice','BookingController@addService');
 Route::post('admins/bookings/detail/{booking}/{room_id}','BookingController@saveService');
 Route::get('admins/bookings/detail/{booking}/{room_id}/{service}/delete','BookingController@deleteService');
+Route::get('admins/bookings/detail/{booking}/checkout','BookingController@adminCheckout');
+
+Route::get('admins/bookings/detail/{booking}/{room_id}/checkout','BookingController@adminCheckoutSingleRoom');
+Route::get('admins/bookings/detail/{booking}/checkout/confirm','BookingController@adminCheckoutConfirm');
 
 
 

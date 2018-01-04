@@ -60,7 +60,7 @@
                                 <td>
                                   <img src="{!!url('/images/rooms/'.$room->image1)!!}" alt="" style='width: 50px; height: 30px;'>
                                 </td>
-                                <td><a href="{{url('admins/rooms/'.$room->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/rooms/'.$room->id.'/delete')}}" onclick="return confirm('Are you sure you want to delete this room type?');"><i class="fa fa-trash" id="deleteGroup"></i>Delete</a>
+                                <td><a href="{{url('admins/rooms/'.$room->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/rooms/'.$room->id.'/delete')}}" onclick="return confirm('Are you sure you want to delete this room?');"><i class="fa fa-trash" id="deleteGroup"></i>Delete</a>
                                 - <a href="{{url('admins/rooms/'.$room->id)}}"><i class="fa fa-book"></i>Detail</a></td>
                             </tr>
                         @endforeach
