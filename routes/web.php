@@ -87,6 +87,7 @@ Route::get('admins/bookings/detail/{booking}/checkout','BookingController@adminC
 
 Route::get('admins/bookings/detail/{booking}/{room_id}/checkout','BookingController@adminCheckoutSingleRoom');
 Route::get('admins/bookings/detail/{booking}/checkout/confirm','BookingController@adminCheckoutConfirm');
+Route::get('admins/bookings/detail/{booking}/{room_id}/roomDetail','BookingController@roomDetail');
 
 
 

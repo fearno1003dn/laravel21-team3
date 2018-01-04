@@ -10,17 +10,17 @@
             <div class="box-header">
                 <a href="{{url('admins/bookings')}}" class="btn btn-primary fa fa-heart-o"> List All Booking</a>
                 <!-- <form class="form-inline" style="float: right;" action="{{asset('admins/bookings/search')}}" method="get" role="searchBooking"> -->
-                {!! Form::open(['class' => 'form-inline', 'name' => 'search', 'style' => 'float: right;', 'url' => 'admins/bookings/search', 'method' => 'get']) !!}    
+                {!! Form::open(['class' => 'form-inline', 'name' => 'search', 'style' => 'float: right;', 'url' => 'admins/bookings/search', 'method' => 'get']) !!}
                      {{ csrf_field() }}
- 
+
                      <label class="">From :</label>
                      <input type="date" name="search1" class="form-control" value="{{ isset($_GET['search1']) ? $_GET['search1'] : '' }}">
- 
+
                      <label class="">To :</label>
                      <input type="date" name="search2" class="form-control" value="{{ isset($_GET['search2']) ? $_GET['search2'] : '' }}">
- 
+
                      <input type="text" name="search" class="form-control" value="{{ isset($_GET['search']) ? $_GET['search'] : '' }}" placeholder="Search...">
- 
+
                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                 {!! Form::close() !!}
                 <div class="box">

@@ -16,6 +16,7 @@ use App\Http\Requests\RoomRequest;
 use Illuminate\Pagination\Paginator;
 use App\Promotion;
 use Carbon\Carbon;
+use App\User;
 
 
 class BookingController extends Controller
@@ -244,6 +245,10 @@ class BookingController extends Controller
   {
    $booking=Booking::where('id',$booking_id)->first();
    // dd($booking);
+   $admin = User::where('role', '=', 1)->first();
+   $user = User::where('id', '=', $booking->user_id)->first();
+
+
    $bookroom=BookRoom::where('booking_id',$booking_id)->get();
    $from = new Carbon($booking->check_in);
    $to = new Carbon($booking->check_out);
@@ -256,6 +261,9 @@ class BookingController extends Controller
    $roomUsingPrice = 0;
    $totalPrice = 0;
    $booking->update(['status' => 3]);
+
+
+
 
    foreach ($bookroom as $br) {
      $br->rooms->update(['status' => 1]);
@@ -273,9 +281,30 @@ class BookingController extends Controller
            else {
                      $totalPrice = $roomTotal + $serviceTotal - $paid  ;
                  }
+
+    $user->deposit = $user->deposit - $totalPrice;
+    $user->save();
+    $admin->deposit = $admin->deposit + $totalPrice;
     $booking->update(['total' => $totalPrice]);
+
     // dd($totalPrice);
     // return redirect('admins/bookings/detail/'.$booking->id.'/checkout');
     return redirect('admins/bookings')->withSuccess('Room has been delete');
   }
+
+
+
+
+public function roomDetail($booking_id,$room_id)
+{
+ $booking=Booking::where('id', $booking_id)->first();
+ //dd($booking);
+ $bookroom=BookRoom::where('booking_id',$booking_id)->where('room_id',$room_id)->first();
+
+
+
+
+ return view('admins.bookings.roomDetail',compact('booking','bookroom' ));
+}
+
 }

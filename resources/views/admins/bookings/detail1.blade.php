@@ -39,7 +39,7 @@
                                     <tr>
                                         <td>
                                             <li>
-                                                <strong>Booking ID </strong> :
+                                                <strong>Booking Code </strong> :
                                             </li>
                                         </td>
                                         <td>{!! $booking->code !!}</td>
@@ -95,6 +95,7 @@
                                         <td>{!! $diff2 !!}</td>
                                     </tr>
 
+                                    @if($booking->promotions->code)
                                     <tr>
                                         <td>
                                             <li>
@@ -103,6 +104,7 @@
                                         </td>
                                         <td>{!! $booking->promotions->code !!}</td>
                                     </tr>
+                                    @endif
 
                                     <tr>
                                         <td>
@@ -131,6 +133,17 @@
                                           @endif
                                         </td>
                                     </tr>
+
+                                    @if($booking->status==3)
+                                    <tr>
+                                        <td>
+                                            <li>
+                                                <strong>Total Bill </strong> :
+                                            </li>
+                                        </td>
+                                        <td>{!! $booking->total !!}</td>
+                                    </tr>
+                                    @endif
 
                                     @if($booking->status==1)
                                     <tr>

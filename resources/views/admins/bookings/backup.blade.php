@@ -117,3 +117,16 @@
       <td>{!!number_format($serviceTotal)!!}đ</td>
       <td>{!!number_format($totalPrice)!!}đ</td>
       </tr>
+
+
+
+
+      <td>{{$service->bookRoomServices->quantity}} Days</td>
+      <td>{!!number_format($service->price * $service->bookRoomServices->quantity )!!}đ</td>
+
+      @foreach($bookroom->services as $service)
+      <tr>
+      <td>{{$service->name}}</a></td>
+      <td>{!!number_format($service->price)!!}</td>
+
+      @endforech

@@ -44,7 +44,7 @@
 							@foreach($bookroom as $br)
 
 							<tr>
-							<td>{{$br->rooms->name}}</td>
+							<td><a href="{{url('admins/bookings/detail/'.$br->booking_id.'/'.$br->room_id.'/roomDetail')}}">{{$br->rooms->name}}</a></td>
 							<td>{!!number_format($br->rooms->price)!!}</td>
 							<td>{{$diff2}} Days</td>
 							<td>{!!number_format($br->rooms->price * $diff2)!!}đ</td>
