@@ -22,7 +22,7 @@ class BookingController extends Controller
 {
     public function listAllBooking()
     {
-		$bookings = Booking::paginate(25);
+		$bookings = Booking::orderBy('created_at', 'dec')->paginate(25);
         return view('admins.bookings.listAllBooking', compact('bookings'));
     }
 
@@ -68,7 +68,10 @@ class BookingController extends Controller
         $search = Input::get('search');
         $search1 = Input::get('search1');
         $search2 = Input::get('search2');
-        $totals = 0;
+        $search3 = Input::get('search3');
+
+        $totalbooking = 0;
+        $totalmoney = 0;
 
         if (isset($search) && isset($search1) && isset($search2) ) {
             $bookings = Booking::whereBetween('created_at', array($search1, $search2))
@@ -78,10 +81,11 @@ class BookingController extends Controller
                     })->orderBy('created_at', 'asc')->paginate(25);
 
             foreach ($bookings as $booking){
-                $totals = $totals + $booking->total;
+                $totalbooking ++;
+                $totalmoney = $totalmoney + $booking->total;
             }
 
-            return view('admins.bookings.listAllBooking', compact('bookings','totals'));
+            return view('admins.bookings.listAllBooking', compact('bookings','totalmoney', 'totalbooking'));
         }
 
         if (isset($search) && isset($search1)) {
@@ -92,10 +96,11 @@ class BookingController extends Controller
                     })->orderBy('created_at', 'asc')->paginate(25);
 
             foreach ($bookings as $booking){
-                $totals = $totals + $booking->total;
+                $totalbooking ++;
+                $totalmoney = $totalmoney + $booking->total;
             }
 
-            return view('admins.bookings.listAllBooking', compact('bookings','totals'));
+            return view('admins.bookings.listAllBooking', compact('bookings','totalmoney', 'totalbooking'));
         }
 
         if (isset($search) && isset($search2) ) {
@@ -106,20 +111,22 @@ class BookingController extends Controller
                     })->orderBy('created_at', 'asc')->paginate(25);
 
             foreach ($bookings as $booking){
-                $totals = $totals + $booking->total;
+                $totalbooking ++;
+                $totalmoney = $totalmoney + $booking->total;
             }
 
-            return view('admins.bookings.listAllBooking', compact('bookings','totals'));
+            return view('admins.bookings.listAllBooking', compact('bookings','totalmoney', 'totalbooking'));
         }
 
         if (isset($search1) && isset($search2) ) {
             $bookings = Booking::whereBetween('created_at', array($search1, $search2))->orderBy('created_at', 'asc')->paginate(25);
 
             foreach ($bookings as $booking){
-                $totals = $totals + $booking->total;
+                $totalbooking ++;
+                $totalmoney = $totalmoney + $booking->total;
             }
 
-            return view('admins.bookings.listAllBooking', compact('bookings','totals'));
+            return view('admins.bookings.listAllBooking', compact('bookings','totalmoney', 'totalbooking'));
         }
 
         if (isset($search)) {
@@ -128,33 +135,54 @@ class BookingController extends Controller
                     ->OrwhereHas('users', function ($query) use ($search) {
                         $query->where('last_name', 'LIKE', '%' . $search . '%')
                               ->Orwhere('first_name', 'LIKE', '%' . $search . '%');
-                    })->paginate(25);
+                    })->get();
 
             foreach ($bookings as $booking){
-                $totals = $totals + $booking->total;
+                $totalbooking ++;
+                $totalmoney = $totalmoney + $booking->total;
             }
 
-            return view('admins.bookings.listAllBooking', compact('bookings','totals'));
+            $bookings = Booking::where('code', 'LIKE', '%' . $search . '%')
+                    ->Orwhere('total', '=', $search)
+                    ->OrwhereHas('users', function ($query) use ($search) {
+                        $query->where('last_name', 'LIKE', '%' . $search . '%')
+                              ->Orwhere('first_name', 'LIKE', '%' . $search . '%');
+                    })->orderBy('created_at', 'asc')->paginate(25);
+
+            return view('admins.bookings.listAllBooking', compact('bookings','totalmoney', 'totalbooking'));
         }
 
         if (isset($search1)) {
-            $bookings = Booking::where('created_at', '>=', $search1)->orderBy('created_at', 'asc')->paginate(25);
+            $bookings = Booking::where('created_at', '>=', $search1)->get();
 
             foreach ($bookings as $booking){
-                $totals = $totals + $booking->total;
+                $totalbooking ++;
+                $totalmoney = $totalmoney + $booking->total;
             }
+            //dd($totalmoney);
 
-            return view('admins.bookings.listAllBooking', compact('bookings','totals'));
+            $bookings = Booking::where('created_at', '>=', $search1)->orderBy('created_at', 'asc')->paginate(25);
+        
+            return view('admins.bookings.listAllBooking', compact('bookings','totalmoney', 'totalbooking'));
         }
 
         if (isset($search2)) {
-            $bookings = Booking::where('created_at', '=', $search2)->orderBy('created_at', 'asc')->paginate(25);
+            $bookings = Booking::where('created_at', '=', $search2)->get();
 
            foreach ($bookings as $booking){
-                $totals = $totals + $booking->total;
+                $totalbooking ++;
+                $totalmoney = $totalmoney + $booking->total;
             }
 
-            return view('admins.bookings.listAllBooking', compact('bookings','totals'));
+            $bookings = Booking::where('created_at', '=', $search2)->orderBy('created_at', 'asc')->paginate(25);
+
+            return view('admins.bookings.listAllBooking', compact('bookings','totalmoney', 'totalbooking'));
+        }
+
+        if (isset($search3)) {
+            $bookings = Booking::where('code', '=', $search3)->paginate(25);
+
+            return view('admins.bookings.listAllBooking', compact('bookings'));
         }
 
         return redirect('admins/bookings');

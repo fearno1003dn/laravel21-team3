@@ -38,10 +38,14 @@
                             <tbody>
                             @foreach ($bookings as $booking)
                                 <tr>
-                                    <td>{!! $booking->created_at !!}</td>
+                                    <td>{!! date_format($booking->created_at,"d-m-Y") !!}</td>
                                     <td>{!! $booking->check_in !!}</td>
                                     <td>{!! $booking->check_out !!}</td>
-                                    <td>{!! $booking->promotions->code !!}</td>
+                                    <td>
+                                        @if(isset($booking->promotion_id))
+                                            {!! $booking->promotions->code !!}
+                                        @endif
+                                    </td>
                                     <td>
                                         {!!$booking->status ? '<a></i>Available</a>' : '<a>Not Available</a>'!!}
                                     </td>
