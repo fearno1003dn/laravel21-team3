@@ -53,6 +53,12 @@ class RoomController extends Controller
             ->whereHas('roomTypes', function ($query) use ($roomType) {
                 $query->where('name', '=', $roomType);
             })
+            ->whereDoesntHave('bookings', function ($query) {
+                $query->where('status', '=', 0)->where('status', '=', 1);
+                })
+            ->whereDoesntHave('bookings', function ($query) {
+                $query->where('status', '=', 0)->where('status', '=', 0);
+            })
             ->whereDoesntHave('bookings', function ($query) use ($from) {
                 $query->where('check_in', '<=', $from)->where('check_out', '>=', $from);
             })
@@ -63,6 +69,7 @@ class RoomController extends Controller
                 $query->where('check_in', '>=', $from)->where('check_out', '<=', $to);
             })
             ->get();
+        
         if (count($rooms) == 0) {
             return view('hotel.seachRoom.messageSeachRoom');
         } else {
@@ -132,6 +139,7 @@ class RoomController extends Controller
         }
 
         $room = Room::create($data);
+        
         return redirect('admins/rooms')->withSuccess('Room has been created');
     }
 

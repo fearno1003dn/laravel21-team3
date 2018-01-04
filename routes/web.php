@@ -103,6 +103,12 @@ Route::group(['prefix' => 'seachroom'], function () {
     Route::get('/detailRoom/{id}', ['as' => 'room.detailRoom', 'uses' => 'RoomController@detailRoom']);
     Route::get('/seach', ['as' => 'room.seach', 'uses' => 'RoomController@seachRoomIndex']);
 });
+Route::group(['prefix' => 'bookings'], function (){
+    Route::get('/add/{id}',['as'=>'bookings.add', 'uses' => 'BookingController@add']);
+    Route::get('/checkout',['as'=>'bookings.checkout', 'uses' =>  'BookingController@checkout']);
+    Route::get('/checkout/{rowId}/delete',['as'=>'bookings.delete', 'uses' =>  'BookingController@delete']);
+    Route::get('/create', ['as'=>'booking.create', 'uses' => 'BookingController@createBooking']);
+});
 
 Auth::routes();
 

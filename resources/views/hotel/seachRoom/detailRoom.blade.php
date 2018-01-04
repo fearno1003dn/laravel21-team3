@@ -1,9 +1,7 @@
 @extends('hotel.layouts.app')
-@section('slider')
+@section('content')
     @include('hotel.layouts.availabilitySeach')
     <br>
-@endsection
-@section('content')
     <div class="room_detail_main margin-bottom-55">
         <div class="container">
             <div class="row">

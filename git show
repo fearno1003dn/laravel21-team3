@@ -1,0 +1,174 @@
+[33mcommit 671a1b9390d5140dfcf2480ff0e069a3543aadfd[m[33m ([m[1;36mHEAD -> [m[1;32mfeat/hotel/booking[m[33m)[m
+Merge: 43252b6 58f5b7e
+Author: nguyentranthinh <nguyentranthinh430@gmail.com>
+Date:   Thu Jan 4 16:09:24 2018 +0700
+
+    fix bookingcontroller
+
+[1mdiff --cc app/Http/Controllers/BookingController.php[m
+[1mindex 1cf958a,79c10d8..dc88d7f[m
+[1m--- a/app/Http/Controllers/BookingController.php[m
+[1m+++ b/app/Http/Controllers/BookingController.php[m
+[36m@@@ -17,95 -16,18 +17,107 @@@[m [muse App\Http\Requests\RoomRequest[m
+  use Illuminate\Pagination\Paginator;[m
+  use App\Promotion;[m
+  use Carbon\Carbon;[m
+[32m++<<<<<<< HEAD[m
+[32m +use Cart;[m
+[32m +use Auth;[m
+[32m +use App\User;[m
+[32m +use Illuminate\Support\Facades\Session;[m
+[32m +use Twilio;[m
+[32m +use Toastr;[m
+[32m++=======[m
+[32m+ use DateTime;[m
+[32m+ use App\User;[m
+[32m++>>>>>>> 58f5b7e72c36d662570dd46ee518dbddcd51151c[m
+  [m
+  [m
+  class BookingController extends Controller[m
+  {[m
+[32m +    public function add(Request $request, $id)[m
+[32m +    {[m
+[32m +        $arrival = strtotime($request->session()->get('arrival'));[m
+[32m +        $departure = strtotime($request->session()->get('departure'));[m
+[32m +        $room = Room::find($id);[m
+[32m +        $price = $room->price;[m
+[32m +        $size = $request->session()->get('size');[m
+[32m +        $roomType = $request->session()->get('roomType');[m
+[32m +        Cart::add([m
+[32m +            [[m
+[32m +                'id' => $room->id,[m
+[32m +                'name' => $room->roomTypes->name,[m
+[32m +                'qty' => ($departure - $arrival) / 3600 / 24,[m
+[32m +                'price' => $price,[m
+[32m +                'options' =>[m
+[32m +                    [[m
+[32m +                        'roomSize' => $room->roomSizes->name,[m
+[32m +                    ][m
+[32m +            ]);[m
+[32m +        return redirect('bookings/checkout');[m
+[32m +    }[m
+[32m +[m
+[32m +    public function createBooking(Request $request)[m
+[32m +    {[m
+[32m +        if (!Auth::check()) {[m
+[32m +            return redirect('/login');[m
+[32m +        } else {[m
+[32m +            $data = Input::all();[m
+[32m +            $user = Auth::user();[m
+[32m +            $booking = new Booking();[m
+[32m +            $booking->user_id = Auth::id();[m
+[32m +            $booking->check_in = ($request->session()->get('arrival'));[m
+[32m +            $booking->check_out = ($request->session()->get('departure'));[m
+[32m +            $booking->total = Cart::total();[m
+[32m +            if ($user->deposit < $booking->total) {[m
+[32m +                Toastr::warning('Insufficient Funds!!!!!', $title = null, $options = []);[m
+[32m +                return redirect(route('bookings.checkout'));[m
+[32m +            } else {[m
+[32m +                $admin = User::where('role', '=', 1)->first();[m
+[32m +                $admin->deposit = $admin->deposit + $booking->total;[m
+[32m +                $user->deposit = $user->deposit - $booking->total;[m
+[32m +                $user->save();[m
+[32m +                $admin->save();[m
+[32m +                $booking->code = (strtoupper(str_random(6)));[m
+[32m +                $code = $booking->code;[m
+[32m +                $booking->status = 1;[m
+[32m +                $booking->save();[m
+[32m +                foreach (Cart::content() as $row) {[m
+[32m +                    $bookRoom = new BookRoom();[m
+[32m +                    $bookRoom->room_id = $row->id;[m
+[32m +                    $bookRoom->booking_id = $booking->id;[m
+[32m +                    $bookRoom->save();[m
+[32m +                }[m
+[32m +                Toastr::success('Booking Success!!!!!', $title = null, $options = []);[m
+[32m +                Cart::destroy();[m
+[32m +                return redirect('/bookings/checkout');[m
+[32m +            }[m
+[32m +        }[m
+[32m +    }[m
+[32m +[m
+[32m +    public function checkout(Request $request)[m
+[32m +    {[m
+[32m +        $arrival = ($request->session()->get('arrival'));[m
+[32m +        $departure = ($request->session()->get('departure'));[m
+[32m +        $size = $request->session()->get('size');[m
+[32m +        $roomType = $request->session()->get('roomType');[m
+[32m +        return view('hotel.bookings.checkout', compact('arrival', 'departure', 'size', 'roomType'));[m
+[32m +    }[m
+[32m +[m
+[32m +    public function delete($rowId)[m
+[32m +    {[m
+[32m +        Cart::remove($rowId);[m
+[32m +        return redirect('bookings/checkout');[m
+[32m +    }[m
+[32m +[m
+      public function listAllBooking()[m
+      {[m
+[32m++<<<<<<< HEAD[m
+[32m +        $bookings = Booking::paginate(25);[m
+[32m +        return view('admins.bookings.listAllBooking', compact('bookings'));[m
+[32m++=======[m
+[32m+         $date = new DateTime();[m
+[32m+         $date = date("Y-m-d");[m
+[32m+ 		$bookings = Booking::orderBy('created_at', 'dec')->paginate(25);[m
+[32m+         return view('admins.bookings.listAllBooking', compact('bookings', 'date'));[m
+[32m++>>>>>>> 58f5b7e72c36d662570dd46ee518dbddcd51151c[m
+      }[m
+  [m
+      public function editBooking(Booking $booking)[m
+[36m@@@ -136,13 -58,22 +148,22 @@@[m
+          $diff2 = $from->diffInDays($now);[m
+          // dd($bookroom);[m
+          // dd($from,$to,$now,$diff1,$diff2);[m
+[31m -        return view('admins.bookings.detail1', compact('booking','diff1','diff2','now','bookroom'));[m
+[32m +        return view('admins.bookings.detail1', compact('booking', 'diff1', 'diff2', 'now', 'bookroom'));[m
+      }[m
+  [m
+[31m-     public function deleteBooking(Booking $booking)[m
+[32m+     public function cancelBooking(Booking $booking)[m
+      {[m
+[31m-         $booking->delete();[m
+[31m-         return redirect('admins/bookings')->withSuccess('Room has been delete');[m
+[32m+         //$booking->delete();[m
+[32m+         $user = User::where('id', '=',$booking->user_id)->first();[m
+[32m+         $admin = User::where('role', '=', 1)->first();[m
+[32m+         $booking->update(['status' => 2]);[m
+[32m+         $user->deposit = $user->deposit + ($booking->total * 0.8);[m
+[32m+         $user->save();[m
+[32m+         $admin->deposit = $admin->deposit - ($booking->total * 0.8);[m
+[32m+         $admin->save();[m
+[32m+         $booking->total = $booking->total * 0.2;[m
+[32m+         $booking->save();[m
+[32m+         return redirect('admins/bookings');[m
+      }[m
+  [m
+      public function searchBooking()[m
+[36m@@@ -150,93 -81,121 +171,184 @@@[m
+          $search = Input::get('search');[m
+          $search1 = Input::get('search1');[m
+          $search2 = Input::get('search2');[m
+[31m-         $totals = 0;[m
+[32m+         $search3 = Input::get('search3');[m
+[32m+ [m
+[32m+         $totalbooking = 0;[m
+[32m+         $totalmoney = 0;[m
+  [m
+[31m -        if (isset($search) && isset($search1) && isset($search2) ) {[m
+[32m +        if (isset($search) && isset($search1) && isset($search2)) {[m
+              $bookings = Booking::whereBetween('created_at', array($search1, $search2))[m
+[31m -                    ->whereHas('users', function ($query) use ($search) {[m
+[31m -                        $query->where('last_name', 'LIKE', '%' . $search . '%')[m
+[31m -                              ->Orwhere('first_name', 'LIKE', '%' . $search . '%');[m
+[31m -                    })->orderBy('created_at', 'asc')->paginate(25);[m
+[32m +                ->whereHas('users', function ($query) use ($search) {[m
+[32m +                    $query->where('last_name', 'LIKE', '%' . $search . '%')[m
+[32m +                        ->Orwhere('first_name', 'LIKE', '%' . $search . '%');[m
+[32m +                })->orderBy('created_at', 'asc')->paginate(25);[m
+[32m +[m
+[32m++<<<<<<< HEAD[m
+[32m +            foreach ($bookings as $booking) {[m
+[32m +                $totals = $totals + $booking->total;[m
+[32m +            }[m
+  [m
+[32m +            return view('admins.bookings.listAllBooking', compact('bookings', 'totals'));[
