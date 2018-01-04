@@ -17,6 +17,7 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{asset('AdminLTE-2.4.1/dist/css/skins/_all-skins.min.css')}}">
+    <link rel="stylesheet" href="{{asset('AdminLTE-2.4.1/dist/css/skins/skin-red-light.min.css')}}">
     <!-- Morris chart -->
     <link rel="stylesheet" href="{{asset('AdminLTE-2.4.1/bower_components/morris.js/morris.css')}}">
     <!-- jvectormap -->

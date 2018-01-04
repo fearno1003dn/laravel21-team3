@@ -1,10 +1,10 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href=".." class="logo">
+    <a href="." class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><img src="{{asset('images/logos/6.jpg')}}" style='width: 40px; height: 40px;' /></span>
+        <span class="logo-mini"><img src="{{asset('images/logos/admin.png')}}" style='width: 40px; height: 40px;' /></span>
         <!-- logo for regular state and mobile devices -->
-        <span><img src="{{asset('images/logos/9.jpg')}}" style='width: 200px; height: 40px'/></span>
+        <span><img src="{{asset('images/logos/logo.png')}}" style='width: 170px; height: 40px'/></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">

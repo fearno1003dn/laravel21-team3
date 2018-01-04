@@ -28,7 +28,7 @@
                     <div class="box-body">
                         <table class="table table-bordered table-striped" style="text-align:center; ">
                             <thead>
-                                <tr>Date created
+                                <tr>
                                     <th style="text-align:center; ">User Name</th>
                                     <th style="text-align:center; ">Date created</th>
                                     <th style="text-align:center; ">Promotion Code</th>
@@ -45,38 +45,67 @@
                             @foreach ($bookings as $booking)
                                 <tr>
                                     <td>{!! $booking->users->first_name !!}</td>
-                                    <td>{!! $booking->created_at !!}</td>
-                                    <td>{!! $booking->promotions->code !!}</td>
+                                    <td>
+                                        {!! date_format($booking->created_at,"Y-m-d") !!}
+                                    </td>
+                                    <td>
+                                        @if(isset($booking->promotion_id))
+                                            {!! $booking->promotions->code !!}
+                                        @endif
+                                    </td>
                                     <td>{!! $booking->check_in !!}</td>
                                     <td>{!! $booking->check_out !!}</td>
                                     <td>
-                                        {!!$booking->status ? '<a>Available</a>' : '<a>Not Available</a>'!!}
+                                        <?php
+                                        switch($booking->status){
+                                            case '0': echo '<a></i>Booking</a>';
+                                                break;
+                                            case '1': echo '<a></i>Check In</a>';
+                                                break;  
+                                            case '2': echo '<a></i>Cancel</a>';
+                                                break;
+                                            case '3': echo '<a></i>Check Out</a>';
+                                                break;  
+                                            }
+                                        ?>
                                     </td>
                                     <td>{!! $booking->code !!}</td>
                                     <td>{!! number_format($booking->total) !!} $</td>
-                                    <td><a href="{{url('admins/bookings/edit/'.$booking->id)}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/bookings/delete/'.$booking->id)}}"><i class="fa fa-trash"></i>Delete</a> - <a href="{{url('admins/bookings/detail/'.$booking->id)}}"><i class="fa fa-book"></i>Detail</a></td>
+                                    <td>@if($booking->status == 0 && $booking->check_in > $date)
+                                        <a href="{{url('admins/bookings/cancel/'.$booking->id)}}"><i class="fa fa-trash"></i>Cancel</a> - <a href="{{url('admins/bookings/detail/'.$booking->id)}}"><i class="fa fa-book"></i>Detail</a>
+                                        @else 
+                                        <a href="{{url('admins/bookings/detail/'.$booking->id)}}"><i class="fa fa-book"></i>Detail</a>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
-                            @if (isset($totals))
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <th style="text-align:center; ">Total</th>
-                                        <th style="text-align:center; ">{!! number_format($totals) !!} $</th>
-                                        <td></td>
-                                    </tr>
-                            @endif
                             </tbody>
                         </table>
                     </div>
+                    {!! $bookings->appends($_GET)->links() !!}
                     <!-- /.box-body -->
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped" style="text-align:center; ">
+                            <thead>
+                                @if (isset($totalmoney))
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th style="text-align:center; ">Total Booking :</th>
+                                        <th style="text-align:center; ">{!! $totalbooking !!}</th>
+                                        <th style="text-align:center; ">Total Money :</th>
+                                        <th style="text-align:center; ">{!! number_format($totalmoney) !!} $</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                @endif
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             <!-- /.box -->
-            {!! $bookings->links() !!}
+            
         </div>
         <!-- /.col -->
     </div>
