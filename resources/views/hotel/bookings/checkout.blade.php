@@ -40,9 +40,11 @@
                                 <td class="col-lg-2 col-md-sm-2">{{Cart::total()}} $</td>
                             </tr>
                         </table>
-                        <a href="{{route('booking.create')}}">
-                            <button class="btn btn-primary floatright" type="button" name="button">BOOKING</button>
-                        </a>
+                        @if(count(Cart::content()) >0)
+                            <a href="{{route('booking.create')}}">
+                                <button class="btn btn-primary floatright" type="button" name="button">BOOKING</button>
+                            </a>
+                        @endif
                     </table>
                 </div>
             </div>

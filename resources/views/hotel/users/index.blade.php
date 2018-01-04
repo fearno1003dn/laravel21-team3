@@ -135,25 +135,7 @@
                                 <li><a href="{{url('/index')}}">Home</a></li>
                                 <li><a href="{{url('/user/index')}}">Detail</a></li>
                                 <li><a href="{{url('/user/bookings')}}">Booking</a></li>
-                                <li role="presentation" class="dropdown">
-                                    <a id="drop2" href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                       aria-haspopup="true" role="button" aria-expanded="false">
-                                        Features
-                                    </a>
-                                    <ul id="menu2" class="dropdown-menu" role="menu">
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="about-us.html">About
-                                                US</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="booking.html">Booking</a>
-                                        </li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                                   href="room-details.html">Room Details</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="staff.html">Our
-                                                Staff</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="404.html">404
-                                                Page</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="blog.html">News</a></li>
+                                <li><a href="{{route('bookings.checkout')}}">Check Out</a></li>
                                 <li><a href="contact-us.html">Contacts</a></li>
                             </ul>
                             <div class="emergency_number">
@@ -170,8 +152,6 @@
     <!-- end main header -->
 </header>
 @yield('content')
-
-
 <!-- jquery library -->
 <script src="{{asset('hotel-booking/js/vendor/jquery-1.11.2.min.js')}}"></script>
 <!-- bootstrap -->
