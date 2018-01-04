@@ -78,7 +78,7 @@ Route::get('admins/bookings','BookingController@listAllBooking');
 Route::get('admins/bookings/edit/{booking}','BookingController@editBooking');
 Route::get('admins/bookings/detail/{booking}', 'BookingController@detailBooking');
 Route::put('admins/bookings/update/{booking}', 'BookingController@updateBooking');
-Route::get('admins/bookings/delete/{booking}', 'BookingController@deleteBooking');
+Route::get('admins/bookings/cancel/{booking}', 'BookingController@cancelBooking');
 Route::get('admins/bookings/search','BookingController@searchBooking');
 Route::get('admins/bookings/detail/{booking}/{room_id}/addservice','BookingController@addService');
 Route::post('admins/bookings/detail/{booking}/{room_id}','BookingController@saveService');
@@ -103,6 +103,12 @@ Route::group(['prefix' => 'seachroom'], function () {
     Route::get('/roomType/{name}', ['as' => 'room.TypeVip', 'uses' => 'RoomController@allRoomType']);
     Route::get('/detailRoom/{id}', ['as' => 'room.detailRoom', 'uses' => 'RoomController@detailRoom']);
     Route::get('/seach', ['as' => 'room.seach', 'uses' => 'RoomController@seachRoomIndex']);
+});
+Route::group(['prefix' => 'bookings'], function (){
+    Route::get('/add/{id}',['as'=>'bookings.add', 'uses' => 'BookingController@add']);
+    Route::get('/checkout',['as'=>'bookings.checkout', 'uses' =>  'BookingController@checkout']);
+    Route::get('/checkout/{rowId}/delete',['as'=>'bookings.delete', 'uses' =>  'BookingController@delete']);
+    Route::get('/create', ['as'=>'booking.create', 'uses' => 'BookingController@createBooking']);
 });
 
 Auth::routes();

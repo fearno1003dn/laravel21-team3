@@ -12,15 +12,17 @@
             </div>
         </div>
         <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
+        {!! Form::open(['class' => 'sidebar-form', 'url' => 'admins/bookings/search', 'method' => 'get']) !!}
+        <!-- <form action="{{url('admins/bookings/search')}}" method="get" class="sidebar-form"> -->
             <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <input type="text" name="search3" class="form-control" style="color: red;" value="{{ isset($_GET['search3']) ? $_GET['search3'] : '' }}" placeholder="Search...">
                 <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
               </span>
             </div>
-        </form>
+        <!-- </form> -->
+        {!! Form::close() !!}
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">

@@ -94,11 +94,13 @@ class UserController extends Controller
       if (Auth::check()){
         $user = Auth::user();
         $admin = User::where('role', '=', 1)->first();
-        $booking->update(['status' => 0]);
+        $booking->update(['status' => 2]);
         $user->deposit = $user->deposit + $booking->total * 0.8;
         $user->save();
-        $admin->deposit = $admin->deposit + $booking->total * 0.2;
+        $admin->deposit = $admin->deposit - $booking->total * 0.8;
         $admin->save();
+        $booking->total = $booking->total * 0.2;
+        $booking->save();
         return redirect('/user/bookings');
         }
       else
