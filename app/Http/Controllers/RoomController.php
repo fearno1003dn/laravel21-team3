@@ -18,10 +18,11 @@ use Illuminate\Pagination\Paginator;
 class RoomController extends Controller
 {
     //index
-    public function allRoomType($id)
+    public function allRoomType(RoomType $id)
     {
-        $roomTypes = RoomType::Where('name', '=', $id)->get();
-        return view('hotel.seachRoom.seachRoomType', compact('roomTypes'));
+        $roomType = $id->id;
+        $rooms = Room::Where('room_type_id', '=', $roomType )->get();
+        return view('hotel.seachRoom.seachRoomType', compact('rooms'));
     }
 
     public function detailRoom($id)
