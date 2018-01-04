@@ -11,10 +11,9 @@
                     <div class="room_title border-bottom-whitesmoke clearfix">
                         <div class="left_room_title floatleft">
                             <h6>{{$roomType->name}} Room</h6>
-                            <p>$200/ <span>DAY</span></p>
                         </div>
                         <div class="left_room_title floatright">
-                            <a href="{{route('room.TypeVip', $roomType->name)}}" class="btn">List Room</a>
+                            <a href="{{route('room.TypeVip', $roomType->id)}}" class="btn">List Room</a>
                         </div>
                     </div>
                 </figure>

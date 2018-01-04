@@ -99,7 +99,7 @@ Route::get('/index', function () {
 });
 
 Route::group(['prefix' => 'seachroom'], function () {
-    Route::get('/roomType/{name}', ['as' => 'room.TypeVip', 'uses' => 'RoomController@allRoomType']);
+    Route::get('/roomType/{id}', ['as' => 'room.TypeVip', 'uses' => 'RoomController@allRoomType']);
     Route::get('/detailRoom/{id}', ['as' => 'room.detailRoom', 'uses' => 'RoomController@detailRoom']);
     Route::get('/seach', ['as' => 'room.seach', 'uses' => 'RoomController@seachRoomIndex']);
 });
