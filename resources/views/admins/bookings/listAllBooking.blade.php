@@ -46,7 +46,7 @@
                                 <tr>
                                     <td>{!! $booking->users->first_name !!}</td>
                                     <td>
-                                        {!! date_format($booking->created_at,"d-m-Y") !!}
+                                        {!! date_format($booking->created_at,"Y-m-d") !!}
                                     </td>
                                     <td>
                                         @if(isset($booking->promotion_id))
@@ -56,11 +56,27 @@
                                     <td>{!! $booking->check_in !!}</td>
                                     <td>{!! $booking->check_out !!}</td>
                                     <td>
-                                        {!!$booking->status ? '<a>Available</a>' : '<a>Not Available</a>'!!}
+                                        <?php
+                                        switch($booking->status){
+                                            case '0': echo '<a></i>Booking</a>';
+                                                break;
+                                            case '1': echo '<a></i>Check In</a>';
+                                                break;  
+                                            case '2': echo '<a></i>Cancel</a>';
+                                                break;
+                                            case '3': echo '<a></i>Check Out</a>';
+                                                break;  
+                                            }
+                                        ?>
                                     </td>
                                     <td>{!! $booking->code !!}</td>
                                     <td>{!! number_format($booking->total) !!} $</td>
-                                    <td><a href="{{url('admins/bookings/edit/'.$booking->id)}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/bookings/delete/'.$booking->id)}}"><i class="fa fa-trash"></i>Delete</a> - <a href="{{url('admins/bookings/detail/'.$booking->id)}}"><i class="fa fa-book"></i>Detail</a></td>
+                                    <td>@if($booking->status == 0 && $booking->check_in > $date)
+                                        <a href="{{url('admins/bookings/cancel/'.$booking->id)}}"><i class="fa fa-trash"></i>Cancel</a> - <a href="{{url('admins/bookings/detail/'.$booking->id)}}"><i class="fa fa-book"></i>Detail</a>
+                                        @else 
+                                        <a href="{{url('admins/bookings/detail/'.$booking->id)}}"><i class="fa fa-book"></i>Detail</a>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

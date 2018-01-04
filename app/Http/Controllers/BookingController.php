@@ -16,14 +16,18 @@ use App\Http\Requests\RoomRequest;
 use Illuminate\Pagination\Paginator;
 use App\Promotion;
 use Carbon\Carbon;
+use DateTime;
+use App\User;
 
 
 class BookingController extends Controller
 {
     public function listAllBooking()
     {
+        $date = new DateTime();
+        $date = date("Y-m-d");
 		$bookings = Booking::orderBy('created_at', 'dec')->paginate(25);
-        return view('admins.bookings.listAllBooking', compact('bookings'));
+        return view('admins.bookings.listAllBooking', compact('bookings', 'date'));
     }
 
     public function editBooking(Booking $booking)
@@ -57,10 +61,19 @@ class BookingController extends Controller
         return view('admins.bookings.detail1', compact('booking','diff1','diff2','now','bookroom'));
     }
 
-    public function deleteBooking(Booking $booking)
+    public function cancelBooking(Booking $booking)
     {
-        $booking->delete();
-        return redirect('admins/bookings')->withSuccess('Room has been delete');
+        //$booking->delete();
+        $user = User::where('id', '=',$booking->user_id)->first();
+        $admin = User::where('role', '=', 1)->first();
+        $booking->update(['status' => 2]);
+        $user->deposit = $user->deposit + ($booking->total * 0.8);
+        $user->save();
+        $admin->deposit = $admin->deposit - ($booking->total * 0.8);
+        $admin->save();
+        $booking->total = $booking->total * 0.2;
+        $booking->save();
+        return redirect('admins/bookings');
     }
 
     public function searchBooking()
