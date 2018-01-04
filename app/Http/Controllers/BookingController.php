@@ -17,17 +17,14 @@ use App\Http\Requests\RoomRequest;
 use Illuminate\Pagination\Paginator;
 use App\Promotion;
 use Carbon\Carbon;
-<<<<<<< HEAD
 use Cart;
 use Auth;
 use App\User;
 use Illuminate\Support\Facades\Session;
 use Twilio;
 use Toastr;
-=======
 use DateTime;
 use App\User;
->>>>>>> 58f5b7e72c36d662570dd46ee518dbddcd51151c
 
 
 class BookingController extends Controller
@@ -109,15 +106,12 @@ class BookingController extends Controller
 
     public function listAllBooking()
     {
-<<<<<<< HEAD
         $bookings = Booking::paginate(25);
         return view('admins.bookings.listAllBooking', compact('bookings'));
-=======
         $date = new DateTime();
         $date = date("Y-m-d");
-		$bookings = Booking::orderBy('created_at', 'dec')->paginate(25);
+        $bookings = Booking::orderBy('created_at', 'dec')->paginate(25);
         return view('admins.bookings.listAllBooking', compact('bookings', 'date'));
->>>>>>> 58f5b7e72c36d662570dd46ee518dbddcd51151c
     }
 
     public function editBooking(Booking $booking)
@@ -154,7 +148,7 @@ class BookingController extends Controller
     public function cancelBooking(Booking $booking)
     {
         //$booking->delete();
-        $user = User::where('id', '=',$booking->user_id)->first();
+        $user = User::where('id', '=', $booking->user_id)->first();
         $admin = User::where('role', '=', 1)->first();
         $booking->update(['status' => 2]);
         $user->deposit = $user->deposit + ($booking->total * 0.8);
@@ -183,20 +177,17 @@ class BookingController extends Controller
                         ->Orwhere('first_name', 'LIKE', '%' . $search . '%');
                 })->orderBy('created_at', 'asc')->paginate(25);
 
-<<<<<<< HEAD
             foreach ($bookings as $booking) {
                 $totals = $totals + $booking->total;
             }
 
             return view('admins.bookings.listAllBooking', compact('bookings', 'totals'));
-=======
-            foreach ($bookings as $booking){
-                $totalbooking ++;
+            foreach ($bookings as $booking) {
+                $totalbooking++;
                 $totalmoney = $totalmoney + $booking->total;
             }
 
-            return view('admins.bookings.listAllBooking', compact('bookings','totalmoney', 'totalbooking'));
->>>>>>> 58f5b7e72c36d662570dd46ee518dbddcd51151c
+            return view('admins.bookings.listAllBooking', compact('bookings', 'totalmoney', 'totalbooking'));
         }
 
         if (isset($search) && isset($search1)) {
@@ -205,21 +196,16 @@ class BookingController extends Controller
                     $query->where('last_name', 'LIKE', '%' . $search . '%')
                         ->Orwhere('first_name', 'LIKE', '%' . $search . '%');
                 })->orderBy('created_at', 'asc')->paginate(25);
-
-<<<<<<< HEAD
             foreach ($bookings as $booking) {
                 $totals = $totals + $booking->total;
             }
-
             return view('admins.bookings.listAllBooking', compact('bookings', 'totals'));
-=======
-            foreach ($bookings as $booking){
-                $totalbooking ++;
+            foreach ($bookings as $booking) {
+                $totalbooking++;
                 $totalmoney = $totalmoney + $booking->total;
             }
 
-            return view('admins.bookings.listAllBooking', compact('bookings','totalmoney', 'totalbooking'));
->>>>>>> 58f5b7e72c36d662570dd46ee518dbddcd51151c
+            return view('admins.bookings.listAllBooking', compact('bookings', 'totalmoney', 'totalbooking'));
         }
 
         if (isset($search) && isset($search2)) {
@@ -229,44 +215,37 @@ class BookingController extends Controller
                         ->Orwhere('first_name', 'LIKE', '%' . $search . '%');
                 })->orderBy('created_at', 'asc')->paginate(25);
 
-<<<<<<< HEAD
             foreach ($bookings as $booking) {
                 $totals = $totals + $booking->total;
             }
 
             return view('admins.bookings.listAllBooking', compact('bookings', 'totals'));
-=======
-            foreach ($bookings as $booking){
-                $totalbooking ++;
+            foreach ($bookings as $booking) {
+                $totalbooking++;
                 $totalmoney = $totalmoney + $booking->total;
             }
 
-            return view('admins.bookings.listAllBooking', compact('bookings','totalmoney', 'totalbooking'));
->>>>>>> 58f5b7e72c36d662570dd46ee518dbddcd51151c
+            return view('admins.bookings.listAllBooking', compact('bookings', 'totalmoney', 'totalbooking'));
         }
 
         if (isset($search1) && isset($search2)) {
             $bookings = Booking::whereBetween('created_at', array($search1, $search2))->orderBy('created_at', 'asc')->paginate(25);
 
-<<<<<<< HEAD
             foreach ($bookings as $booking) {
                 $totals = $totals + $booking->total;
             }
 
             return view('admins.bookings.listAllBooking', compact('bookings', 'totals'));
-=======
-            foreach ($bookings as $booking){
-                $totalbooking ++;
+            foreach ($bookings as $booking) {
+                $totalbooking++;
                 $totalmoney = $totalmoney + $booking->total;
             }
 
-            return view('admins.bookings.listAllBooking', compact('bookings','totalmoney', 'totalbooking'));
->>>>>>> 58f5b7e72c36d662570dd46ee518dbddcd51151c
+            return view('admins.bookings.listAllBooking', compact('bookings', 'totalmoney', 'totalbooking'));
         }
 
         if (isset($search)) {
             $bookings = Booking::where('code', 'LIKE', '%' . $search . '%')
-<<<<<<< HEAD
                 ->Orwhere('total', '=', $search)
                 ->OrwhereHas('users', function ($query) use ($search) {
                     $query->where('last_name', 'LIKE', '%' . $search . '%')
@@ -278,200 +257,184 @@ class BookingController extends Controller
             }
 
             return view('admins.bookings.listAllBooking', compact('bookings', 'totals'));
-=======
-                    ->Orwhere('total', '=', $search)
-                    ->OrwhereHas('users', function ($query) use ($search) {
-                        $query->where('last_name', 'LIKE', '%' . $search . '%')
-                              ->Orwhere('first_name', 'LIKE', '%' . $search . '%');
-                    })->get();
+            ->
+            Orwhere('total', '=', $search)
+                ->OrwhereHas('users', function ($query) use ($search) {
+                    $query->where('last_name', 'LIKE', '%' . $search . '%')
+                        ->Orwhere('first_name', 'LIKE', '%' . $search . '%');
+                })->get();
 
-            foreach ($bookings as $booking){
-                $totalbooking ++;
+            foreach ($bookings as $booking) {
+                $totalbooking++;
                 $totalmoney = $totalmoney + $booking->total;
             }
 
             $bookings = Booking::where('code', 'LIKE', '%' . $search . '%')
-                    ->Orwhere('total', '=', $search)
-                    ->OrwhereHas('users', function ($query) use ($search) {
-                        $query->where('last_name', 'LIKE', '%' . $search . '%')
-                              ->Orwhere('first_name', 'LIKE', '%' . $search . '%');
-                    })->orderBy('created_at', 'asc')->paginate(25);
+                ->Orwhere('total', '=', $search)
+                ->OrwhereHas('users', function ($query) use ($search) {
+                    $query->where('last_name', 'LIKE', '%' . $search . '%')
+                        ->Orwhere('first_name', 'LIKE', '%' . $search . '%');
+                })->orderBy('created_at', 'asc')->paginate(25);
 
-            return view('admins.bookings.listAllBooking', compact('bookings','totalmoney', 'totalbooking'));
->>>>>>> 58f5b7e72c36d662570dd46ee518dbddcd51151c
+            return view('admins.bookings.listAllBooking', compact('bookings', 'totalmoney', 'totalbooking'));
         }
 
         if (isset($search1)) {
             $bookings = Booking::where('created_at', '>=', $search1)->get();
 
-<<<<<<< HEAD
             foreach ($bookings as $booking) {
                 $totals = $totals + $booking->total;
-=======
-            foreach ($bookings as $booking){
-                $totalbooking ++;
-                $totalmoney = $totalmoney + $booking->total;
->>>>>>> 58f5b7e72c36d662570dd46ee518dbddcd51151c
-            }
-            //dd($totalmoney);
+                foreach ($bookings as $booking) {
+                    $totalbooking++;
+                    $totalmoney = $totalmoney + $booking->total;
+                }
+                //dd($totalmoney);
 
-<<<<<<< HEAD
-            return view('admins.bookings.listAllBooking', compact('bookings', 'totals'));
-=======
-            $bookings = Booking::where('created_at', '>=', $search1)->orderBy('created_at', 'asc')->paginate(25);
-        
-            return view('admins.bookings.listAllBooking', compact('bookings','totalmoney', 'totalbooking'));
->>>>>>> 58f5b7e72c36d662570dd46ee518dbddcd51151c
-        }
+                return view('admins.bookings.listAllBooking', compact('bookings', 'totals'));
+                $bookings = Booking::where('created_at', '>=', $search1)->orderBy('created_at', 'asc')->paginate(25);
 
-        if (isset($search2)) {
-            $bookings = Booking::where('created_at', '=', $search2)->get();
-
-<<<<<<< HEAD
-            foreach ($bookings as $booking) {
-                $totals = $totals + $booking->total;
+                return view('admins.bookings.listAllBooking', compact('bookings', 'totalmoney', 'totalbooking'));
             }
 
-            return view('admins.bookings.listAllBooking', compact('bookings', 'totals'));
-=======
-           foreach ($bookings as $booking){
-                $totalbooking ++;
-                $totalmoney = $totalmoney + $booking->total;
+            if (isset($search2)) {
+                $bookings = Booking::where('created_at', '=', $search2)->get();
+                foreach ($bookings as $booking) {
+                    $totals = $totals + $booking->total;
+                }
+                return view('admins.bookings.listAllBooking', compact('bookings', 'totals'));
+                foreach ($bookings as $booking) {
+                    $totalbooking++;
+                    $totalmoney = $totalmoney + $booking->total;
+                }
+
+                $bookings = Booking::where('created_at', '=', $search2)->orderBy('created_at', 'asc')->paginate(25);
+
+                return view('admins.bookings.listAllBooking', compact('bookings', 'totalmoney', 'totalbooking'));
             }
 
-            $bookings = Booking::where('created_at', '=', $search2)->orderBy('created_at', 'asc')->paginate(25);
+            if (isset($search3)) {
+                $bookings = Booking::where('code', '=', $search3)->paginate(25);
 
-            return view('admins.bookings.listAllBooking', compact('bookings','totalmoney', 'totalbooking'));
+                return view('admins.bookings.listAllBooking', compact('bookings'));
+            }
+            return redirect('admins/bookings');
+
         }
 
-        if (isset($search3)) {
-            $bookings = Booking::where('code', '=', $search3)->paginate(25);
-
-            return view('admins.bookings.listAllBooking', compact('bookings'));
->>>>>>> 58f5b7e72c36d662570dd46ee518dbddcd51151c
+        public
+        function addService($booking_id, $room_id)
+        {
+            $bookroom = BookRoom::where('booking_id', $booking_id)->where('room_id', $room_id)->first();
+            // dd($bookroom);
+            $services = Service::all()->pluck('name', 'id');
+            return view('admins.bookings.addService', compact('bookroom', 'services'));
         }
 
-        return redirect('admins/bookings');
+        public
+        function saveService($booking_id, $room_id)
+        {
+            $bookroom = BookRoom::where('booking_id', $booking_id)->where('room_id', $room_id)->first();
+            // dd($bookroom);
+            $data = Input::all();
+            $data['book_room_id'] = $bookroom->id;
+            $bookroomservice = BookRoomService::create($data);
+            return redirect('admins/bookings/detail/' . $bookroom->booking_id)->withSuccess('Service has been added');
+        }
 
+        public
+        function deleteService($booking_id, $room_id, BookRoomService $service)
+        {
+            // dd($service);
+            $service->delete();
+            return redirect('admins/bookings/detail/' . $booking_id)->withSuccess('Service has been deleted');
+        }
+
+        public
+        function adminCheckout($booking_id)
+        {
+            $booking = Booking::where('id', $booking_id)->first();
+            // dd($booking);
+            $bookroom = BookRoom::where('booking_id', $booking_id)->get();
+            $from = new Carbon($booking->check_in);
+            $to = new Carbon($booking->check_out);
+            $now = Carbon::now();
+            $diff1 = $from->diffInDays($to);
+            $diff2 = $from->diffInDays($now);
+            $paid = $booking->total;
+            $roomTotal = 0;
+            $serviceTotal = 0;
+            $roomUsingPrice = 0;
+            $totalPrice = 0;
+
+            foreach ($bookroom as $br) {
+                $roomUsingPrice = $br->rooms->price * $diff2;
+                $roomTotal = $roomTotal + ($br->rooms->price * $diff2);
+                foreach ($br->services as $service) {
+                    $serviceTotal += $service->price * $service->pivot->quantity;
+                }
+            }
+            if ($booking->promotions->code) {
+                $totalPrice = ($roomTotal) * (100 - $booking->promotions->discount) / 100 + $serviceTotal - $paid;
+            } else {
+                $totalPrice = $roomTotal + $serviceTotal - $paid;
+            }
+            return view('admins.bookings.checkout1', compact('booking', 'bookroom', 'roomTotal', 'serviceTotal', 'diff2', 'totalPrice', 'paid'));
+        }
+
+
+        public
+        function adminCheckoutSingleRoom($booking_id, $room_id, BookRoomService $service)
+        {
+            $booking = Booking::where('id', $booking_id)->first();
+            // dd($booking);
+            $bookroom = BookRoom::where('booking_id', $booking_id)->where('room_id', $room_id)->first();
+            $from = new Carbon($booking->check_in);
+            $to = new Carbon($booking->check_out);
+            $now = Carbon::now();
+            $diff1 = $from->diffInDays($to);
+            $diff2 = $from->diffInDays($now);
+            $roomTotal = 0;
+            $serviceTotal = 0;
+
+            return view('admins.bookings.checkout', compact('booking', 'bookroom', 'roomTotal', 'serviceTotal', 'diff2'));
+        }
+
+        public
+        function adminCheckoutConfirm($booking_id)
+        {
+            $booking = Booking::where('id', $booking_id)->first();
+            // dd($booking);
+            $bookroom = BookRoom::where('booking_id', $booking_id)->get();
+            $from = new Carbon($booking->check_in);
+            $to = new Carbon($booking->check_out);
+            $now = Carbon::now();
+            $diff1 = $from->diffInDays($to);
+            $diff2 = $from->diffInDays($now);
+            $paid = $booking->total;
+            $roomTotal = 0;
+            $serviceTotal = 0;
+            $roomUsingPrice = 0;
+            $totalPrice = 0;
+            $booking->update(['status' => 3]);
+
+            foreach ($bookroom as $br) {
+                $br->rooms->update(['status' => 1]);
+                $roomUsingPrice = $br->rooms->price * $diff2;
+                $roomTotal = $roomTotal + ($br->rooms->price * $diff2);
+                foreach ($br->services as $service) {
+                    $serviceTotal += $service->price * $service->pivot->quantity;
+                }
+
+            }
+
+            if ($booking->promotions->code) {
+                $totalPrice = ($roomTotal) * (100 - $booking->promotions->discount) / 100 + $serviceTotal - $paid;
+            } else {
+                $totalPrice = $roomTotal + $serviceTotal - $paid;
+            }
+            $booking->update(['total' => $totalPrice]);
+            // dd($totalPrice);
+            // return redirect('admins/bookings/detail/'.$booking->id.'/checkout');
+            return redirect('admins/bookings')->withSuccess('Room has been delete');
+        }
     }
-
-
-    public function addService($booking_id, $room_id)
-    {
-        $bookroom = BookRoom::where('booking_id', $booking_id)->where('room_id', $room_id)->first();
-        // dd($bookroom);
-        $services = Service::all()->pluck('name', 'id');
-
-        return view('admins.bookings.addService', compact('bookroom', 'services'));
-
-    }
-
-    public function saveService($booking_id, $room_id)
-    {
-        $bookroom = BookRoom::where('booking_id', $booking_id)->where('room_id', $room_id)->first();
-        // dd($bookroom);
-        $data = Input::all();
-        $data['book_room_id'] = $bookroom->id;
-        $bookroomservice = BookRoomService::create($data);
-        return redirect('admins/bookings/detail/' . $bookroom->booking_id)->withSuccess('Service has been added');
-    }
-
-    public function deleteService($booking_id, $room_id, BookRoomService $service)
-    {
-        // dd($service);
-        $service->delete();
-        return redirect('admins/bookings/detail/' . $booking_id)->withSuccess('Service has been deleted');
-    }
-
-    public function adminCheckout($booking_id)
-    {
-     $booking=Booking::where('id',$booking_id)->first();
-     // dd($booking);
-     $bookroom=BookRoom::where('booking_id',$booking_id)->get();
-     $from = new Carbon($booking->check_in);
-     $to = new Carbon($booking->check_out);
-     $now = Carbon::now();
-     $diff1 = $from->diffInDays($to);
-     $diff2 = $from->diffInDays($now);
-     $paid = $booking->total;
-     $roomTotal = 0 ;
-     $serviceTotal= 0 ;
-     $roomUsingPrice = 0;
-     $totalPrice = 0;
-
-     foreach ($bookroom as $br) {
-       $roomUsingPrice= $br->rooms->price * $diff2;
-       $roomTotal = $roomTotal + ($br->rooms->price * $diff2);
-       foreach ($br->services as $service) {
-               $serviceTotal += $service->price * $service->pivot->quantity;
-             }
-
-           }
-
-            if($booking->promotions->code) {
-                       $totalPrice = ($roomTotal)*(100- $booking->promotions->discount)/100 + $serviceTotal - $paid   ;
-                   }
-             else {
-                       $totalPrice = $roomTotal + $serviceTotal - $paid  ;
-                   }
-
-     return view('admins.bookings.checkout1',compact('booking','bookroom','roomTotal','serviceTotal','diff2','totalPrice','paid' ));
-   }
-
-
-
-   public function adminCheckoutSingleRoom($booking_id,$room_id, BookRoomService $service)
-   {
-    $booking=Booking::where('id',$booking_id)->first();
-    // dd($booking);
-    $bookroom=BookRoom::where('booking_id',$booking_id)->where('room_id',$room_id)->first();
-    $from = new Carbon($booking->check_in);
-    $to = new Carbon($booking->check_out);
-    $now = Carbon::now();
-    $diff1 = $from->diffInDays($to);
-    $diff2 = $from->diffInDays($now);
-    $roomTotal = 0 ;
-    $serviceTotal= 0 ;
-
-    return view('admins.bookings.checkout',compact('booking','bookroom','roomTotal','serviceTotal','diff2'));
-  }
-
-  public function adminCheckoutConfirm($booking_id)
-  {
-   $booking=Booking::where('id',$booking_id)->first();
-   // dd($booking);
-   $bookroom=BookRoom::where('booking_id',$booking_id)->get();
-   $from = new Carbon($booking->check_in);
-   $to = new Carbon($booking->check_out);
-   $now = Carbon::now();
-   $diff1 = $from->diffInDays($to);
-   $diff2 = $from->diffInDays($now);
-   $paid = $booking->total;
-   $roomTotal = 0 ;
-   $serviceTotal= 0 ;
-   $roomUsingPrice = 0;
-   $totalPrice = 0;
-   $booking->update(['status' => 3]);
-
-   foreach ($bookroom as $br) {
-     $br->rooms->update(['status' => 1]);
-     $roomUsingPrice= $br->rooms->price * $diff2;
-     $roomTotal = $roomTotal + ($br->rooms->price * $diff2);
-     foreach ($br->services as $service) {
-             $serviceTotal += $service->price * $service->pivot->quantity;
-           }
-
-         }
-
-          if($booking->promotions->code) {
-                     $totalPrice = ($roomTotal)*(100- $booking->promotions->discount)/100 + $serviceTotal - $paid   ;
-                 }
-           else {
-                     $totalPrice = $roomTotal + $serviceTotal - $paid  ;
-                 }
-    $booking->update(['total' => $totalPrice]);
-    // dd($totalPrice);
-    // return redirect('admins/bookings/detail/'.$booking->id.'/checkout');
-    return redirect('admins/bookings')->withSuccess('Room has been delete');
-  }
-}
