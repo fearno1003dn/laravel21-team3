@@ -38,7 +38,8 @@
                             <tbody>
                             @foreach ($bookings as $booking)
                                 <tr>
-                                    <td>{!! date_format($booking->created_at,"d-m-Y") !!}</td>
+                                    <td>{!! date_format($booking->created_at,"Y-m-d") !!}
+                                    </td>
                                     <td>{!! $booking->check_in !!}</td>
                                     <td>{!! $booking->check_out !!}</td>
                                     <td>
@@ -47,11 +48,22 @@
                                         @endif
                                     </td>
                                     <td>
-                                        {!!$booking->status ? '<a></i>Available</a>' : '<a>Not Available</a>'!!}
+                                        <?php
+                                        switch($booking->status){
+                                            case '0': echo '<a></i>Booking</a>';
+                                                break;
+                                            case '1': echo '<a></i>Check In</a>';
+                                                break;  
+                                            case '2': echo '<a></i>Cancel</a>';
+                                                break;
+                                            case '3': echo '<a></i>Check Out</a>';
+                                                break;  
+                                            }
+                                        ?>       
                                     </td>
                                     <td>{!! $booking->code !!}</td>
                                     <td>{!! number_format($booking->total) !!} $</td>
-                                    <td>@if($booking->status == 1 && $booking->check_in > $date) <a href="{{url('/user/bookings/cancel/'.$booking->id)}}" >Cancel Booking</a>
+                                    <td>@if($booking->status == 0 && $booking->check_in > $date) <a href="{{url('/user/bookings/cancel/'.$booking->id)}}" >Cancel Booking</a>
                                         @else <a href="#" ></i>Not Active</a>
                                     @endif</td>        
                                 </tr>
