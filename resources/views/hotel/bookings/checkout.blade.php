@@ -40,7 +40,7 @@
                                 <td class="col-lg-2 col-md-sm-2">{{Cart::total()}} $</td>
                             </tr>
                         </table>
-                        <a href="{{url('/seachroom/seach?&arrival='.$arrival.'&departure='.$departure.'&size='.$size.'&roomType='.$roomType)}}">
+                        <a href="{{route('booking.create')}}">
                             <button class="btn btn-primary floatright" type="button" name="button">BOOKING</button>
                         </a>
                     </table>

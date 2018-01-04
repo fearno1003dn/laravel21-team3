@@ -18,6 +18,11 @@ use Illuminate\Pagination\Paginator;
 use App\Promotion;
 use Carbon\Carbon;
 use Cart;
+use Auth;
+use App\User;
+use Illuminate\Support\Facades\Session;
+use Twilio;
+use Toastr;
 
 
 class BookingController extends Controller
@@ -28,6 +33,8 @@ class BookingController extends Controller
         $departure = strtotime($request->session()->get('departure'));
         $room = Room::find($id);
         $price = $room->price;
+        $size = $request->session()->get('size');
+        $roomType = $request->session()->get('roomType');
         Cart::add(
             [
                 'id' => $room->id,
@@ -40,6 +47,44 @@ class BookingController extends Controller
                     ]
             ]);
         return redirect('bookings/checkout');
+    }
+
+    public function createBooking(Request $request)
+    {
+        if (!Auth::check()) {
+            return redirect('/login');
+        } else {
+            $data = Input::all();
+            $user = Auth::user();
+            $booking = new Booking();
+            $booking->user_id = Auth::id();
+            $booking->check_in = ($request->session()->get('arrival'));
+            $booking->check_out = ($request->session()->get('departure'));
+            $booking->total = Cart::total();
+            if ($user->deposit < $booking->total) {
+                Toastr::warning('Insufficient Funds!!!!!', $title = null, $options = []);
+                return redirect(route('bookings.checkout'));
+            } else {
+                $admin = User::where('role', '=', 1)->first();
+                $admin->deposit = $admin->deposit + $booking->total;
+                $user->deposit = $user->deposit - $booking->total;
+                $user->save();
+                $admin->save();
+                $booking->code = (strtoupper(str_random(6)));
+                $code = $booking->code;
+                $booking->status = 1;
+                $booking->save();
+                foreach (Cart::content() as $row) {
+                    $bookRoom = new BookRoom();
+                    $bookRoom->room_id = $row->id;
+                    $bookRoom->booking_id = $booking->id;
+                    $bookRoom->save();
+                }
+                Toastr::success('Booking Success!!!!!', $title = null, $options = []);
+                Cart::destroy();
+                return redirect('/bookings/checkout');
+            }
+        }
     }
 
     public function checkout(Request $request)

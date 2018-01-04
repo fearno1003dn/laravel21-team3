@@ -38,6 +38,9 @@
     <link rel="stylesheet" href="{{asset('hotel-booking/style.css')}}"/>
     <!-- responsive -->
     <link rel="stylesheet" href="{{asset('hotel-booking/css/responsive.css')}}"/>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
     <!-- HTML5 shim and Respond.js')}} for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js')}} doesn't work if you view the page via file:// -->
@@ -49,7 +52,7 @@
 
 </head>
 <body id="home_one">
-
+{!! Toastr::render() !!}
 <!-- start preloader -->
 <div id="loader-wrapper">
     <div class="logo"><a href="#"><span>Hotel</span>-Booking</a></div>
@@ -67,7 +70,7 @@
     <!-- start main slider -->
 @yield('slider')
 <!-- end main slider -->
-<!-- FOOTER -->
+    <!-- FOOTER -->
 @include('hotel.layouts.footer')
 <!-- END / FOOTER -->
 
@@ -100,20 +103,15 @@
 <!--[if !IE]><!-->
 <script type="text/javascript">new WOW().init();</script>
 <!--<![endif]-->
-
 <!--Oh Yes, IE 9+ Supports animation, lets activate for IE 9+-->
 <!--[if gte IE 9]>
 <script type="text/javascript">new WOW().init();</script>
 <![endif]-->
-
 <!--Opacity & Other IE fix for older browser-->
 <!--[if lte IE 8]>
 <script type="text/javascript" src="{{asset('hotel-booking/js/ie-opacity-polyfill.js')}}"></script>
 <![endif]-->
-
-
 <!-- my js -->
 <script src="{{asset('hotel-booking/js/main.js')}}"></script>
-
 </body>
 </html>
