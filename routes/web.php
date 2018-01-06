@@ -5,6 +5,7 @@ use App\Room;
 use App\RoomType;
 use App\Booking;
 use App\BookRoom;
+//use Twilio;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,3 +114,7 @@ Route::group(['prefix' => 'bookings'], function (){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/textsms', function (){
+    \Twilio::message('+84915315162', 'You Have Just Make Booking Hotel Code: 090947');
+    dd('oke');
+});
