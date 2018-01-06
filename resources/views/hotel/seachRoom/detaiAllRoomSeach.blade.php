@@ -113,7 +113,7 @@
                                         @endif
                                     @endforeach
                                 </div>
-
+                                {!! $rooms->appends($_GET)->links()!!}
                             </div>
                         </div>
                         <!-- end single room details -->

@@ -73,6 +73,14 @@ class UserController extends Controller
             return redirect('/index');
     }
 
+    public function listBooking(User $user)
+    {
+            $date = new DateTime();
+            $date = date("Y-m-d");
+            $bookings = Booking::where('user_id', '=', $user->id)->orderBy('created_at', 'dec')->paginate(10);
+            return view('admins.bookings.listAllBooking',compact('bookings', 'date'));
+    }
+
     public function userListBooking()
     {
         if (Auth::check()){
