@@ -47,7 +47,7 @@ class RoomController extends Controller
         $request->session()->put('roomType', $roomType);
 
 
-        $rooms = Room::where('status', '=', 0)
+        $rooms = Room::where('status', '=', 1)
             ->whereHas('roomSizes', function ($query) use ($size) {
                 $query->where('size', '=', $size);
             })
@@ -57,9 +57,6 @@ class RoomController extends Controller
             ->whereDoesntHave('bookings', function ($query) {
                 $query->where('status', '=', 0)->where('status', '=', 1);
                 })
-            ->whereDoesntHave('bookings', function ($query) {
-                $query->where('status', '=', 0)->where('status', '=', 0);
-            })
             ->whereDoesntHave('bookings', function ($query) use ($from) {
                 $query->where('check_in', '<=', $from)->where('check_out', '>=', $from);
             })
@@ -70,7 +67,6 @@ class RoomController extends Controller
                 $query->where('check_in', '>=', $from)->where('check_out', '<=', $to);
             })
             ->get();
-        
         if (count($rooms) == 0) {
             return view('hotel.seachRoom.messageSeachRoom');
         } else {

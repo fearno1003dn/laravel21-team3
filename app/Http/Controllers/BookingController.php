@@ -64,7 +64,7 @@ class BookingController extends Controller
             $booking->check_out = ($request->session()->get('departure'));
             $booking->total = Cart::total();
             if ($user->deposit < $booking->total) {
-                Toastr::warning('Insufficient Funds!!!!!', $title = null, $options = []);
+                Toastr::error('Insufficient Funds!!!!!', $title = null, $options = []);
                 return redirect(route('bookings.checkout'));
             } else {
                 $admin = User::where('role', '=', 1)->first();
@@ -82,8 +82,8 @@ class BookingController extends Controller
                     $bookRoom->booking_id = $booking->id;
                     $bookRoom->save();
                 }
-                Toastr::success('Booking Success!!!!!', $title = null, $options = []);
                 Cart::destroy();
+                \Twilio::message('+84' . Auth::user()->phone_number,'Total Booking: ' .$booking->total. '$. '. 'Have Just Make Booking Hotel Code: ' .$code. '. You Can Cancel Booking before Check In');
                 return redirect('/user/bookings');
             }
         }

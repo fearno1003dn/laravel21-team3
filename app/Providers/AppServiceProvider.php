@@ -17,11 +17,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \Schema::defaultStringLength(191);
         $roomTypes = RoomType::all();
         View::share('roomTypes', $roomTypes);
         $sizes = RoomSize::all();
         View::share('sizes', $sizes);
+        \Schema::defaultStringLength(191);
     }
 
     /**
