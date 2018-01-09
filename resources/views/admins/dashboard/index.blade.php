@@ -36,12 +36,31 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- fullcalendar.io -->
-    <link rel="stylesheet" href="{{asset('AdminLTE-2.4.1/bower_components/fullcalendar/dist/fullcalendar.min.css')}}">
-    <link rel="stylesheet" href="{{asset('AdminLTE-2.4.1/bower_components/fullcalendar/dist/fullcalendar.print.min.css')}}" media="print">
-
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<!-- aaaaaaaaaa -->
+<link rel="stylesheet" href="{{asset('AdminLTE-2.4.1/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('AdminLTE-2.4.1/bower_components/font-awesome/css/font-awesome.min.css')}}">
+<link rel="stylesheet" href="{{asset('AdminLTE-2.4.1/bower_components/fullcalendar/dist/fullcalendar.min.css')}}">
+<link rel="stylesheet" href="{{asset('AdminLTE-2.4.1/bower_components/fullcalendar/dist/fullcalendar.print.min.css')}}" media="print">
+<link rel="stylesheet" href="{{asset('AdminLTE-2.4.1/bower_components/Ionicons/css/ionicons.min.css')}}">
+<link rel="stylesheet" href="{{asset('AdminLTE-2.4.1/dist/css/AdminLTE.min.css')}}">
+<link rel="stylesheet" href="{{asset('AdminLTE-2.4.1/dist/css/skins/skin-blue.min.css')}}">
+<!-- aaaaaaaaaa -->
+
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
+
+
+
+
+
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -117,51 +136,42 @@
 <script src="{{asset('AdminLTE-2.4.1/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('AdminLTE-2.4.1/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 
-<script src="{{asset('AdminLTE-2.4.1/bower_components/moment/moment.js')}}"></script>
+<!-- aaaaaaaaaa -->
+<script src="{{asset('AdminLTE-2.4.1/bower_components/Chart.js/Chart.js')}}"></script>
+<script src="{{asset('AdminLTE-2.4.1/js/pages/dashboard2.js')}}"></script>
+<!-- aaaaaaaaaa -->
 
-<script src="{{asset('AdminLTE-2.4.1/bower_components/fullcalendar/dist/fullcalendar.min.js')}}"></script>
-<script>
-var deleteLinks = document.querySelectorAll('.delete');
 
-for (var i = 0; i < deleteLinks.length; i++) {
-deleteLinks[i].addEventListener('click', function(event) {
-  event.preventDefault();
-
-  var choice = confirm(this.getAttribute('data-confirm'));
-
-  if (choice) {
-    window.location.href = this.getAttribute('href');
-  }
-});
-}
-</script>
-
-<script>
-$(function(){
-  $(".delete").click(function(){
-      swal({
-	  	  title: "Are you sure?",
-		  text: "You will not be able to recover this imaginary file!",
-		  type: "warning",
-		  showCancelButton: true,
-	  	  confirmButtonColor: "#DD6B55",
-	  	  confirmButtonText: "Yes, delete it!",
-	  	  closeOnConfirm: false
-	  },
-	  function(isConfirmed){
-        if(isConfirmed) {
-          $(".file").addClass("isDeleted");
-          swal("Deleted!", "Your imaginary file has been deleted.", "success");
-        }
-      }
-    );
-  });
-});
-</script>
 
 @yield('script')
 
 
+<!-- aaaaaaaaaa -->
+<script src="{{asset('AdminLTE-2.4.1/bower_components/jquery/dist/jquery.min.js')}}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{{asset('AdminLTE-2.4.1/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{asset('AdminLTE-2.4.1/bower_components/fastclick/lib/fastclick.js')}}"></script>
+<script src="{{asset('AdminLTE-2.4.1/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js')}}"></script>
+<script src="{{asset('AdminLTE-2.4.1/bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
+<script src="{{asset('AdminLTE-2.4.1/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
+<script src="{{asset('AdminLTE-2.4.1/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
+<script src="{{asset('AdminLTE-2.4.1/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+<script src="{{asset('AdminLTE-2.4.1/bower_components/moment/moment.js')}}"></script>
+<script src="{{asset('AdminLTE-2.4.1/bower_components/fullcalendar/dist/fullcalendar.min.js')}}"></script>
+<!-- ChartJS -->
+<script src="{{asset('AdminLTE-2.4.1/bower_components/Chart.js/Chart.js')}}"></script>
+<script src="{{asset('AdminLTE-2.4.1/dist/js/pages/dashboard2.js')}}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<!-- AdminLTE for demo purposes -->
+<script src="{{asset('AdminLTE-2.4.1/dist/js/demo.js')}}"></script>
+<script src="{{asset('AdminLTE-2.4.1/dist/js/adminlte.min.js')}}"></script>
 
+
+    <!-- //pusher -->
+    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+
+
+<!-- aaaaaaaaaa -->
 </body>
 </html>

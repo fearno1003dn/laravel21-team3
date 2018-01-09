@@ -174,7 +174,7 @@ class BookingController extends Controller
         }
         return redirect('admins/bookings');
     }
-   
+
     public function searchBooking()
     {
         $date = new DateTime();
@@ -454,7 +454,7 @@ class BookingController extends Controller
         }
 
         if (isset($search2)) {
-            
+
             $bookings = Booking::where('created_at', '>=', $search2)
                 ->where('created_at', '<', date("Y-m-d", strtotime("$search2 +1 day")))->get();
 
@@ -570,7 +570,7 @@ class BookingController extends Controller
             // dd($booking);
             $bookroom = BookRoom::where('booking_id', $booking_id)->get();
             $paid = $booking->total;
-            
+
             $serviceTotal = 0;
             $totalPrice = 0;
             $booking->update(['status' => 3]);

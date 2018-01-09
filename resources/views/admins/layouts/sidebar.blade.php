@@ -27,6 +27,12 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
+
+            <li>
+                <a href="{!!asset('admins/dashboard')!!}">
+                    <i class="fa fa-dashboard"></i> <span>DASHBOARD </span>
+                </a>
+            </li>
             <li>
                 <a href="{!!asset('admins/rooms')!!}">
                     <i class="fa fa-home"></i> <span>ROOMS </span>

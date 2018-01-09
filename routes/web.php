@@ -90,7 +90,8 @@ Route::get('admins/bookings/detail/{booking}/checkout','BookingController@adminC
 Route::get('admins/bookings/detail/{booking}/{room_id}/checkout','BookingController@adminCheckoutSingleRoom');
 Route::get('admins/bookings/detail/{booking}/checkout/confirm','BookingController@adminCheckoutConfirm');
 
-
+Route::get('admins/dashboard','DashBoardController@main');
+Route::get('/admins/dashboard/chart/data', 'DashBoardController@test');
 
 
 
@@ -115,4 +116,3 @@ Route::group(['prefix' => 'bookings'], function (){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
