@@ -24,7 +24,7 @@
                                                     <li data-thumb="{!!url('/images/rooms/'.$room->image2)!!}">
                                                         <img alt="slider" src="{!!url('/images/rooms/'.$room->image2)!!}" />
                                                     </li>
-                                                    <li data-thumb="{!!url('/images/rooms/'.$room->image3)!!}">
+                                                    <li  data-thumb="{!!url('/images/rooms/'.$room->image3)!!}">
                                                         <img alt="slider" src="{!!url('/images/rooms/'.$room->image3)!!}" />
                                                     </li>
                                                 </ul>

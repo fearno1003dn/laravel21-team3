@@ -5,6 +5,7 @@ use App\Room;
 use App\RoomType;
 use App\Booking;
 use App\BookRoom;
+//use Twilio;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,7 +78,7 @@ Route::get('admins/users/listbooking/{user}', 'userController@listBooking');
 Route::get('admins/bookings','BookingController@listAllBooking');
 Route::get('admins/bookings/edit/{booking}','BookingController@editBooking');
 Route::get('admins/bookings/detail/{booking}', 'BookingController@detailBooking');
-Route::put('admins/bookings/update/{booking}', 'BookingController@updateBooking');
+Route::get('admins/bookings/checkin/{booking}', 'BookingController@checkinBooking');
 Route::get('admins/bookings/cancel/{booking}', 'BookingController@cancelBooking');
 Route::get('admins/bookings/search','BookingController@searchBooking');
 
@@ -114,3 +115,4 @@ Route::group(['prefix' => 'bookings'], function (){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

@@ -20,7 +20,7 @@
                                                 <figure class="uk-overlay uk-overlay-hover">
                                                     <div class="room_media">
                                                         <a href="{{route('room.detailRoom',$room->id )}}"><img
-                                                                    src="{!!url('/images/rooms/'.$room->image1)!!}"
+                                                                    src="{!!url('/images/rooms/'.$room->image1)!!}" style="width:  263px;height: 187px;"
                                                                     alt=""></a>
                                                     </div>
                                                     <div class="room_title border-bottom-whitesmoke clearfix">

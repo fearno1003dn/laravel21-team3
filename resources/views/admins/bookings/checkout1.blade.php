@@ -46,8 +46,8 @@
 							<tr>
 							<td>{{$br->rooms->name}}</td>
 							<td>{!!number_format($br->rooms->price)!!}</td>
-							<td>{{$diff2}} Days</td>
-							<td>{!!number_format($br->rooms->price * $diff2)!!}đ</td>
+							<td>{{$diff1}} Days</td>
+							<td>{!!number_format($br->rooms->price * $diff1)!!} $</td>
 
 
 							</tr>
@@ -60,7 +60,7 @@
 
 
 
-					@if($booking->promotions->discount)
+					@if($booking->promotion_id)
 	      	<div class="row">
 	      		<div class="col-xs-6">
 	      			 <div class="table-responsive">
@@ -79,12 +79,8 @@
 
 			              </tr>
 			              <tr>
-			                <th style="width:50%">Rooms Total Price (Discounted + Paid):</th>
-			                <td>{{number_format($roomTotal *(100- $booking->promotions->discount)/100 -$paid )}}đ@if($booking->status==1) <i class="fa fa-check-square"></i>@endif</td>
-			              </tr>
-			              <tr>
 			                <th>Services Total Price:</th>
-			                <td>{{number_format($serviceTotal)}}đ</td>
+			                <td>{{number_format($serviceTotal)}} $</td>
 			              </tr>
 			              <tr>
 			                <th>Total:</th>
@@ -99,15 +95,11 @@
 				@endif
 
 
-		@if(!$booking->promotions->discount)
+		@if(!$booking->promotion_id)
 			<div class="row">
 				<div class="col-xs-6">
 					 <div class="table-responsive">
 							<table class="table">
-								<tr>
-									<th style="width:50%">Rooms Total Price:</th>
-									<td>{{number_format($roomTotal)}}đ@if($booking->status==1) <i class="fa fa-check-square"></i>@endif</td>
-								</tr>
 								<tr>
 									<th>Services Total Price:</th>
 									<td>{{number_format($serviceTotal)}}đ</td>

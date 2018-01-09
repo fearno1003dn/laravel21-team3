@@ -65,7 +65,7 @@ class BookingController extends Controller
             $booking->check_out = ($request->session()->get('departure'));
             $booking->total = Cart::total();
             if ($user->deposit < $booking->total) {
-                Toastr::warning('Insufficient Funds!!!!!', $title = null, $options = []);
+                Toastr::error('Insufficient Funds!!!!!', $title = null, $options = []);
                 return redirect(route('bookings.checkout'));
             } else {
                 $admin = User::where('role', '=', 1)->first();
@@ -81,10 +81,13 @@ class BookingController extends Controller
                     $bookRoom = new BookRoom();
                     $bookRoom->room_id = $row->id;
                     $bookRoom->booking_id = $booking->id;
+                    $room = Room::find($row->id);
+                    $room->status = 1;
+                    $room->save();
                     $bookRoom->save();
                 }
-                Toastr::success('Booking Success!!!!!', $title = null, $options = []);
                 Cart::destroy();
+                \Twilio::message('+84' . Auth::user()->phone_number,'Total Booking: ' .$booking->total. '$. '. 'Have Just Make Booking Hotel Code: ' .$code. '. You Can Cancel Booking before Check In');
                 return redirect('/user/bookings');
             }
         }
@@ -120,11 +123,11 @@ class BookingController extends Controller
         return view('admins.bookings.edit', compact('promotions', 'booking'));
     }
 
-    public function updateBooking(Booking $booking)
+    public function checkinBooking(Booking $booking)
     {
-        $data = Input::all();
-        $booking->update($data);
-        return redirect('admins/bookings/detail/' . $booking->id)->withSuccess('Update booking success');
+
+        $booking->update(['status' => 1]);
+        return redirect('admins/bookings');
     }
 
     public function detailBooking($booking_id)
@@ -148,6 +151,7 @@ class BookingController extends Controller
     public function cancelBooking(Booking $booking)
     {
         //$booking->delete();
+        $d = 0;
         $user = User::where('id', '=', $booking->user_id)->first();
         $admin = User::where('role', '=', 1)->first();
         $booking->update(['status' => 2]);
@@ -157,6 +161,17 @@ class BookingController extends Controller
         $admin->save();
         $booking->total = $booking->total * 0.2;
         $booking->save();
+        foreach ($booking->rooms as $room) {
+          foreach ($room->bookings as $book) {
+            if ($book->status == 1 || $book->status == 0) {
+              $d ++;
+            }
+          }
+          if ($d == 0) {
+            $room->status = 2;
+            $room->save();
+          }
+        }
         return redirect('admins/bookings');
     }
    
@@ -520,18 +535,16 @@ class BookingController extends Controller
             $totalPrice = 0;
 
             foreach ($bookroom as $br) {
-                $roomUsingPrice = $br->rooms->price * $diff2;
-                $roomTotal = $roomTotal + ($br->rooms->price * $diff2);
                 foreach ($br->services as $service) {
                     $serviceTotal += $service->price * $service->pivot->quantity;
                 }
             }
-            if ($booking->promotions->code) {
-                $totalPrice = ($roomTotal) * (100 - $booking->promotions->discount) / 100 + $serviceTotal - $paid;
+            if ($booking->promotion_id) {
+                $totalPrice = ($paid + $serviceTotal) * ((100 -($booking->promotions->discount))/100);
             } else {
-                $totalPrice = $roomTotal + $serviceTotal - $paid;
+                $totalPrice = $paid + $serviceTotal;
             }
-            return view('admins.bookings.checkout1', compact('booking', 'bookroom', 'roomTotal', 'serviceTotal', 'diff2', 'totalPrice', 'paid'));
+            return view('admins.bookings.checkout1', compact('booking', 'bookroom', 'serviceTotal', 'diff1', 'totalPrice'));
         }
 
 
@@ -556,34 +569,36 @@ class BookingController extends Controller
             $booking = Booking::where('id', $booking_id)->first();
             // dd($booking);
             $bookroom = BookRoom::where('booking_id', $booking_id)->get();
-            $from = new Carbon($booking->check_in);
-            $to = new Carbon($booking->check_out);
-            $now = Carbon::now();
-            $diff1 = $from->diffInDays($to);
-            $diff2 = $from->diffInDays($now);
             $paid = $booking->total;
-            $roomTotal = 0;
+            
             $serviceTotal = 0;
-            $roomUsingPrice = 0;
             $totalPrice = 0;
             $booking->update(['status' => 3]);
-
             foreach ($bookroom as $br) {
-                $br->rooms->update(['status' => 1]);
-                $roomUsingPrice = $br->rooms->price * $diff2;
-                $roomTotal = $roomTotal + ($br->rooms->price * $diff2);
                 foreach ($br->services as $service) {
                     $serviceTotal += $service->price * $service->pivot->quantity;
                 }
-
             }
 
-            if ($booking->promotions->code) {
-                $totalPrice = ($roomTotal) * (100 - $booking->promotions->discount) / 100 + $serviceTotal - $paid;
+            if ($booking->promotion_id) {
+                $totalPrice = ($paid + $serviceTotal) * ((100 -($booking->promotions->discount))/100);
             } else {
-                $totalPrice = $roomTotal + $serviceTotal - $paid;
+                $totalPrice = $paid + $serviceTotal;
             }
-            $booking->update(['total' => $totalPrice]);
+            $booking->total = $totalPrice;
+            $booking->save();
+            $d = 0;
+            foreach ($booking->rooms as $room) {
+                foreach ($room->bookings as $book) {
+                    if ($book->status == 1 || $book->status == 0) {
+                        $d ++;
+                    }
+                }
+                if ($d == 0) {
+                    $room->status = 2;
+                    $room->save();
+                }
+            }
             // dd($totalPrice);
             // return redirect('admins/bookings/detail/'.$booking->id.'/checkout');
             return redirect('admins/bookings')->withSuccess('Room has been delete');

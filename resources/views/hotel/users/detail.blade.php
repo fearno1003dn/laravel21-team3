@@ -24,7 +24,7 @@
                         </li>
                         
                         <li style="padding-top: 15px;">
-                            <strong style="padding-left: 400px">Phone Number :</strong> <b>{!!$user->phone_number!!}</b>
+                            <strong style="padding-left: 400px">Phone Number :</strong> <b>+84{!!$user->phone_number!!}</b>
                         </li>
 
                         <li style="padding-top: 15px;">
