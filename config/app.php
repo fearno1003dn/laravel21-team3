@@ -179,7 +179,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         Aloha\Twilio\Support\Laravel\ServiceProvider::class,
-        Kamaln7\Toastr\ToastrServiceProvider::class
+        Kamaln7\Toastr\ToastrServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
 
     ],
 
@@ -233,7 +235,9 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Twilio' => Aloha\Twilio\Support\Laravel\Facade::class,
-        'Toastr' => Kamaln7\Toastr\Facades\Toastr::class
+        'Toastr' => Kamaln7\Toastr\Facades\Toastr::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
     ],
 
 ];

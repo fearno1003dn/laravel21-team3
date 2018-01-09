@@ -47,26 +47,36 @@ class RoomController extends Controller
         $request->session()->put('roomType', $roomType);
 
 
-        $rooms = Room::where('status', '=', 1)
-            ->whereHas('roomSizes', function ($query) use ($size) {
-                $query->where('size', '=', $size);
-            })
-            ->whereHas('roomTypes', function ($query) use ($roomType) {
-                $query->where('name', '=', $roomType);
-            })
-            ->whereDoesntHave('bookings', function ($query) {
-                $query->where('status', '=', 0)->where('status', '=', 1);
+            $rooms = Room::where('status', '=', 2)
+                ->whereHas('roomTypes', function ($query) use ($roomType) {
+                    $query->where('name', '=', $roomType);
                 })
-            ->whereDoesntHave('bookings', function ($query) use ($from) {
-                $query->where('check_in', '<=', $from)->where('check_out', '>=', $from);
-            })
-            ->whereDoesntHave('bookings', function ($query) use ($to) {
-                $query->where('check_in', '<=', $to)->where('check_out', '>=', $to);
-            })
-            ->whereDoesntHave('bookings', function ($query) use ($from, $to) {
-                $query->where('check_in', '>=', $from)->where('check_out', '<=', $to);
-            })
-            ->get();
+                ->whereHas('roomSizes', function ($query) use ($size) {
+                    $query->where('size', '=', $size);
+                })
+                ->Orwhere('status', '=', 1)
+                ->whereHas('roomTypes', function ($query) use ($roomType) {
+                    $query->where('name', '=', $roomType);
+                })
+                ->whereHas('roomSizes', function ($query) use ($size) {
+                    $query->where('size', '=', $size);
+                })
+                ->whereDoesntHave('bookings', function ($query) use ($from) {
+                    $query->where('status', 0)->where('check_in', '<=', $from)->where('check_out', '>=', $from)
+                            ->Orwhere('status', 1)->where('check_in', '<=', $from)->where('check_out', '>=', $from);
+                })
+                ->whereDoesntHave('bookings', function ($query) use ($to) {
+                    $query->where('status', 0)->where('check_in', '<=', $to)->where('check_out', '>=', $to)
+                            ->Orwhere('status', 1)->where('check_in', '<=', $to)->where('check_out', '>=', $to);
+                })
+                ->whereDoesntHave('bookings', function ($query) use ($from, $to) {
+                    $query->where('status', 0)->where('check_in', '>=', $from)->where('check_out', '<=', $to)
+                            ->Orwhere('status', 1)->where('check_in', '>=', $from)->where('check_out', '<=', $to);
+                })
+                ->paginate(4);
+                
+              
+        
         if (count($rooms) == 0) {
             return view('hotel.seachRoom.messageSeachRoom');
         } else {

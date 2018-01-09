@@ -73,7 +73,7 @@
                             <label for="status" class="col-md-4 control-label">Status</label>
 
                             <div class="col-md-6">
-                              {!! Form::radio('status', '1',['class'=>'form-control']) !!} Available <br>
+                              {!! Form::radio('status', '2',['class'=>'form-control']) !!} Available <br>
                               {!! Form::radio('status', '0',['class'=>'form-control']) !!} Not Available
                             </div>
                             @if ($errors->has('status'))

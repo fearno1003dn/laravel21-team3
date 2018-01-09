@@ -28,8 +28,8 @@
                                                 <div class="single_room_wrapper clearfix padding-bottom-30">
                                                     <figure class="uk-overlay uk-overlay-hover">
                                                         <div class="room_media">
-                                                            <a href="{{route('room.detailRoom', $room->id )}}"><img
-                                                                        src="{{asset('hotel-booking/img/room-image-five.png')}}"
+                                                            <a href="{{route('room.detailRoom', $room->id )}}"><img style="width:  263px;height: 187px;"
+                                                                        src="{!!url('/images/rooms/'.$room->image1)!!}"
                                                                         alt=""></a>
                                                         </div>
                                                         <div class="room_title border-bottom-whitesmoke clearfix">
@@ -113,7 +113,7 @@
                                         @endif
                                     @endforeach
                                 </div>
-
+                                {!! $rooms->appends($_GET)->links()!!}
                             </div>
                         </div>
                         <!-- end single room details -->

@@ -42,7 +42,8 @@
                             @foreach ($users as $user)
                                 <tr>
 
-                                    <td>{!!$user->first_name!!} {!!$user->last_name!!} </td>
+                                    <td><a href="{{url('admins/users/listbooking/'.$user->id)}}" >{!!$user->first_name!!} {!!$user->last_name!!}</a>
+                                    </td>
                                     <td>{!!$user->address!!}</td>
                                     <td>{!!$user->email!!}</td>
                                     <td>{!!$user->phone_number!!}</td>

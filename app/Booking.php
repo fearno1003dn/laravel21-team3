@@ -19,7 +19,10 @@ class Booking extends Model
         return $this->hasMany('App\BookRoom', 'booking_id');
     }
 
-
+    public function rooms()
+    {
+        return $this->belongsToMany('App\Room','book_rooms');
+    }
 
     public function promotions()
     {

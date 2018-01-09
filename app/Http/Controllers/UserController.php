@@ -10,6 +10,7 @@ use Illuminate\Pagination\Paginator;
 use Auth;
 use App\Booking;
 use DateTime;
+use App\Room;
 
 class UserController extends Controller
 {
@@ -73,6 +74,14 @@ class UserController extends Controller
             return redirect('/index');
     }
 
+    public function listBooking(User $user)
+    {
+            $date = new DateTime();
+            $date = date("Y-m-d");
+            $bookings = Booking::where('user_id', '=', $user->id)->orderBy('created_at', 'dec')->paginate(10);
+            return view('admins.bookings.listAllBooking',compact('bookings', 'date'));
+    }
+
     public function userListBooking()
     {
         if (Auth::check()){
@@ -90,7 +99,8 @@ class UserController extends Controller
     }
 
     public function userCancelBooking(Booking $booking)
-    {
+    { 
+      $d = 0;
       if (Auth::check()){
         $user = Auth::user();
         $admin = User::where('role', '=', 1)->first();
@@ -101,6 +111,17 @@ class UserController extends Controller
         $admin->save();
         $booking->total = $booking->total * 0.2;
         $booking->save();
+        foreach ($booking->rooms as $room) {
+          foreach ($room->bookings as $book) {
+            if ($book->status == 1 || $book->status == 0) {
+              $d ++;
+            }
+          }
+          if ($d == 0) {
+            $room->status = 2;
+            $room->save();
+          }
+        }
         return redirect('/user/bookings');
         }
       else
@@ -127,7 +148,8 @@ class UserController extends Controller
         }
 
         if (isset($search2)) {
-          $bookings = Booking::where('user_id', '=', $user->id)->where('created_at', '=', $search2)->orderBy('created_at', 'asc')->paginate(25);
+          $bookings = Booking::where('user_id', '=', $user->id)->where('created_at', '>=', $search2)
+                ->where('created_at', '<', date("Y-m-d", strtotime("$search2 +1 day")))->paginate(25);
 
           return view('hotel.users.bookings',compact('bookings'));
         }

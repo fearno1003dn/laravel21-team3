@@ -94,7 +94,7 @@
                                         </td>
                                         <td>{!! $diff2 !!}</td>
                                     </tr>
-
+                                    @if ($booking->promotion_id)
                                     <tr>
                                         <td>
                                             <li>
@@ -110,7 +110,7 @@
                                         </td>
                                         <td>{!! $booking->promotions->discount !!}%</td>
                                     </tr>
-
+                                    @endif
                                     <tr>
                                         <td>
                                             <li>

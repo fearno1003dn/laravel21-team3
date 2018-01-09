@@ -18,14 +18,14 @@
                                             <div class="clearfix" style="">
                                                 <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
                                                     <!-- <ul id="vertical" class="gallery list-unstyled"> -->
-                                                    <li data-thumb="{{asset('hotel-booking/img/lightslider-img/cS-52.jpg')}}">
-                                                        <img alt="slider" src="{{asset('hotel-booking/img/lightslider-img/cS-52.jpg')}}" />
+                                                    <li data-thumb="{!!url('/images/rooms/'.$room->image1)!!}">
+                                                        <img alt="slider" src="{!!url('/images/rooms/'.$room->image1)!!}" />
                                                     </li>
-                                                    <li data-thumb="{{asset('hotel-booking/img/lightslider-img/cS-51.jpg')}}">
-                                                        <img alt="slider" src="{{asset('hotel-booking/img/lightslider-img/cS-51.jpg')}}" />
+                                                    <li data-thumb="{!!url('/images/rooms/'.$room->image2)!!}">
+                                                        <img alt="slider" src="{!!url('/images/rooms/'.$room->image2)!!}" />
                                                     </li>
-                                                    <li data-thumb="{{asset('hotel-booking/img/lightslider-img/cS-50.jpg')}}">
-                                                        <img alt="slider" src="{{asset('hotel-booking/img/lightslider-img/cS-50.jpg')}}" />
+                                                    <li  data-thumb="{!!url('/images/rooms/'.$room->image3)!!}">
+                                                        <img alt="slider" src="{!!url('/images/rooms/'.$room->image3)!!}" />
                                                     </li>
                                                 </ul>
                                             </div>
