@@ -74,9 +74,9 @@ class RoomController extends Controller
                             ->Orwhere('status', 1)->where('check_in', '>=', $from)->where('check_out', '<=', $to);
                 })
                 ->paginate(4);
-                
-              
-        
+
+
+
         if (count($rooms) == 0) {
             return view('hotel.seachRoom.messageSeachRoom');
         } else {
@@ -146,7 +146,7 @@ class RoomController extends Controller
         }
 
         $room = Room::create($data);
-        
+
         return redirect('admins/rooms')->withSuccess('Room has been created');
     }
 
@@ -195,8 +195,10 @@ class RoomController extends Controller
 
     public function roomDetail(Room $room)
     {
-
-        return view('admins.rooms.roomDetail', compact('room'));
+              $calendars =BookRoom::where('room_id',$room->id)->get();
+              // dd($calendars);
+              // dd($calendars);
+              return view('admins.rooms.roomDetail', compact('room','calendars'));
     }
 
     public function searchRoom(Request $search)
