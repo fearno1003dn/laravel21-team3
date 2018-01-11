@@ -4,7 +4,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{asset('AdminLTE-2.4.1/dist/img/tung_adm.jpg')}}" class="img-circle" alt="User Image">
+                <img src="{{asset('images/logos/admin.png')}}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p>{{Auth::user()->first_name}} {{ Auth::user()->last_name}}</p>
@@ -27,6 +27,19 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
+
+            <li>
+                <a href="{!!asset('/index')!!}">
+                    <i class="fa fa-home"></i> <span>HOMEPAGE</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{!!asset('admins/dashboard')!!}">
+                    <i class="fa fa-dashboard"></i> <span>DASHBOARD </span>
+                </a>
+            </li>
+
             <li>
                 <a href="{!!asset('admins/rooms')!!}">
                     <i class="fa fa-home"></i> <span>ROOMS </span>
@@ -35,6 +48,11 @@
             <li>
                 <a href="{!!url('admins/roomTypes')!!}">
                     <i class="fa fa-simplybuilt"></i> <span>ROOM TYPES </span>
+                </a>
+            </li>
+            <li>
+                <a href="{!!url('admins/roomSizes')!!}">
+                    <i class="fa fa-simplybuilt"></i> <span>ROOM SIZES </span>
                 </a>
             </li>
             <li>

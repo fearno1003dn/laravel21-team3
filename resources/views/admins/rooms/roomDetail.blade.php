@@ -20,16 +20,16 @@
                         </li>
                         <li>
                             <strong> Status </strong> :
-                            {!!$room->status ? '<span class="label label-success">Available</span>' : '<span class="label label-danger">Not Available</span>'!!}
+                            {!!$room->status ? '<span>Available</span>' : '<span>Not Available</span>'!!}
                         </li>
                         <li>
-                            <strong>Room Size </strong>: <span class="label label-warning">{!!$room->roomSizes->size!!}</span></li>
+                            <strong>Room Size </strong>: <span>{!!$room->roomSizes->size!!}</span></li>
                         <li>
                             <strong>Description </strong>:{!!$room->description!!}
                         </li>
 
                         <li>
-                          <strong>Image 1</strong>:  <img src="{!!url('/images/rooms/'.$room->image1)!!}">
+                          <strong>Image 1</strong>:  <img src="{!!url('/images/rooms/'.$room->image1)!!}" alt="" style='width: 550px; height: 300px; border:5px solid gray;'>
                         </li>
 
                         @if($room->image2)
@@ -39,7 +39,7 @@
                         @endif
                         @if(!$room->image2)
                         <li>
-                          <strong>This room not have for more than one image <a href="{{url('admins/rooms/'.$room->id.'/edit')}}" >Edit Now</a> </strong>
+                          <strong>This room not have for more than one image <a href="{{url('admins/rooms/'.$room->id.'/edit')}}" >Add Now</a> </strong>
                         </li>
                         @endif
 
@@ -50,7 +50,7 @@
                         @endif
                         @if($room->image2 && !$room->image3)
                         <li>
-                          <strong>This room not have for more than two image <a href="{{url('admins/rooms/'.$room->id.'/edit')}}" >Edit Now</a> </strong>
+                          <strong>This room not have for more than two image <a href="{{url('admins/rooms/'.$room->id.'/edit')}}" >Add Now</a> </strong>
                         </li>
                         @endif
 
@@ -71,14 +71,57 @@
             <div class="box box-primary">
                 <div class="box-body no-padding">
                     <!-- THE CALENDAR -->
-                    <div id="calendar"></div>
+                    <div id="calendar1"></div>
                 </div>
                 <!-- /.box-body -->
             </div>
         </div>
     </div>
     </div>
-  </div
+  </div>
 </div>
 
+@stop
+
+
+@section('script')
+<script src="{{asset('AdminLTE-2.4.1/bower_components/fullcalendar/dist/fullcalendar.min.js')}}"></script>
+
+<script>
+var date = new Date()
+var d    = date.getDate(),
+    m    = date.getMonth(),
+    y    = date.getFullYear()
+
+$('#calendar1').fullCalendar({
+  header    : {
+    left  : 'prev,next',
+    center: 'title',
+    right : ''
+  },
+
+  events    : [
+    @foreach($calendars as $key => $cld)
+
+    {
+      title          : 'Booking # {{$cld->bookings->code}}',
+      start          : '{{$cld->bookings->check_in}}',
+      end            : "{{$cld->bookings->check_out}}",
+      allDay         : true,
+      backgroundColor: '#3c8dbc',
+
+      url			 : "{{url('admins/bookings/detail/'.$cld->booking_id)}}"
+    },
+    {
+      title          : 'User : {{$cld->bookings->users->first_name}} {{$cld->bookings->users->last_name}}',
+      start          : '{{$cld->bookings->check_in}}',
+      end            : "{{$cld->bookings->check_out}}",
+      allDay         : true,
+      backgroundColor: '#b5bc3c',
+
+    },
+    @endforeach
+  ]
+})
+</script>
 @stop

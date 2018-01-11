@@ -12,6 +12,7 @@
                           {!! Form::label('name','Room Name',['class'=>'col-md-4 control-label']) !!}
                           <div class="col-md-6">
                             {!! Form::text('name',null,['class'=>'form-control']) !!}
+
                             @if ($errors->has('name'))
                                 <span class="text-danger">
                                     <strong>{{ $errors->first('name') }}</strong>
@@ -26,16 +27,18 @@
 
 
                       <div class="form-group">
-                            <label for="room_type_id" class="col-md-4 control-label">Room Type</label>
+                              {!! Form::label('room_type_id','Room Type',['class'=>'col-md-4 control-label']) !!}
 
                             <div class="col-md-6">
                               {!! Form::select('room_type_id',$roomTypes,null,['class'=>'form-control']) !!}
-                            </div>
+
+
                             @if ($errors->has('room_type_id'))
-                                <span class="help-block">
+                                <span class="text-danger">
                                     <strong>{{ $errors->first('room_type_id') }}</strong>
                                 </span>
                             @endif
+                          </div>
                       </div>
 
 
@@ -45,12 +48,14 @@
 
                             <div class="col-md-6">
                               {!! Form::select('room_size_id',$roomSizes,null,['class'=>'form-control']) !!}
-                            </div>
+
                             @if ($errors->has('room_size_id'))
-                                <span class="help-block">
+
+                                <span class="text-danger">
                                     <strong>{{ $errors->first('room_size_id') }}</strong>
                                 </span>
                             @endif
+                            </div>
                         </div>
 
 
@@ -60,12 +65,13 @@
 
                             <div class="col-md-6">
                               {!! Form::text('price',null,['class'=>'form-control']) !!}
-                            </div>
+
                             @if ($errors->has('price'))
-                                <span class="help-block">
+                                <span class="text-danger">
                                     <strong>{{ $errors->first('price') }}</strong>
                                 </span>
                             @endif
+                          </div>
                         </div>
 
 
@@ -75,12 +81,13 @@
                             <div class="col-md-6">
                               {!! Form::radio('status', '2',['class'=>'form-control']) !!} Available <br>
                               {!! Form::radio('status', '0',['class'=>'form-control']) !!} Not Available
-                            </div>
+
                             @if ($errors->has('status'))
-                                <span class="help-block">
+                                  <span class="text-danger">
                                     <strong>{{ $errors->first('status') }}</strong>
                                 </span>
                             @endif
+                            </div>
                         </div>
 
 
@@ -90,12 +97,13 @@
 
                             <div class="col-md-6">
                               {!! Form::textarea('description',null,['class'=>'form-control']) !!}
-                            </div>
+
                             @if ($errors->has('description'))
-                                <span class="help-block">
+                                  <span class="text-danger">
                                     <strong>{{ $errors->first('description') }}</strong>
                                 </span>
                             @endif
+                            </div>
                         </div>
 
 
@@ -105,12 +113,13 @@
 
                             <div class="col-md-6">
                               {!! Form::file('image1',['class'=>'form-control', 'id' => 'imageUpload']) !!}
-                            </div>
+
                             @if ($errors->has('image1'))
-                                <span class="help-block">
+                                <span class="text-danger">
                                     <strong>{{ $errors->first('image1') }}</strong>
                                 </span>
                             @endif
+                            </div>
                         </div>
 
 
@@ -121,12 +130,13 @@
 
                             <div class="col-md-6">
                               {!! Form::file('image2',['class'=>'form-control', 'id' => 'imageUpload']) !!}
-                            </div>
+
                             @if ($errors->has('image2'))
-                                <span class="help-block">
+                                <span class="text-danger">
                                     <strong>{{ $errors->first('image2') }}</strong>
                                 </span>
                             @endif
+                            </div>
                         </div>
 
 
@@ -136,12 +146,13 @@
 
                             <div class="col-md-6">
                               {!! Form::file('image3',['class'=>'form-control', 'id' => 'imageUpload']) !!}
-                            </div>
+
                             @if ($errors->has('image3'))
-                                <span class="help-block">
+                                <span class="text-danger">
                                     <strong>{{ $errors->first('image3') }}</strong>
                                 </span>
                             @endif
+                            </div>
                         </div>
 
 

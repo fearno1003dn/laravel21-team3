@@ -15,12 +15,13 @@
 
                             <div class="col-md-6">
                               {!! Form::text('name',null,['class'=>'form-control']) !!}
-                            </div>
+
                             @if ($errors->has('name'))
-                                <span class="help-block">
+                                <span class="text-danger">
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -28,12 +29,13 @@
 
                             <div class="col-md-6">
                               {!! Form::textarea('description',null,['class'=>'form-control']) !!}
-                            </div>
+
                             @if ($errors->has('description'))
-                                <span class="help-block">
+                                <span class="text-danger">
                                     <strong>{{ $errors->first('description') }}</strong>
                                 </span>
                             @endif
+                            </div>
                         </div>
 
                         <div class="form-group">

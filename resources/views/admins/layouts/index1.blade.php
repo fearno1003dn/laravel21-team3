@@ -36,6 +36,10 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- fullcalendar.io -->
+    <link rel="stylesheet" href="{{asset('AdminLTE-2.4.1/bower_components/fullcalendar/dist/fullcalendar.min.css')}}">
+    <link rel="stylesheet" href="{{asset('AdminLTE-2.4.1/bower_components/fullcalendar/dist/fullcalendar.print.min.css')}}" media="print">
+
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
@@ -72,6 +76,7 @@
          immediately after the control sidebar -->
 </div>
 <!-- ./wrapper -->
+
 <!-- jQuery 3 -->
 <script src="{{asset('AdminLTE-2.4.1/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -111,6 +116,10 @@
 <script src="{{asset('AdminLTE-2.4.1/dist/js/demo.js')}}"></script>
 <script src="{{asset('AdminLTE-2.4.1/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('AdminLTE-2.4.1/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+
+<script src="{{asset('AdminLTE-2.4.1/bower_components/moment/moment.js')}}"></script>
+
+
 <script>
 var deleteLinks = document.querySelectorAll('.delete');
 
