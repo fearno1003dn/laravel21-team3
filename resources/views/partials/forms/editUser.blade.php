@@ -15,12 +15,13 @@
 
                             <div class="col-md-6">
                               {!! Form::text('first_name',null,['class'=>'form-control']) !!}
-                            </div>
+
                             @if ($errors->has('first_name'))
-                                <span class="help-block">
+                                <span class="text-danger">
                                     <strong>{{ $errors->first('first_name') }}</strong>
                                 </span>
                             @endif
+                            </div>
                         </div>
 
 
@@ -29,12 +30,13 @@
 
                             <div class="col-md-6">
                               {!! Form::text('last_name',null,['class'=>'form-control']) !!}
-                            </div>
+
                             @if ($errors->has('last_name'))
-                                <span class="help-block">
+                                <span class="text-danger">
                                     <strong>{{ $errors->first('last_name') }}</strong>
                                 </span>
                             @endif
+                              </div>
                         </div>
 
                         <div class="form-group">
@@ -42,12 +44,13 @@
 
                             <div class="col-md-6">
                               {!! Form::text('email',null,['class'=>'form-control']) !!}
-                            </div>
+
                             @if ($errors->has('email'))
-                                <span class="help-block">
+                                <span class="text-danger">
                                     <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                             @endif
+                            </div>
                         </div>
 
 
@@ -56,12 +59,13 @@
 
                             <div class="col-md-6">
                               {!! Form::text('phone_number',null,['class'=>'form-control']) !!}
-                            </div>
+
                             @if ($errors->has('phone_number'))
-                                <span class="help-block">
+                                <span class="text-danger">
                                     <strong>{{ $errors->first('phone_number') }}</strong>
                                 </span>
                             @endif
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -69,12 +73,13 @@
 
                             <div class="col-md-6">
                               {!! Form::text('address',null,['class'=>'form-control']) !!}
-                            </div>
+
                             @if ($errors->has('address'))
-                                <span class="help-block">
+                                <span class="text-danger">
                                     <strong>{{ $errors->first('address') }}</strong>
                                 </span>
                             @endif
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -83,12 +88,13 @@
                             <div class="col-md-6">
                               {!! Form::radio('role', '0',['class'=>'form-control']) !!} Normal User
                               {!! Form::radio('role', '1',['class'=>'form-control']) !!} Admin User
-                            </div>
+
                             @if ($errors->has('role'))
-                                <span class="help-block">
+                                <span class="text-danger">
                                     <strong>{{ $errors->first('role') }}</strong>
                                 </span>
                             @endif
+                            </div>
                         </div>
 
 

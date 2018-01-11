@@ -4,12 +4,150 @@
 @stop
 @section('content')
 
-
+<div class="page-content">
 <div class="box-body">
+
+  <div class="row">
+      <div class="col-md-3">
+
+
+        <div class="info-box bg-red">
+          <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">Likes</span>
+            <span class="info-box-number">41,410</span>
+            <!-- The progress section is optional -->
+            <div class="progress">
+              <div class="progress-bar" style="width: 70%"></div>
+            </div>
+            <span class="progress-description">
+              70% Increase in 30 Days
+            </span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+
+
+
+          <!-- START WIDGET SLIDER -->
+          <div class="widget widget-default widget-carousel" style="margin-top:32px">
+              <i class="fa fa-refresh fa-spin pull-left"></i>
+              <div class="owl-carousel" id="owl-example">
+                  <div>
+                      <div class="widget-title">Total Rooms</div>
+                      <div class="widget-subtitle">{{\Carbon\Carbon::today()->diffForHumans()}}</div>
+                      <div class="widget-int">{{App\Room::count()}}</div>
+                  </div>
+                  <div>
+                      <div class="widget-title">Available Rooms</div>
+                      <div class="widget-subtitle">Available To Rent</div>
+                      <div class="widget-int">{{App\Room::where('status',0)->count()}}</div>
+                  </div>
+                  <div>
+                      <div class="widget-title">Booked</div>
+                      <div class="widget-subtitle">Currently Booked</div>
+                      <div class="widget-int">{{App\Room::where('status',1)->count()}}</div>
+                  </div>
+              </div>
+              <div class="widget-controls">
+                  {{--<a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"--}}
+                  {{--data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>--}}
+              </div>
+          </div>
+        </div>
+
+          <!-- END WIDGET SLIDER -->
+
+
+      <div class="col-md-3">
+
+          <!-- START WIDGET MESSAGES -->
+
+          <div class="small-box bg-light-blue">
+            <div class="inner">
+              <h3>{{App\Booking::all()->count()}}</h3>
+
+              <p>Total Bookings</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-coffee"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+
+
+          <div class="widget widget-default widget-item-icon">
+              <div class="widget-item-left ">
+                  <span class="fa fa-envelope"></span>
+              </div>
+              <div class="widget-data">
+                  <div class="widget-int num-count">{{App\Booking::all()->count()}}</div>
+                  <div class="widget-title">Total Bookings</div>
+                  <div class="widget-subtitle">In your Booking list</div>
+              </div>
+              <div class="widget-controls">
+                  <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
+                     data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+              </div>
+          </div>
+          <!-- END WIDGET MESSAGES -->
+
+      </div>
+      <div class="col-md-3">
+
+          <!-- START WIDGET REGISTRED -->
+          <div class="small-box bg-yellow">
+                      <div class="inner">
+                        <h3>{{App\User::where('active',1)->count()}}</h3>
+
+                        <p>User Registrations</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+                      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+          <div class="widget widget-default widget-item-icon"
+               onclick="location.href='{{'#'}}';">
+              <div class="widget-item-left">
+                  <span class="fa fa-user"></span>
+              </div>
+              <div class="widget-data">
+                  <div class="widget-int num-count">{{App\User::where('active',1)->count()}}</div>
+                  <div class="widget-title">Registred users</div>
+                  <div class="widget-subtitle">Active User</div>
+              </div>
+              <div class="widget-controls">
+                  <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
+                     data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+              </div>
+          </div>
+          <!-- END WIDGET REGISTRED -->
+
+      </div>
+      <div class="col-md-3">
+
+          <!-- START WIDGET CLOCK -->
+          <div class="widget widget-danger widget-padding-sm">
+              <div class="widget-big-int plugin-clock">00:00</div>
+              <div class="widget-subtitle plugin-date">Loading...</div>
+              <div class="widget-controls">
+                  <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
+                     data-placement="left" title="Remove Widget"><span class="fa fa-times"></span></a>
+              </div>
+              <div class="widget-buttons widget-c1">
+                  <div class="col">
+                      <p>Current Time And Date</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
   <div class="chart">
     <canvas id="bookingChart" style="height:250px"></canvas>
     <canvas id="areaChart" style="height:250px"></canvas>
   </div>
+</div>
 </div>
 
 

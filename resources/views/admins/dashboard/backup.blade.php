@@ -157,3 +157,58 @@ $(function(){
 
 </body>
 </html>
+
+<div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>44</h3>
+
+              <p>User Registrations</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>150</h3>
+
+              <p>New Orders</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+
+          <div class="info-box bg-red">
+            <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">Likes</span>
+              <span class="info-box-number">41,410</span>
+              <!-- The progress section is optional -->
+              <div class="progress">
+                <div class="progress-bar" style="width: 70%"></div>
+              </div>
+              <span class="progress-description">
+                70% Increase in 30 Days
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+
+          con: Roomdetail_Pic_slide nope
+              HTML pdf  nope
+
+              chinh lai authen admins kk
+              Loi nhap form kk
+
+              ten do thi-ten truc x-ten truc y nope
+              xoa file rac nope
+
+              lam dep dash board nope
+              fix loi calendar  kk
+
+              bao cao nope
+              slide nope

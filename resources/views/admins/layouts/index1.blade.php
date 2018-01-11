@@ -119,7 +119,7 @@
 
 <script src="{{asset('AdminLTE-2.4.1/bower_components/moment/moment.js')}}"></script>
 
-<!-- <script src="{{asset('AdminLTE-2.4.1/bower_components/fullcalendar/dist/fullcalendar.min.js')}}"></script> -->
+
 <script>
 var deleteLinks = document.querySelectorAll('.delete');
 

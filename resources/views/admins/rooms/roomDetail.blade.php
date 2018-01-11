@@ -101,7 +101,8 @@ $('#calendar1').fullCalendar({
   },
 
   events    : [
-    @foreach($calendars as $cld)
+    @foreach($calendars as $key => $cld)
+
     {
       title          : 'Booking # {{$cld->bookings->code}}',
       start          : '{{$cld->bookings->check_in}}',
@@ -118,7 +119,7 @@ $('#calendar1').fullCalendar({
       allDay         : true,
       backgroundColor: '#b5bc3c',
 
-    }
+    },
     @endforeach
   ]
 })
