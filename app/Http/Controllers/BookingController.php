@@ -601,6 +601,6 @@ class BookingController extends Controller
             }
             // dd($totalPrice);
             // return redirect('admins/bookings/detail/'.$booking->id.'/checkout');
-            return redirect('admins/bookings')->withSuccess('Room has been delete');
+            return redirect('admins/bookings');
         }
     }

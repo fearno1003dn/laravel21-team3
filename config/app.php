@@ -182,6 +182,9 @@ return [
         Kamaln7\Toastr\ToastrServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
+        // DomPDF
+        Barryvdh\DomPDF\ServiceProvider::class,
+
 
     ],
 
@@ -237,6 +240,8 @@ return [
         'Twilio' => Aloha\Twilio\Support\Laravel\Facade::class,
         'Toastr' => Kamaln7\Toastr\Facades\Toastr::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+
 
     ],
 

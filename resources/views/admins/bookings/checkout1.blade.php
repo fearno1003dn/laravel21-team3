@@ -17,11 +17,12 @@
 			<div class="col-sm-4 invoice-col">
 				<strong>Full Name: </strong>{{$booking->users->first_name}} {{$booking->users->last_name}}<br>
 				<strong>Email: </strong> {{$booking->users->email}}<br>
-				<strong>Phone Number: </strong> {{$booking->users->phone_number}} <br>
+
 			</div>
 
 			<div class="col-sm-4 invoice-col">
 				<strong>Address: </strong> {{$booking->users->address}} <br>
+				<strong>Phone Number: </strong>(+84) {{$booking->users->phone_number}} <br>
 			</div>
 
 			<div class="col-sm-4 invoice-col">
@@ -85,7 +86,7 @@
 			              <tr>
 			                <th>Total:</th>
 
-			                <td>{{number_format($totalPrice)}}đ</td>
+			                <td>{{number_format($totalPrice)}} $</td>
 
 			              </tr>
 			            </table>
@@ -102,12 +103,12 @@
 							<table class="table">
 								<tr>
 									<th>Services Total Price:</th>
-									<td>{{number_format($serviceTotal)}}đ</td>
+									<td>{{number_format($serviceTotal)}} $</td>
 								</tr>
 								<tr>
 									<th>Total:</th>
 
-									<td>{{number_format($totalPrice)}}đ</td>
+									<td>{{number_format($totalPrice)}} $</td>
 
 								</tr>
 							</table>

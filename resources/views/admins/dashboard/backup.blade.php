@@ -212,3 +212,5 @@ $(function(){
 
               bao cao nope
               slide nope
+
+              detail 
