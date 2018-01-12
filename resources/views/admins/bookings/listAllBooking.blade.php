@@ -79,7 +79,7 @@
                                     <td>{!! number_format($booking->total) !!} $</td>
                                     <td>@if($booking->status == 0 && $booking->check_in >= $date)
                                         <a href="{{url('admins/bookings/cancel/'.$booking->id)}}"><i class="fa fa-trash"></i>Cancel</a> - <a href="{{url('admins/bookings/detail/'.$booking->id)}}"><i class="fa fa-book"></i>Detail</a>
-                                         - <a href="{{url('admins/bookings/checkin/'.$booking->id)}}"><i class="fa fa-book"></i>Check In</a>
+                                         - <a href="{{url('admins/bookings/detail/'.$booking->id)}}"><i class="fa fa-book"></i>Check In</a>
                                         @else 
                                         <a href="{{url('admins/bookings/detail/'.$booking->id)}}"><i class="fa fa-book"></i>Detail</a>
                                         @endif

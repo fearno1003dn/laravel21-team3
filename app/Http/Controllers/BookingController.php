@@ -122,10 +122,24 @@ class BookingController extends Controller
         $promotions = Promotion::all()->pluck('code', 'id');
         return view('admins.bookings.edit', compact('promotions', 'booking'));
     }
+    public function checkinRoom(BookRoom $bookroom)
+    {
+        //dd($bookroom->id);
+        return view('admins.bookings.checkin', compact('bookroom'));
+    }
+
+    public function saveCheckinRoom(BookRoom $bookroom)
+    {   
+        $data = Input::all();
+        $bookroom->full_name = $data['full_name'];
+        $bookroom->passport = $data['passport'];
+        $bookroom->phone_number = $data['phone_number'];
+        $bookroom->save();
+        return redirect('admins/bookings/detail/' . $bookroom->booking_id);
+    }
 
     public function checkinBooking(Booking $booking)
     {
-
         $booking->update(['status' => 1]);
         return redirect('admins/bookings');
     }

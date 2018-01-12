@@ -82,6 +82,8 @@ Route::group(['middleware' => ['admin']], function (){
         Route::get('admins/bookings','BookingController@listAllBooking');
         Route::get('admins/bookings/edit/{booking}','BookingController@editBooking');
         Route::get('admins/bookings/detail/{booking}', 'BookingController@detailBooking');
+        Route::get('admins/bookings/detail/checkin/{bookroom}', 'BookingController@checkinRoom');
+        Route::post('admins/bookings/detail/checkin/save/{bookroom}', 'BookingController@saveCheckinRoom');
         Route::get('admins/bookings/checkin/{booking}', 'BookingController@checkinBooking');
         Route::get('admins/bookings/cancel/{booking}', 'BookingController@cancelBooking');
         Route::get('admins/bookings/search','BookingController@searchBooking');
