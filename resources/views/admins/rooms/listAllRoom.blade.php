@@ -51,9 +51,12 @@
                             <tr>
 
                                 <td>{!!$room->name!!}</td>
-                                <td>{!!number_format($room->price)!!}đ</td>
+                                <td>{!!number_format($room->price)!!}$</td>
                                 <td>
-                                    {!!$room->status ? '<a>Available</a>' : '<a>Not Available</a>'!!}
+                                    @if($room->status == 1) <a>Available</a>
+                                    @elseif($room->status == 2) <a>Available</a>
+                                    @else <a>Not Available</a>
+                                    @endif
                                 </td>
                                 <td>{!!$room->roomSizes->size!!}</td>
                                 <td>{!!$room->roomTypes->name!!}</td>

@@ -8,9 +8,9 @@
         <div style="float: left;"><img src="images/logos/logo.png" ></div>
         <div style="float: right;">
             <h3>FROM SUNNY HOTEL HA LINH WITH LOVE</h3>
-            <H4 style="text-align: left;">Address: Da Nang City</h4>
-            <H4 style="text-align: left;">Hotline: 0128.948.0359</h4>
-            <H4 style="text-align: left;">Email: tung.tranduy0@gmail.com</h4>
+            <h4 style="text-align: left;">Address: Da Nang City</h4>
+            <h4 style="text-align: left;">Hotline: (+84) 128.948.0359</h4>
+            <h4 style="text-align: left;">Email: tung.tranduy1003@gmail.com</h4>
         </div>
         <div style="clear: both;">
 
@@ -19,11 +19,11 @@
             <h2 style="text-align: center;">INVOICE</h2>
             <table class="table table-bordered" id="mytable" border="0" style="width: 90%; margin: auto;">
                 <tr>
-                    <th>Name:</th>
+                    <th>Customer Name:</th>
                     <td>{{$booking->users->first_name}} {{$booking->users->last_name}}</td>
                 </tr>
                 <tr>
-                    <th>phone number:</th>
+                    <th>Phone number:</th>
                     <td>(+84) {{$booking->users->phone_number}} </td>
                 </tr>
                 <tr>
@@ -80,7 +80,7 @@
               <table class="table table-bordered" id="mytable" border="1" style="width: 90%; margin: auto;">
                   <tr>
                       <th class="myth" style="text-align: center; width: 25%;">Service Name</th>
-                      <th class="myth" style="text-align: center; width: 25%;">Price</th>
+                      <th class="myth" style="text-align: center; width: 25%;">Service Price</th>
                       <th class="myth" style="text-align: center; width: 25%;">Quantity</th>
                       <th class="myth" style="text-align: center; width: 25%;">Total</th>
                   </tr>

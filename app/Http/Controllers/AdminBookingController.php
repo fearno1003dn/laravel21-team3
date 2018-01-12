@@ -167,18 +167,13 @@ class AdminBookingController extends Controller
         $diff1 = $from->diffInDays($to);
         $paid = $booking->total;
         $serviceTotal = 0;
-        $totalPrice = 0;
+        $totalPrice = $paid;
         foreach ($bookroom as $br) {
             foreach ($br->services as $service) {
                 $serviceTotal += $service->price * $service->pivot->quantity;
             }
         }
 
-        if ($booking->promotion_id) {
-            $totalPrice = ($paid + $serviceTotal) * ((100 -($booking->promotions->discount))/100);
-        } else {
-            $totalPrice = $paid + $serviceTotal;
-        }
 
           $pdf = PDF::loadView('admins.pdf.invoice', compact('booking', 'bookroom', 'serviceTotal', 'diff1', 'totalPrice','now'));
           $filename = "$booking->code". '_invoiceDetail.pdf';

@@ -13,9 +13,12 @@
             <h3 class="box-title"><strong>Booking Details</strong></h3>
           </div>
 
+          @if($booking->status==3)
             <div class="col-lg-6 col-md-12 col-sm-12">
             <p > <a href="{{url('admins/bookings/detail/'.$booking->id.'/exportPDF')}}" class="btn btn-primary pull-right">Export PDF:<span class="glyphicon glyphicon-export "></span></a> </p>
           </div>
+          @endif
+
         </div>
         </div>
 

@@ -11,6 +11,7 @@
             <div class="row">
                 <div class="col-md-7">
                     <ul style="padding-top: 15px;">
+
                         <li>
                             <strong>Room Type </strong>: {!!$room->roomTypes->name!!}
                         </li>
@@ -28,38 +29,44 @@
                             <strong>Description </strong>:{!!$room->description!!}
                         </li>
 
-                        <li>
-                          <strong>Image 1</strong>:  <img src="{!!url('/images/rooms/'.$room->image1)!!}" alt="" style='width: 550px; height: 300px; border:5px solid gray;'>
-                        </li>
-
-                        @if($room->image2)
-                        <li>
-                          <strong>Image 2</strong>:  <img src="{!!url('/images/rooms/'.$room->image2)!!}">
-                        </li>
-                        @endif
-                        @if(!$room->image2)
-                        <li>
-                          <strong>This room not have for more than one image <a href="{{url('admins/rooms/'.$room->id.'/edit')}}" >Add Now</a> </strong>
-                        </li>
-                        @endif
-
-                        @if($room->image3)
-                        <li>
-                          <strong>Image 3</strong>:  <img src="{!!url('/images/rooms/'.$room->image3)!!}">
-                        </li>
-                        @endif
-                        @if($room->image2 && !$room->image3)
-                        <li>
-                          <strong>This room not have for more than two image <a href="{{url('admins/rooms/'.$room->id.'/edit')}}" >Add Now</a> </strong>
-                        </li>
-                        @endif
 
 
-                        <li style="list-style: none;">
-                            <a href="{{url('admins/rooms/'.$room->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/rooms'.$room->id.'/delete')}}"><i class="fa fa-trash"></i>Delete</a>
-                        </li>
+
                     </ul>
                 </div>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="{!!url('/images/rooms/'.$room->image1)!!}" alt="" style='width: 550px; height: 300px; border:5px solid gray;'>
+    </div>
+
+    <div class="item">
+      <img src="{!!url('/images/rooms/'.$room->image2)!!}" alt="" style='width: 550px; height: 300px; border:5px solid gray;'>
+    </div>
+
+    <div class="item">
+      <img src="{!!url('/images/rooms/'.$room->image3)!!}" alt="" style='width: 550px; height: 300px; border:5px solid gray;'>
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
             </div>
         </div>
 
