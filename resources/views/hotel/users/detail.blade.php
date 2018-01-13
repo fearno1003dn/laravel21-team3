@@ -6,7 +6,7 @@
         </div>
         <div class="box-body">
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-12">
                     <ul style="padding-top: 33px;list-style-type: none;">
                         <li>
                             <strong style="padding-left: 400px">First Name :</strong> <b>{!!$user->first_name!!}</b>
@@ -32,7 +32,7 @@
                         </li>
 
                         <li style="list-style: none;padding-top: 15px;">
-                            <a href=""><h4><i class="fa fa-edit" style="padding-left: 400px"></i>Edit</h4></a>
+                            <a href="{{url('/user/edit')}}"><h4><i class="fa fa-edit" style="padding-left: 400px"></i>Edit</h4></a>
                         </li>
                     </ul>
                 </div>
