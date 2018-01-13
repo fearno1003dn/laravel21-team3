@@ -33,6 +33,7 @@
 
                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                 {!! Form::close() !!}
+            </div>
                 <div class="box">
                     <!-- /.box-header -->
                     <div id="dvData1" class="box-body">
@@ -79,7 +80,7 @@
                                     <td>{!! number_format($booking->total) !!} $</td>
                                     <td>@if($booking->status == 0 && $booking->check_in >= $date)
                                         <a href="{{url('admins/bookings/cancel/'.$booking->id)}}"><i class="fa fa-trash"></i>Cancel</a> - <a href="{{url('admins/bookings/detail/'.$booking->id)}}"><i class="fa fa-book"></i>Detail</a>
-                                         - <a href="{{url('admins/bookings/checkin/'.$booking->id)}}"><i class="fa fa-book"></i>Check In</a>
+                                         - <a href="{{url('admins/bookings/detail/'.$booking->id)}}"><i class="fa fa-book"></i>Check In</a>
                                         @else 
                                         <a href="{{url('admins/bookings/detail/'.$booking->id)}}"><i class="fa fa-book"></i>Detail</a>
                                         @endif

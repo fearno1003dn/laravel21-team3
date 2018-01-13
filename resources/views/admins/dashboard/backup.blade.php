@@ -215,6 +215,12 @@ $(function(){
               giu thanh search nope
 
               detail
+
+              chrome
+              vnd->$
+              dash do thi 2-tong tien booking,cancel,tong
+              room detail center
+              room size
               <li>
                 <strong>Image 1</strong>:  <img src="{!!url('/images/rooms/'.$room->image1)!!}" alt="" style='width: 550px; height: 300px; border:5px solid gray;'>
               </li>

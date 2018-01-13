@@ -149,15 +149,17 @@
                                           @endif
                                         </td>
                                     </tr>
-
-                                    @if($booking->status==1)
                                     <tr>
                                         <td>
+                                            @if($booking->status==0)
+                                                <a href="{{url('admins/bookings/checkin/'.$booking->id)}}" class='btn btn-primary pull-right'>Check In Booking</a>
+                                            @endif
+                                            @if($booking->status==1)
                                             <a href="{{url('admins/bookings/detail/'.$booking->id.'/checkout')}}"
                                                class='btn btn-primary pull-right'>Check Out All Rooms</a>
+                                            @endif
                                         </td>
                                     </tr>
-                                    @endif
 
                                 </ul>
                             </table>
@@ -177,21 +179,45 @@
                                                 <strong>Room </strong>:
                                             </li>
                                         </th>
-
-                                            <td>
-                                                {{$br->rooms->name}}
-                                            </td>
-
-
+                                        <td>
+                                            <strong>{{$br->rooms->name}}</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <li>
+                                                <strong>Full Name </strong>:
+                                            </li>
+                                        </th>
+                                        <td>
+                                            {{$br->full_name}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <li>
+                                                <strong>Passport / ID </strong>:
+                                            </li>
+                                        </th>
+                                        <td>
+                                            {{$br->passport}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <li>
+                                                <strong>Phone Munber </strong>:
+                                            </li>
+                                        </th>
+                                        <td>
+                                            {{$br->phone_number}}
+                                        </td>
                                     </tr>
                                 </ul>
                                 @endforeach
                             </table>
                         </div>
                     </div>
-
-
-
 
                 </div>
 
@@ -205,6 +231,10 @@
                             </div>
                             <div class="col-lg-12 ">
                                 <p class='btn btn-default pull-left'><strong>Room : </strong>{{$br->rooms->name}}</p>
+                                @if($booking->status==0)
+                                <a href="{{url('admins/bookings/detail/checkin/'.$br->id)}}"
+                                   class='btn btn-default pull-right'>Check In Room</a>
+                                @endif
                                 @if($booking->status==1)
                                 <a href="{{url('admins/bookings/detail/'.$br->booking_id.'/'.$br->room_id.'/addservice')}}"
                                    class='btn btn-default pull-right' ><i class="fa fa-plus"></i>Add Service</a>
@@ -212,7 +242,46 @@
                             </div>
                             <div class="room-detail_overview">
 
-
+                                @if($booking->status==0)
+                                    <table class="simple">
+                                        <ul>
+                                            <tr>
+                                                <td>
+                                                    <li>
+                                                        <strong>Full Name </strong>:
+                                                    </li>
+                                                </td>
+                                                <td>
+                                                    <span>{!! $br->full_name !!}</span>
+                                                </td>
+                                            </tr>
+                                        </ul>
+                                        <ul>
+                                            <tr>
+                                                <td>
+                                                    <li>
+                                                        <strong>Passport / ID </strong>:
+                                                    </li>
+                                                </td>
+                                                <td>
+                                                    <span>{!! $br->passport !!}</span>
+                                                </td>
+                                            </tr>
+                                        </ul>
+                                        <ul>
+                                            <tr>
+                                                <td>
+                                                    <li>
+                                                        <strong>Phone Number </strong>:
+                                                    </li>
+                                                </td>
+                                                <td>
+                                                    <span>{!! $br->phone_number !!}</span>
+                                                </td>
+                                            </tr>
+                                        </ul>
+                                    </table>
+                                @else
                                 <div class="box-body table-sm">
                                     <table class="table table-sm table-hover">
                                         <tr>
@@ -241,9 +310,11 @@
 
                                     </table>
                                 </div>
+                                @endif
+                                @if($booking->status==1)
                                 <a href="{{url('admins/bookings/detail/'.$br->booking_id.'/'.$br->room_id.'/checkout')}}"
                                    class='btn btn-primary pull-right'>Check Out</a>
-
+                                @endif
                             </div>
 
                             {{--<div>--}}

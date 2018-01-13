@@ -34,6 +34,7 @@
                                 <th>Email</th>
                                 <th>Phone Number</th>
                                 <th>Role</th>
+                                <th>Deposit</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -50,6 +51,7 @@
                                     <td>
                                         {!!$user->role ? '<a>Admin User</a>' : '<a>Normal User</a>'!!}
                                     </td>
+                                    <td>{!!$user->deposit!!} $</td>
                                     <td><a href="{{url('admins/users/'.$user->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/users/'.$user->id.'/delete')}}" class="fa fa-trash" onclick="return confirm('Are you sure you want to delete this user?');" data-confirm="Are you sure to delete this user?">Delete</a></td>
                                 </tr>
                             @endforeach
