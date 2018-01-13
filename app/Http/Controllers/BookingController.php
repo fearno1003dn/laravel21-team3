@@ -25,6 +25,7 @@ use Twilio;
 use Toastr;
 use DateTime;
 use Excel;
+use App\Http\Requests\CheckInRoomRequest;
 
 
 
@@ -128,9 +129,10 @@ class BookingController extends Controller
         return view('admins.bookings.checkin', compact('bookroom'));
     }
 
-    public function saveCheckinRoom(BookRoom $bookroom)
+    public function saveCheckinRoom(BookRoom $bookroom, CheckInRoomRequest $request)
     {   
-        $data = Input::all();
+        dd($request);
+        $data = $request->all();
         $bookroom->full_name = $data['full_name'];
         $bookroom->passport = $data['passport'];
         $bookroom->phone_number = $data['phone_number'];

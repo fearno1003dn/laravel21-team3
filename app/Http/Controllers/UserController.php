@@ -74,6 +74,23 @@ class UserController extends Controller
             return redirect('/index');
     }
 
+    public function userEdit()
+    {
+        if (Auth::check()){
+            $user = Auth::user();
+            return view('hotel.users.edit',compact('user'));
+        }
+        else
+            return redirect('/index');
+    }
+
+    public function userUpdate(User $user, CheckUserEditRequest $request)
+    {
+            $inputs = $request->all();
+            $user->update($inputs);
+            return redirect('/user/index');
+    }
+
     public function listBooking(User $user)
     {
             $date = new DateTime();
