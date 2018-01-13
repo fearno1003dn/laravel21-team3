@@ -33,6 +33,7 @@
 
                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                 {!! Form::close() !!}
+            </div>
                 <div class="box">
                     <!-- /.box-header -->
                     <div id="dvData1" class="box-body">
@@ -122,7 +123,7 @@
         </div>
         <!-- /.col -->
     </div>
-<div id="dvData" style="display: none;">
+<div id="dvData">
     <table>
         <tr>
             <th>User Name</th>
