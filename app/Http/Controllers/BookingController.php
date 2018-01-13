@@ -131,7 +131,6 @@ class BookingController extends Controller
 
     public function saveCheckinRoom(BookRoom $bookroom, CheckInRoomRequest $request)
     {   
-        dd($request);
         $data = $request->all();
         $bookroom->full_name = $data['full_name'];
         $bookroom->passport = $data['passport'];

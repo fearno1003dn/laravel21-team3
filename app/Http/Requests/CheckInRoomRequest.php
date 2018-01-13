@@ -30,4 +30,11 @@ class CheckInRoomRequest extends FormRequest
             'phone_number' => 'required|numeric|min:10000000|max:99999999999'
         ];
     }
+
+        public function messages()
+    {
+        return [
+            'passport.min' => 'The passport must be nine digits long',
+        ];
+    }
 }
