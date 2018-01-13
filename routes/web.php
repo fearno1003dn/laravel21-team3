@@ -5,7 +5,7 @@ use App\Room;
 use App\RoomType;
 use App\Booking;
 use App\BookRoom;
-use App\CheckAdmin;
+
 //use Twilio;
 
 /*
@@ -90,13 +90,14 @@ Route::group(['middleware' => ['admin']], function (){
         Route::get('admins/bookings/cancel/{booking}', 'BookingController@cancelBooking');
         Route::get('admins/bookings/search','BookingController@searchBooking');
 
-        Route::get('admins/bookings/detail/{booking}/{room_id}/addservice','BookingController@addService');
-        Route::post('admins/bookings/detail/{booking}/{room_id}','BookingController@saveService');
-        Route::get('admins/bookings/detail/{booking}/{room_id}/{service}/delete','BookingController@deleteService');
-        Route::get('admins/bookings/detail/{booking}/checkout','BookingController@adminCheckout');
+        Route::get('admins/bookings/detail/{booking}/exportPDF','AdminBookingController@exportPDF');
+        Route::get('admins/bookings/detail/{booking}/{room_id}/addservice','AdminBookingController@addService');
+        Route::post('admins/bookings/detail/{booking}/{room_id}','AdminBookingController@saveService');
+        Route::get('admins/bookings/detail/{booking}/{room_id}/{service}/delete','AdminBookingController@deleteService');
+        Route::get('admins/bookings/detail/{booking}/checkout','AdminBookingController@adminCheckout');
 
-        Route::get('admins/bookings/detail/{booking}/{room_id}/checkout','BookingController@adminCheckoutSingleRoom');
-        Route::get('admins/bookings/detail/{booking}/checkout/confirm','BookingController@adminCheckoutConfirm');
+        Route::get('admins/bookings/detail/{booking}/{room_id}/checkout','AdminBookingController@adminCheckoutSingleRoom');
+        Route::get('admins/bookings/detail/{booking}/checkout/confirm','AdminBookingController@adminCheckoutConfirm');
 
         Route::get('admins/dashboard','DashBoardController@main');
         Route::get('/admins/dashboard/chart/data', 'DashBoardController@test');

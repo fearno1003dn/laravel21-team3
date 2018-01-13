@@ -8,8 +8,22 @@
 
     <div class="box box-default">
         <div class="box-header with-border">
-            <h3 class="box-title" style="padding-top: 25px;"><strong>Booking Details</strong></h3>
+          <div class="row">
+              <div class="col-lg-6 col-md-12 col-sm-12">
+            <h3 class="box-title"><strong>Booking Details</strong></h3>
+          </div>
+
+          @if($booking->status==3)
+            <div class="col-lg-6 col-md-12 col-sm-12">
+            <p > <a href="{{url('admins/bookings/detail/'.$booking->id.'/exportPDF')}}" class="btn btn-primary pull-right">Export PDF:<span class="glyphicon glyphicon-export "></span></a> </p>
+          </div>
+          @endif
+
         </div>
+        </div>
+
+
+
         <div class="box-body">
 
             <div class="container">
@@ -74,13 +88,17 @@
                                         <td>
                                             <li><strong>Room Service:</strong></li>
                                         </td>
+                                        @if($booking->status==1)
                                         <td>Avaible</td>
+                                        @else
+                                          <td>Not Avaible</td>
+                                        @endif
                                     </tr>
 
                                     <tr>
                                         <td>
                                             <li>
-                                                <strong>Expected Days</strong> :
+                                                <strong>Expected Booking Days</strong> :
                                             </li>
                                         </td>
                                         <td> {!! $diff1 !!}</td>
@@ -89,7 +107,7 @@
                                     <tr>
                                         <td>
                                             <li>
-                                                <strong>Reality Days</strong> :
+                                                <strong>Reality Booking Days</strong> :
                                             </li>
                                         </td>
                                         <td>{!! $diff2 !!}</td>
@@ -139,7 +157,7 @@
                                             @if($booking->status==1)
                                             <a href="{{url('admins/bookings/detail/'.$booking->id.'/checkout')}}"
                                                class='btn btn-primary pull-right'>Check Out All Rooms</a>
-                                            @endif   
+                                            @endif
                                         </td>
                                     </tr>
 
@@ -215,7 +233,7 @@
                                 <p class='btn btn-default pull-left'><strong>Room : </strong>{{$br->rooms->name}}</p>
                                 @if($booking->status==0)
                                 <a href="{{url('admins/bookings/detail/checkin/'.$br->id)}}"
-                                   class='btn btn-primary pull-right'>Check In Room</a>
+                                   class='btn btn-default pull-right'>Check In Room</a>
                                 @endif
                                 @if($booking->status==1)
                                 <a href="{{url('admins/bookings/detail/'.$br->booking_id.'/'.$br->room_id.'/addservice')}}"
@@ -296,7 +314,7 @@
                                 @if($booking->status==1)
                                 <a href="{{url('admins/bookings/detail/'.$br->booking_id.'/'.$br->room_id.'/checkout')}}"
                                    class='btn btn-primary pull-right'>Check Out</a>
-                                @endif   
+                                @endif
                             </div>
 
                             {{--<div>--}}
