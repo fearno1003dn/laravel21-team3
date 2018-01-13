@@ -123,7 +123,7 @@
         </div>
         <!-- /.col -->
     </div>
-<div id="dvData">
+<div id="dvData" style="display: none;">
     <table>
         <tr>
             <th>User Name</th>
