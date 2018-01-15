@@ -8,8 +8,11 @@
                 <div class="panel-body">
                     <form class="form-horizontal">
                       <table  class="table table-bordered table-striped">
+
+
                         <div class="form-group">
                             <label for="first_name" class="col-md-4 control-label">First Name</label>
+
                             <div class="col-md-6">
                               {!! Form::text('first_name',null,['class'=>'form-control']) !!}
 
@@ -21,8 +24,10 @@
                             </div>
                         </div>
 
+
                         <div class="form-group">
                             <label for="last_name" class="col-md-4 control-label">Last Name</label>
+
                             <div class="col-md-6">
                               {!! Form::text('last_name',null,['class'=>'form-control']) !!}
 
@@ -36,6 +41,7 @@
 
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Email</label>
+
                             <div class="col-md-6">
                               {!! Form::text('email',null,['class'=>'form-control']) !!}
 
@@ -47,8 +53,10 @@
                             </div>
                         </div>
 
+
                         <div class="form-group">
                             <label for="phone_number" class="col-md-4 control-label">Phone Number</label>
+
                             <div class="col-md-6">
                               {!! Form::text('phone_number',null,['class'=>'form-control']) !!}
 
@@ -62,6 +70,7 @@
 
                         <div class="form-group">
                             <label for="address" class="col-md-4 control-label">Address</label>
+
                             <div class="col-md-6">
                               {!! Form::text('address',null,['class'=>'form-control']) !!}
 
@@ -75,6 +84,7 @@
 
                         <div class="form-group">
                             <label for="role" class="col-md-4 control-label">Role</label>
+
                             <div class="col-md-6">
                               {!! Form::radio('role', '0',['class'=>'form-control']) !!} Normal User
                               {!! Form::radio('role', '1',['class'=>'form-control']) !!} Admin User
@@ -86,6 +96,8 @@
                             @endif
                             </div>
                         </div>
+
+
 
                         <div class="form-group">
                           <div class="col-md-6 col-md-offset-4">

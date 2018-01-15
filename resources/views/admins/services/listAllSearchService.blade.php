@@ -5,6 +5,7 @@
 
 @section('content')
 
+
       @if(count($services)==0)
       <div class="row">
         <div class="box-header">
@@ -17,6 +18,8 @@
     <div class="row">
         <div class="box-header">
           <p>   Here are results that match your search</p>
+
+
             @include('partials.forms.search',['url'=>'admins/services/search'])
           </div>
           <div class="col-xs-12">

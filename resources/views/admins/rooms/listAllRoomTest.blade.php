@@ -10,12 +10,16 @@
         <div class="col-xs-12">
           <div class="box-header">
             <a href="{{ url('admins/rooms/create') }}" class="btn btn-primary fa fa-heart-o"> Create Room</a>
+
+
+
             <div class="box">
                 <!-- /.box-header -->
                 <div class="box-body">
                     <table id="example2" class="table table-bordered table-striped" >
                         <thead>
                             <tr>
+
                                 <th>Room Name</th>
                                 <th>Price</th>
                                 <th>Status</th>
@@ -29,6 +33,7 @@
                         <tbody>
                         @foreach ($rooms as $room)
                             <tr>
+
                                 <td>{!!$room->name!!}</td>
                                 <td>{!!number_format($room->price)!!}đ</td>
                                 <td>

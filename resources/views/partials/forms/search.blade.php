@@ -1,3 +1,5 @@
+
+
 {{ Form::open(['method'=>'GET','url'=>$url,'class'=>'box-tools', 'role'=>'search'],array('class'=>'box-tools', 'role'=>'search')) }}
   {{ csrf_field() }}
   <div class="input-group input-group-sm" style="width: 150px;">
