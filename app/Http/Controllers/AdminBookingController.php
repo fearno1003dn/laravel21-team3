@@ -161,6 +161,8 @@ class AdminBookingController extends Controller
       {
         $booking = Booking::where('id', $booking_id)->first();
         $bookroom = BookRoom::where('booking_id', $booking_id)->get();
+      
+
         $from = new Carbon($booking->check_in);
         $to = new Carbon($booking->check_out);
         $now = Carbon::now();

@@ -10,7 +10,7 @@
             <h3>FROM SUNNY HOTEL HA LINH WITH LOVE</h3>
             <h4 style="text-align: left;">Address: Da Nang City</h4>
             <h4 style="text-align: left;">Hotline: (+84) 128.948.0359</h4>
-            <h4 style="text-align: left;">Email: tung.tranduy1003@gmail.com</h4>
+            <h4 style="text-align: left;">Email: sunnyhotelbooking@gmail.com</h4>
         </div>
         <div style="clear: both;">
 
