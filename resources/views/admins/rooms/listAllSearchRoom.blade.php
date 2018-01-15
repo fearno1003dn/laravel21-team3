@@ -18,7 +18,7 @@
     <div class="row">
         <div class="box-header">
           <p>   Here are results that match your search</p>
-        
+
             @include('partials.forms.search',['url'=>'admins/rooms/search'])
           </div>
           <div class="col-xs-12">
@@ -32,7 +32,6 @@
                                 <th>Room Name</th>
                                 <th>Price</th>
                                 <th>Status</th>
-                                <th>Description</th>
                                 <th>Room size</th>
                                 <th>Room Type</th>
                                 <th>Image</th>
@@ -45,11 +44,10 @@
                             <tr>
 
                                 <td>{!!$room->name!!}</td>
-                                <td>{!!number_format($room->price)!!}đ</td>
+                                <td>${!!number_format($room->price)!!}</td>
                                 <td>
                                     {!!$room->status ? '<a>Available</a>' : '<a>Not Available</a>'!!}
                                 </td>
-                                <td>{!!$room->description!!}</td>
                                 <td>{!!$room->roomSizes->size!!}</td>
                                 <td>{!!$room->roomTypes->name!!}</td>
                                 <td>

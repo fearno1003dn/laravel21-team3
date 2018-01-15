@@ -7,34 +7,31 @@
         <div class="box-header with-border">
             <h3 class="box-title"><strong>Room Details</strong></h3>
         </div>
-        <div class="box-body">
+        <div class="box-body" style="text-align: center;">
             <div class="row">
-                <div class="col-md-7">
-                    <ul style="padding-top: 15px;">
+                <div class="col-md-6"  >
+                    <ul style="padding-top: 15px; ">
 
-                        <li>
-                            <strong>Room Type </strong>: {!!$room->roomTypes->name!!}
-                        </li>
 
-                        <li>
-                            <strong>Price </strong> : {!!number_format($room->price)!!}đ
-                        </li>
-                        <li>
+                            <strong>Room Type </strong>: {!!$room->roomTypes->name!!}</br>
+
+                            <strong>Price </strong> : {!!number_format($room->price)!!}$</br>
+
                             <strong> Status </strong> :
-                            {!!$room->status ? '<span>Available</span>' : '<span>Not Available</span>'!!}
-                        </li>
-                        <li>
-                            <strong>Room Size </strong>: <span>{!!$room->roomSizes->size!!}</span></li>
-                        <li>
-                            <strong>Description </strong>:{!!$room->description!!}
-                        </li>
+                            {!!$room->status ? '<span>Available</span>' : '<span>Not Available</span>'!!}</br>
+
+                            <strong>Room Size </strong>: <span>{!!$room->roomSizes->size!!}</span></br>
+
+                            <strong>Description </strong>:</br>{!!$room->description!!}</br>
+
 
 
 
 
                     </ul>
                 </div>
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" style="display:table-cell; vertical-align:middle; ">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -102,7 +99,7 @@ var d    = date.getDate(),
 
 $('#calendar1').fullCalendar({
   header    : {
-    left  : 'prev,next',
+    left  : 'prev,next today',
     center: 'title',
     right : ''
   },

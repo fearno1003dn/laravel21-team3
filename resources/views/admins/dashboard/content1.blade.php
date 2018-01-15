@@ -24,14 +24,14 @@
               70% Increase in 30 Days
             </span>
           </div>
+
           <!-- /.info-box-content -->
         </div>
 
 
 
           <!-- START WIDGET SLIDER -->
-          <div class="widget widget-default widget-carousel" style="margin-top:33px">
-              <i class="fa fa-refresh fa-spin pull-left"></i>
+          <div class="widget widget-default widget-carousel" style="margin-top:25px">
               <div class="owl-carousel" id="owl-example">
                   <div>
                       <div class="widget-title">Total Rooms</div>
@@ -53,6 +53,7 @@
                   {{--<a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"--}}
                   {{--data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>--}}
               </div>
+              <a href="{{ url('admins/rooms/') }}" class="small-box-footer pull-right" style="text-align:center">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
@@ -72,23 +73,24 @@
             <div class="icon">
               <i class="ion ion-coffee"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ url('admins/bookings') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
 
 
           <div class="widget widget-default widget-item-icon">
               <div class="widget-item-left ">
-                  <span class="fa fa-envelope"></span>
+                  <span class="fa fa-cutlery"></span>
               </div>
               <div class="widget-data">
-                  <div class="widget-int num-count">{{App\Booking::all()->count()}}</div>
-                  <div class="widget-title">Total Bookings</div>
-                  <div class="widget-subtitle">In your Booking list</div>
+                  <div class="widget-int num-count">{{App\Service::all()->count()}}</div>
+                  <div class="widget-title">Total Services</div>
+                  <div class="widget-subtitle">Awaiting To Serve</div>
               </div>
               <div class="widget-controls">
                   <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
                      data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
               </div>
+              <a href="{{ url('admins/services') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
           <!-- END WIDGET MESSAGES -->
 
@@ -105,22 +107,25 @@
                       <div class="icon">
                         <i class="ion ion-person-add"></i>
                       </div>
-                      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                      <a href="{{ url('admins/users') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
+
+
           <div class="widget widget-default widget-item-icon"
                onclick="location.href='{{'#'}}';">
               <div class="widget-item-left">
-                  <span class="fa fa-user"></span>
+                  <span class="fa fa-cubes"></span>
               </div>
               <div class="widget-data">
-                  <div class="widget-int num-count">{{App\User::where('active',1)->count()}}</div>
-                  <div class="widget-title">Registred users</div>
-                  <div class="widget-subtitle">Active User</div>
+                  <div class="widget-int num-count">{{App\RoomType::all()->count()}}</div>
+                  <div class="widget-title">RoomTypes</div>
+                  <div class="widget-subtitle">...</div>
               </div>
               <div class="widget-controls">
                   <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
                      data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
               </div>
+              <a href="{{ url('admins/roomTypes') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
           <!-- END WIDGET REGISTRED -->
 
@@ -141,8 +146,26 @@
                   </div>
               </div>
           </div>
+
+
+      <div class="widget widget-default widget-item-icon"
+           onclick="location.href='{{'#'}}';">
+          <div class="widget-item-left">
+              <span class="fa fa-hotel"></span>
+          </div>
+          <div class="widget-data">
+              <div class="widget-int num-count">{{App\RoomSize::all()->count()}}</div>
+              <div class="widget-title">RoomSizes</div>
+              <div class="widget-subtitle">...</div>
+          </div>
+          <div class="widget-controls">
+              <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
+                 data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+          </div>
+          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
   </div>
+</div>
 
   <div class="row">
           <div class="col-md-12">
@@ -151,8 +174,7 @@
                 <h3 class="box-title">Monthly Recap Report</h3>
 
                 <div class="box-tools pull-right">
-                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                  </button>
+
                   <div class="btn-group">
                     <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
                       <i class="fa fa-wrench"></i></button>
@@ -188,8 +210,8 @@
                       <strong>Note</strong>
                     </p>
 
-                    <div class="progress-group">
-                      <span class="progress-text">Total Bookings</span>
+                    <div class="progress-group" style="margin-top:80px">
+                      <span class="progress-text">Paid Bookings</span>
 
 
                       <div class="progress sm">
@@ -198,7 +220,7 @@
                     </div>
                     <!-- /.progress-group -->
                     <div class="progress-group">
-                      <span class="progress-text">Complete Purchase</span>
+                      <span class="progress-text">Cancel Bookings</span>
 
 
                       <div class="progress sm">
@@ -215,34 +237,34 @@
               <!-- ./box-body -->
               <div class="box-footer">
                 <div class="row">
-                  <div class="col-sm-3 col-xs-6">
+                  <div class="col-sm-4 col-xs-6">
                     <div class="description-block border-right">
                       <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
-                      <h5 class="description-header">$35,210.43</h5>
-                      <span class="description-text">TOTAL REVENUE</span>
+                      <h5 class="description-header">${{number_format($totalCheckOutFee)}}</h5>
+                      <span class="description-text">TOTAL CHECK-OUT</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
                   <!-- /.col -->
-                  <div class="col-sm-3 col-xs-6">
+                  <div class="col-sm-4 col-xs-6">
                     <div class="description-block border-right">
                       <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
-                      <h5 class="description-header">$10,390.90</h5>
-                      <span class="description-text">TOTAL COST</span>
+                      <h5 class="description-header">${{number_format($totalCancelFee)}}</h5>
+                      <span class="description-text">TOTAL CANCEL</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
                   <!-- /.col -->
-                  <div class="col-sm-3 col-xs-6">
+                  <div class="col-sm-4 col-xs-6">
                     <div class="description-block border-right">
                       <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
-                      <h5 class="description-header">$24,813.53</h5>
+                      <h5 class="description-header">${{number_format($totalCancelFee + $totalCheckOutFee) }}</h5>
                       <span class="description-text">TOTAL PROFIT</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
                   <!-- /.col -->
-                  <div class="col-sm-3 col-xs-6">
+                  <!-- <div class="col-sm-3 col-xs-6">
                     <div class="description-block">
                       <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
                       <h5 class="description-header">1200</h5>
@@ -251,6 +273,65 @@
                     <!-- /.description-block -->
                   </div>
                 </div>
+
+                <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Recently Bookings</h3>
+
+              <div class="box-tools pull-right">
+
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+          <div class="table-responsive">
+            <table class="table no-margin">
+              <thead>
+              <tr>
+                <th>Booking Code</th>
+                <th>Customer Name</th>
+                <th>Phone Number</th>
+                <th>Check-in date</th>
+                <th>Check-out date</th>
+                <th>Created At</th>
+                <th>Status</th>
+
+              </tr>
+              </thead>
+              <tbody>
+              @foreach($latestBookings as $latestBooking)
+              <tr>
+                <td>{{$latestBooking->code}}</a></td>
+                <td>{{$latestBooking->users->first_name}} {{$latestBooking->users->last_name}}</td>
+                <td>(+84) {{$latestBooking->users->phone_number}}</a></td>
+                <td>{{$latestBooking->check_in}}</a></td>
+                <td>{{$latestBooking->check_out}}</a></td>
+                <td>{{$latestBooking->created_at}}</a></td>
+                @if($latestBooking->status==0)
+                <td><span class="label label-info">Booking</span></td>
+                @elseif($latestBooking->status==1)
+                <td><span class="label label-warning">Check-in</span></td>
+                @elseif($latestBooking->status==2)
+                <td><span class="label label-danger">Cancel</span></td>
+                @elseif($latestBooking->status==3)
+                <td><span class="label label-success">Check-out</span></td>
+                @endif
+
+              </tr>
+              @endforeach
+              </tbody>
+            </table>
+          </div>
+          <!-- /.table-responsive -->
+          </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+              <a href="{{url('admins/bookings')}}" class="btn btn-sm btn-info btn-flat pull-right">View All Bookings</a>
+            </div>
+            <!-- /.box-footer -->
+          </div>
+
                 <!-- /.row -->
               </div>
               <!-- /.box-footer -->
@@ -295,7 +376,7 @@ $(function () {
    labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'],
    datasets: [
      {
-       label               : 'Wut',
+       label               : 'Bookings',
        fillColor           : 'rgba(60,141,188,0.9)',
        strokeColor         : 'rgba(60,141,188,0.8)',
        pointColor          : '#3b8bba',
@@ -307,6 +388,24 @@ $(function () {
            if(count($bookings)>0){
              for($i=1;$i<count($bookings);$i=$i+1){
                echo($bookings[$i].',');
+             }
+           }
+         ?>
+       ]
+     },
+     {
+       label               : 'Cancels',
+       fillColor           : 'rgba(255,25,25,0.9)',
+       strokeColor         : 'rgba(60,141,188,0.8)',
+       pointColor          : '#ff1919',
+       pointStrokeColor    : 'rgba(255,25,25,1)',
+       pointHighlightFill  : '#fff',
+       pointHighlightStroke: 'rgba(255,25,25,1)',
+       data                : [
+         <?php
+           if(count($cancels)>0){
+             for($i=1;$i<count($cancels);$i=$i+1){
+               echo($cancels[$i].',');
              }
            }
          ?>
