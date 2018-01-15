@@ -8,11 +8,8 @@
 
                 <div class="panel-body">
                     <form class="form-horizontal">
-
-
                         <div class="form-group">
                             <label for="name" class="col-md-4 control-label">Room Size Name</label>
-
                             <div class="col-md-6">
                               {!! Form::text('name',null,['class'=>'form-control']) !!}
 
@@ -26,7 +23,6 @@
 
                         <div class="form-group">
                             <label for="description" class="col-md-4 control-label">Size</label>
-
                             <div class="col-md-6">
                               {!! Form::text('size',null,['class'=>'form-control']) !!}
 

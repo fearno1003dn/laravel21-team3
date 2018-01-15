@@ -10,16 +10,13 @@
         <div class="col-xs-12">
           <div class="box-header">
             <a href="{{ url('admins/roomTypes/create') }}" class="btn btn-primary fa fa-heart-o"> Create Room Type</a>
-
               @include('partials.forms.search',['url'=>'admins/roomTypes/search'])
-
             <div class="box">
                 <!-- /.box-header -->
                 <div class="box-body">
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-
                                 <th>Room Type</th>
                                 <th>Description</th>
                                 <th>Action</th>
@@ -29,7 +26,6 @@
                         <tbody>
                         @foreach ($roomTypes as $roomType)
                             <tr>
-
                                 <td>{!!$roomType->name!!}</td>
                                 <td>{!!$roomType->description!!}</td>
                                 <td><a href="{{url('admins/roomTypes/'.$roomType->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a>
@@ -46,7 +42,6 @@
         </div>
         <!-- /.col -->
     </div>
-
 @stop
 
 <!-- @section('script')

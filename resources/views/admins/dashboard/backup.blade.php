@@ -226,6 +226,7 @@ $(function(){
               gmail sunnyhotel  ok
 
               cancel user ->> stt booking ==2 NOTE_ERROR
+              delete user???
               warning-succes-danger-info
               <li>
                 <strong>Image 1</strong>:  <img src="{!!url('/images/rooms/'.$room->image1)!!}" alt="" style='width: 550px; height: 300px; border:5px solid gray;'>

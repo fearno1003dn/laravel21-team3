@@ -6,8 +6,6 @@
 
                 <div class="panel-body">
                     <form class="form-horizontal">
-
-
                       <div class="form-group">
                           {!! Form::label('name','Room Name',['class'=>'col-md-4 control-label']) !!}
                           <div class="col-md-6">
@@ -18,17 +16,10 @@
                                 </span>
                             @endif
                           </div>
-
-
-
                       </div>
-
-
-
 
                       <div class="form-group">
                             <label for="room_type_id" class="col-md-4 control-label">Room Type</label>
-
                             <div class="col-md-6">
                               {!! Form::select('room_type_id',$roomTypes,null,['class'=>'form-control']) !!}
 
@@ -40,11 +31,8 @@
                             </div>
                       </div>
 
-
-
                       <div class="form-group">
                             <label for="room_size_id" class="col-md-4 control-label">Room Size</label>
-
                             <div class="col-md-6">
                               {!! Form::select('room_size_id',$roomSizes,null,['class'=>'form-control']) !!}
 
@@ -56,11 +44,8 @@
                               </div>
                         </div>
 
-
-
                       <div class="form-group">
                             <label for="price" class="col-md-4 control-label">Price</label>
-
                             <div class="col-md-6">
                               {!! Form::text('price',null,['class'=>'form-control']) !!}
 
@@ -72,10 +57,8 @@
                               </div>
                         </div>
 
-
                       <div class="form-group">
                             <label for="status" class="col-md-4 control-label">Status</label>
-
                             <div class="col-md-6">
                               {!! Form::radio('status', '1',['class'=>'form-control']) !!} Available <br>
                               {!! Form::radio('status', '0',['class'=>'form-control']) !!} Not Available
@@ -88,11 +71,8 @@
                             </div>
                         </div>
 
-
-
                       <div class="form-group">
                             <label for="description" class="col-md-4 control-label">Description</label>
-
                             <div class="col-md-6">
                               {!! Form::textarea('description',null,['class'=>'form-control']) !!}
 
@@ -104,11 +84,8 @@
                             </div>
                         </div>
 
-
-
                       <div class="form-group">
                             <label for="image1" class="col-md-4 control-label">Image 1</label>
-
                             <div class="col-md-6">
                               <td>
                                 <img src="{!!url('/images/rooms/'.$room->image1)!!}" alt="" style='width: 50px; height: 30px;'>
@@ -123,12 +100,8 @@
                             </div>
                         </div>
 
-
-
                       <div class="form-group">
-
                             <label for="image2" class="col-md-4 control-label">Image 2</label>
-
                             <div class="col-md-6">
                               <td>
                                 <img src="{!!url('/images/rooms/'.$room->image2)!!}" alt="" style='width: 50px; height: 30px;'>
@@ -143,8 +116,6 @@
                             @endif
                             </div>
                         </div>
-
-
 
                       <div class="form-group">
                             <label for="image3" class="col-md-4 control-label"> Image 3</label>
@@ -162,8 +133,6 @@
                             @endif
                               </div>
                         </div>
-
-
 
                       <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

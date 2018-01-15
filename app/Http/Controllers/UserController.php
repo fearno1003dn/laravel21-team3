@@ -16,15 +16,12 @@ class UserController extends Controller
 {
     public function listAllUser()
     {
-
         $users= User::all();
         return view('admins.userManagement.listAllUsers',compact('users'));
-
     }
 
     public function editUser(User $user)
     {
-
         return view('admins.userManagement.editProfile',compact('user'));
     }
 
@@ -37,7 +34,6 @@ class UserController extends Controller
 
     public function updateUser(User $user,CheckUserEditRequest $request)
     {
-
         $inputs = $request->all();
         $user->update($inputs);
         return redirect('/admins/users')->withSuccess('Update user success');
@@ -52,7 +48,6 @@ class UserController extends Controller
     public function searchUser()
    {
          $search = Input::get('search');
-
          $users = User::where('first_name', 'LIKE', '%'. $search.'%')
          ->Orwhere('last_name', 'LIKE', '%'. $search.'%')
          ->Orwhere('email','LIKE','%'.$search.'%')
@@ -60,7 +55,6 @@ class UserController extends Controller
          ->Orwhere('phone_number','LIKE','%'.$search.'%')
          ->Orwhere('address','LIKE','%'.$search.'%')
          ->paginate(1);
-
           return view('admins.userManagement.listAllSearchUser',compact('users'));
    }
 

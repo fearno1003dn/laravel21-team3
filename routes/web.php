@@ -40,7 +40,6 @@ Route::put('/user/update/{user}','userController@userUpdate');
 Route::get('/user/bookings/cancel/{booking}','userController@userCancelBooking');
 Route::get('/user/bookings/search','userController@userSearchBooking');
 
-
 Route::group(['middleware' => ['auth']], function () {
 Route::group(['middleware' => ['admin']], function (){
 
@@ -53,15 +52,13 @@ Route::group(['middleware' => ['admin']], function (){
         Route::post('admins/rooms', 'RoomController@saveRoom');
         Route::put('admins/rooms/{room}', 'RoomController@updateRoom');
 
-
         Route::get('admins/roomTypes/search','RoomTypeController@searchRoomType');
         Route::get('admins/roomTypes', 'RoomTypeController@listAllRoomType');
         Route::get('admins/roomTypes/create', 'RoomTypeController@createRoomType');
-        Route::get('admins/roomTypes/{roomTypes}/edit', 'RoomTypeController@editRoomType');
+        Route::get('admins/roomTypes/{roomType}/edit', 'RoomTypeController@editRoomType');
         Route::post('admins/roomTypes', 'roomTypeController@saveRoomType');
         Route::get('admins/roomTypes/{roomType}/delete', 'RoomTypeController@deleteRoomType');
         Route::put('admins/roomTypes/{roomType}', 'RoomTypeController@updateRoomType');
-
 
         Route::get('admins/roomSizes/search','RoomSizeController@searchRoomSize');
         Route::get('admins/roomSizes', 'RoomSizeController@listAllRoomSize');
@@ -79,8 +76,6 @@ Route::group(['middleware' => ['admin']], function (){
         Route::get('admins/services/{service}/delete', 'ServiceController@deleteService');
         Route::put('admins/services/{service}', 'ServiceController@updateService');
 
-
-
         Route::get('admins/users/search','UserController@searchUser');
         Route::get('admins/users', 'userController@listAllUser');
         Route::get('admins/users/{user}/edit', 'userController@editUser');
@@ -91,7 +86,7 @@ Route::group(['middleware' => ['admin']], function (){
 
         Route::get('admins/bookings','BookingController@listAllBooking');
         Route::get('admins/bookings/edit/{booking}','BookingController@editBooking');
-        Route::get('admins/bookings/detail/{booking}', 'BookingController@detailBooking');
+        Route::get('admins/bookings/detail/{booking}', 'AdminBookingController@detailBooking');
         Route::get('admins/bookings/detail/checkin/{bookroom}', 'BookingController@checkinRoom');
         Route::post('admins/bookings/detail/checkin/save/{bookroom}', 'BookingController@saveCheckinRoom');
         Route::get('admins/bookings/checkin/{booking}', 'BookingController@checkinBooking');
