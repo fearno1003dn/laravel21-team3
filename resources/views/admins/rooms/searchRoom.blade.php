@@ -3,11 +3,9 @@
 @section('content')
 <div class="container table-responsive">
 	<span>About {!!count($rooms)!!} results</span>
-
 	<table class="table table-striped table-hover ">
 		<thead class="table-inverse">
 			<tr>
-
 				<th>Room Name</th>
 				<th>Price</th>
 				<th>Status</th>
@@ -19,7 +17,6 @@
 		@foreach ($rooms as $room)
 			<tbody>
 				<tr>
-
 					<td><a >{!!$room->name!!}</a></td>
 					<td>{!!number_format($room->price)!!}VND</td>
 					<td>
@@ -37,6 +34,5 @@
 			</tbody>
 		@endforeach
 	</table>
-
 </div>
 @stop

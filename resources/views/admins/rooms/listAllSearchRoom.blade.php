@@ -4,8 +4,6 @@
 @stop
 
 @section('content')
-
-
       @if(count($rooms)==0)
       <div class="row">
         <div class="box-header">
@@ -28,7 +26,6 @@
                     <table  class="table table-bordered table-striped">
                         <thead>
                             <tr>
-
                                 <th>Room Name</th>
                                 <th>Price</th>
                                 <th>Status</th>
@@ -42,7 +39,6 @@
                         <tbody>
                         @foreach ($rooms as $room)
                             <tr>
-
                                 <td>{!!$room->name!!}</td>
                                 <td>${!!number_format($room->price)!!}</td>
                                 <td>
@@ -68,5 +64,4 @@
         <!-- /.col -->
     </div>
     @endif
-
 @stop

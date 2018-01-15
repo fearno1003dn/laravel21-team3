@@ -13,10 +13,8 @@ class RoomTypeController extends Controller
 {
   public function listAllRoomType()
   {
-
       $roomTypes = RoomType::all();
       return view('admins.roomTypes.listAllRoomType',compact('roomTypes'));
-
   }
 
   public function createRoomType(RoomType $roomType)
@@ -51,15 +49,10 @@ class RoomTypeController extends Controller
 
   public function searchRoomType(Request $search)
   {
-
-      // $search = \Request::get('search');
       $search = Input::get('search');
-
       $roomTypes = RoomType::where('name', 'LIKE', '%' . $search . '%')
           ->Orwhere('description', 'LIKE', '%' . $search . '%')
           ->paginate(1);
-
-
       return view('admins.roomTypes.listAllSearchRoomType', compact('roomTypes'));
   }
 }

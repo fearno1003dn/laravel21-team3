@@ -10,16 +10,13 @@
         <div class="col-xs-12">
           <div class="box-header">
             <a href="{{ url('admins/roomSizes/create') }}" class="btn btn-primary fa fa-heart-o"> Create Room Size</a>
-
               @include('partials.forms.search',['url'=>'admins/roomSizes/search'])
-
             <div class="box">
                 <!-- /.box-header -->
                 <div class="box-body">
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-
                                 <th>Room Size Name</th>
                                 <th>Room Size</th>
                                 <th>Action</th>
@@ -29,7 +26,6 @@
                         <tbody>
                         @foreach ($roomSizes as $roomSize)
                             <tr>
-
                                 <td>{!!$roomSize->name!!}</td>
                                 <td>{!!$roomSize->size!!}</td>
                                 <td><a href="{{url('admins/roomSizes/'.$roomSize->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a>
