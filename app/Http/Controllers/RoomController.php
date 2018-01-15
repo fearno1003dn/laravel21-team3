@@ -124,7 +124,7 @@ class RoomController extends Controller
         $filenames = [];
         if($request->file('image1'))   $files[] = $request->file('image1');
         if($request->file('image2'))   $files[] = $request->file('image2');
-        if($request->file('image3'))     $files[] = $request->file('image3');
+        if($request->file('image3'))   $files[] = $request->file('image3');
         $time =time();
 
         foreach($files as $file)
