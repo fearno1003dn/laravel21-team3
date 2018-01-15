@@ -42,17 +42,17 @@
 
             <li>
                 <a href="{!!asset('admins/rooms')!!}">
-                    <i class="fa fa-cubes"></i> <span>ROOMS </span>
+                    <i class="fa fa-home"></i> <span>ROOMS </span>
                 </a>
             </li>
             <li>
                 <a href="{!!url('admins/roomTypes')!!}">
-                    <i class="fa fa-cube"></i> <span>ROOM TYPES </span>
+                    <i class="fa fa-simplybuilt"></i> <span>ROOM TYPES </span>
                 </a>
             </li>
             <li>
                 <a href="{!!url('admins/roomSizes')!!}">
-                    <i class="fa fa-hotel"></i> <span>ROOM SIZES </span>
+                    <i class="fa fa-simplybuilt"></i> <span>ROOM SIZES </span>
                 </a>
             </li>
             <li>
