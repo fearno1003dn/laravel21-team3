@@ -13,8 +13,10 @@ class RoomSizeController extends Controller
 {
   public function listAllRoomSize()
   {
+
       $roomSizes = RoomSize::all();
       return view('admins.roomSizes.listAllRoomSize',compact('roomSizes'));
+
   }
 
   public function createRoomSize(RoomSize $roomSize)
@@ -49,10 +51,15 @@ class RoomSizeController extends Controller
 
   public function searchRoomSize(Request $search)
   {
+
+      // $search = \Request::get('search');
       $search = Input::get('search');
+
       $roomSizes = RoomSize::where('name', 'LIKE', '%' . $search . '%')
           ->Orwhere('size', '=',  $search )
           ->paginate(1);
+
+
       return view('admins.roomSizes.listAllSearchRoomSize', compact('roomSizes'));
   }
 }

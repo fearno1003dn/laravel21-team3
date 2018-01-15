@@ -116,7 +116,52 @@
 <script src="{{asset('AdminLTE-2.4.1/dist/js/demo.js')}}"></script>
 <script src="{{asset('AdminLTE-2.4.1/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('AdminLTE-2.4.1/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+
 <script src="{{asset('AdminLTE-2.4.1/bower_components/moment/moment.js')}}"></script>
+
+
+<script>
+var deleteLinks = document.querySelectorAll('.delete');
+
+for (var i = 0; i < deleteLinks.length; i++) {
+deleteLinks[i].addEventListener('click', function(event) {
+  event.preventDefault();
+
+  var choice = confirm(this.getAttribute('data-confirm'));
+
+  if (choice) {
+    window.location.href = this.getAttribute('href');
+  }
+});
+}
+</script>
+
+<script>
+$(function(){
+  $(".delete").click(function(){
+      swal({
+	  	  title: "Are you sure?",
+		  text: "You will not be able to recover this imaginary file!",
+		  type: "warning",
+		  showCancelButton: true,
+	  	  confirmButtonColor: "#DD6B55",
+	  	  confirmButtonText: "Yes, delete it!",
+	  	  closeOnConfirm: false
+	  },
+	  function(isConfirmed){
+        if(isConfirmed) {
+          $(".file").addClass("isDeleted");
+          swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        }
+      }
+    );
+  });
+});
+</script>
+
 @yield('script')
+
+
+
 </body>
 </html>

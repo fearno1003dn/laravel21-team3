@@ -5,6 +5,7 @@
 
 @section('content')
 
+
       @if(count($roomTypes)==0)
       <div class="row">
         <div class="box-header">
@@ -17,6 +18,8 @@
     <div class="row">
         <div class="box-header">
           <p>   Here are results that match your search</p>
+
+
             @include('partials.forms.search',['url'=>'admins/users/search'])
           </div>
           <div class="col-xs-12">
@@ -26,6 +29,7 @@
                     <table  class="table table-bordered table-striped">
                         <thead>
                             <tr>
+
                               <th>User Name</th>
                               <th>Address</th>
                               <th>Email</th>
@@ -59,4 +63,5 @@
         <!-- /.col -->
     </div>
     @endif
+
 @stop

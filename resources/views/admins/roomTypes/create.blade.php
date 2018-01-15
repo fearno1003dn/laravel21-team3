@@ -3,6 +3,7 @@
     <h1>Create Room Type</h1>
 @stop
 @section('content')
+
     {!! Form::open(['url'=>'admins/roomTypes','class' => 'form-horizontal' ])!!}
         @include('partials.forms.roomTypes')
     {!! Form::close() !!}

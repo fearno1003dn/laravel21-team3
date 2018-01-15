@@ -5,6 +5,7 @@
 
 @section('content')
 
+
       @if(count($roomSizes)==0)
       <div class="row">
         <div class="box-header">
@@ -26,6 +27,7 @@
                     <table  class="table table-bordered table-striped">
                         <thead>
                             <tr>
+
                               <th>Room Size Name</th>
                               <th>Room Size</th>
                               <th>Action</th>
@@ -53,4 +55,5 @@
         <!-- /.col -->
     </div>
     @endif
+
 @stop

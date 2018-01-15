@@ -30,19 +30,26 @@ class AdminBookingController extends Controller
 {
   public function detailBooking($booking_id)
   {
+
+      // dd($now); UTC+0????
+      // $bookroom=BookRoom::where('booking_id', $booking_id)->get();
       $bookroom = BookRoom::where('booking_id', $booking_id)->get();
       $booking = Booking::where('id', $booking_id)->first();
+      // dd($booking);
       $from = new Carbon($booking->check_in);
       $to = new Carbon($booking->check_out);
       $now = Carbon::now();
       $diff1 = $from->diffInDays($to);
       $diff2 = $from->diffInDays($now);
+      // dd($bookroom);
+      // dd($from,$to,$now,$diff1,$diff2);
       return view('admins.bookings.detail1', compact('booking', 'diff1', 'diff2', 'now', 'bookroom'));
   }
 
   public function addService($booking_id, $room_id)
       {
           $bookroom = BookRoom::where('booking_id', $booking_id)->where('room_id', $room_id)->first();
+          // dd($bookroom);
           $services = Service::all()->pluck('name', 'id');
           return view('admins.bookings.addService', compact('bookroom', 'services'));
       }
@@ -50,6 +57,7 @@ class AdminBookingController extends Controller
       public function saveService($booking_id, $room_id)
       {
           $bookroom = BookRoom::where('booking_id', $booking_id)->where('room_id', $room_id)->first();
+          // dd($bookroom);
           $data = Input::all();
           $data['book_room_id'] = $bookroom->id;
           $bookroomservice = BookRoomService::create($data);
@@ -58,6 +66,7 @@ class AdminBookingController extends Controller
 
       public function deleteService($booking_id, $room_id, BookRoomService $service)
       {
+          // dd($service);
           $service->delete();
           return redirect('admins/bookings/detail/' . $booking_id)->withSuccess('Service has been deleted');
       }
@@ -65,6 +74,7 @@ class AdminBookingController extends Controller
       public function adminCheckout($booking_id)
       {
           $booking = Booking::where('id', $booking_id)->first();
+          // dd($booking);
           $bookroom = BookRoom::where('booking_id', $booking_id)->get();
           $from = new Carbon($booking->check_in);
           $to = new Carbon($booking->check_out);
@@ -94,6 +104,7 @@ class AdminBookingController extends Controller
       public function adminCheckoutSingleRoom($booking_id, $room_id, BookRoomService $service)
       {
           $booking = Booking::where('id', $booking_id)->first();
+          // dd($booking);
           $bookroom = BookRoom::where('booking_id', $booking_id)->where('room_id', $room_id)->first();
           $from = new Carbon($booking->check_in);
           $to = new Carbon($booking->check_out);
@@ -109,12 +120,13 @@ class AdminBookingController extends Controller
       public function adminCheckoutConfirm($booking_id)
       {
           $booking = Booking::where('id', $booking_id)->first();
+          // dd($booking);
           $bookroom = BookRoom::where('booking_id', $booking_id)->get();
           $paid = $booking->total;
+
           $serviceTotal = 0;
           $totalPrice = 0;
           $booking->update(['status' => 3]);
-
           foreach ($bookroom as $br) {
               foreach ($br->services as $service) {
                   $serviceTotal += $service->price * $service->pivot->quantity;
@@ -126,7 +138,6 @@ class AdminBookingController extends Controller
           } else {
               $totalPrice = $paid + $serviceTotal;
           }
-
           $booking->total = $totalPrice;
           $booking->save();
           $d = 0;
@@ -141,6 +152,8 @@ class AdminBookingController extends Controller
                   $room->save();
               }
           }
+          // dd($totalPrice);
+          // return redirect('admins/bookings/detail/'.$booking->id.'/checkout');
           return redirect('admins/bookings');
       }
 
@@ -148,6 +161,8 @@ class AdminBookingController extends Controller
       {
         $booking = Booking::where('id', $booking_id)->first();
         $bookroom = BookRoom::where('booking_id', $booking_id)->get();
+      
+
         $from = new Carbon($booking->check_in);
         $to = new Carbon($booking->check_out);
         $now = Carbon::now();
@@ -160,8 +175,10 @@ class AdminBookingController extends Controller
                 $serviceTotal += $service->price * $service->pivot->quantity;
             }
         }
-        $pdf = PDF::loadView('admins.pdf.invoice', compact('booking', 'bookroom', 'serviceTotal', 'diff1', 'totalPrice','now'));
-        $filename = "$booking->code". '_invoiceDetail.pdf';
-        return $pdf ->stream("$filename");
+
+
+          $pdf = PDF::loadView('admins.pdf.invoice', compact('booking', 'bookroom', 'serviceTotal', 'diff1', 'totalPrice','now'));
+          $filename = "$booking->code". '_invoiceDetail.pdf';
+          return $pdf ->stream("$filename");
       }
 }

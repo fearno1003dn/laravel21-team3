@@ -5,6 +5,7 @@
 
 @section('content')
 
+
       @if(count($roomTypes)==0)
       <div class="row">
         <div class="box-header">
@@ -26,6 +27,7 @@
                     <table  class="table table-bordered table-striped">
                         <thead>
                             <tr>
+
                               <th>Room Type</th>
                               <th>Description</th>
                               <th>Action</th>

@@ -13,8 +13,10 @@ class ServiceController extends Controller
 
     public function listAllService()
     {
+
         $services = Service::all();
         return view('admins.services.listAllServices',compact('services'));
+
     }
 
     public function createService(Service $service)
@@ -24,6 +26,7 @@ class ServiceController extends Controller
 
     public function editService(Service $service)
     {
+
         return view('admins.services.edit',compact('service'));
     }
 
@@ -55,10 +58,12 @@ class ServiceController extends Controller
     public function searchService()
    {
          $search = Input::get('search');
+
          $services = Service::where('name', 'LIKE', '%'. $search.'%')
          ->Orwhere('price','=',$search)
          ->Orwhere('description','LIKE','%'.$search.'%')
          ->paginate(1);
-        return view('admins.services.listAllSearchService',compact('services'));
+
+          return view('admins.services.listAllSearchService',compact('services'));
    }
 }
