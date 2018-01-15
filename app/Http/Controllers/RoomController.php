@@ -154,38 +154,38 @@ class RoomController extends Controller
 
     public function updateRoom(Room $room, CheckRoomEditRequest $request)
     {
-        $data = Input::all();
-
-        if ($request->hasFile('image1')) {
-            $file1 = $request->file('image1');
-            $filename1 = $file1->getClientOriginalExtension();
-            $request->file = $filename1;
-            $image1 = time() . "." . $filename1;
-            $destinationPath1 = public_path('/images/rooms');
-            $file1->move($destinationPath1, $image1);
-            $data['image1'] = $image1;
-        }
-        if ($request->hasFile('image2')) {
-            $file2 = $request->file('image2');
-            $filename2 = $file2->getClientOriginalExtension();
-            $request->file = $filename2;
-            $image2 = time() . "." . $filename2;
-            $destinationPath2 = public_path('/images/rooms');
-            $file2->move($destinationPath2, $image2);
-            $data['image2'] = $image2;
-        }
-
-        if ($request->hasFile('image3')) {
-            $file3 = $request->file('image3');
-            $filename3 = $file3->getClientOriginalExtension();
-            $request->file = $filename3;
-            $image3 = time() . "." . $filename3;
-            $destinationPath3 = public_path('/images/rooms');
-            $file3->move($destinationPath3, $image3);
-            $data['image3'] = $image3;
-        }
-
+        $data = Input::except('image1','image2','image3');
         $room->update($data);
+        $files= [];
+        $filenames = [];
+        if($request->file('image1'))   $files[] = $request->file('image1');
+        if($request->file('image2'))   $files[] = $request->file('image2');
+        if($request->file('image3'))   $files[] = $request->file('image3');
+        $time =time();
+
+        foreach($files as $file)
+           {
+             $rand1 = rand(1,99999);
+             $rand2 = rand(1,99999);
+             $rand3 = rand(1,99999);
+
+             if(!empty($file))
+             {
+               $filename =  $time. "." . $rand1. "." . $rand2. "." . $rand3 . '.' . $file->getClientOriginalExtension();
+               $file->move('images/rooms/', $filename);
+               $filenames[] = $filename;
+           }
+          }
+             $room->image1 = $filenames[0];
+             $room->save();
+
+             $room->image2 = $filenames[1];
+             $room->save();
+
+             $room->image3 = $filenames[2];
+             $room->save();
+
+        // $room->update($data);
         return redirect('/admins/rooms/')->withSuccess('Update room success');
     }
 
