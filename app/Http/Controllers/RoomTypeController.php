@@ -33,20 +33,20 @@ class RoomTypeController extends Controller
   {
       $inputs = $request->all();
       $roomType = RoomType::create($inputs);
-      return redirect('admins/roomTypes');
+      return redirect('admins/roomTypes')->withSuccess('Success');
   }
 
   public function updateRoomType(RoomType $roomType,CheckRoomTypeEditRequest $request)
   {
       $inputs =  $request->all();
       $roomType->update($inputs);
-      return redirect('/admins/roomTypes');
+      return redirect('/admins/roomTypes')->withSuccess('Update user success');
   }
 
   public function deleteRoomType(RoomType $roomType)
   {
       $roomType->delete();
-      return redirect('admins/roomTypes');
+      return redirect('admins/roomTypes')->withSuccess('User has been delete');
   }
 
   public function searchRoomType(Request $search)

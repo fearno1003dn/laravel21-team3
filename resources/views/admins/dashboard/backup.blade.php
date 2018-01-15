@@ -216,17 +216,11 @@ $(function(){
 
               detail
 
-              chrome  ke me
-              vnd->$  ok
-              dash do thi 2-tong tien booking,cancel,tong ok
-              room detail center  ok
-              room size ke me
-              hold search nope
-              user detail ok
-              gmail sunnyhotel  ok
-
-              cancel user ->> stt booking ==2 NOTE_ERROR
-              warning-succes-danger-info
+              chrome
+              vnd->$
+              dash do thi 2-tong tien booking,cancel,tong
+              room detail center
+              room size
               <li>
                 <strong>Image 1</strong>:  <img src="{!!url('/images/rooms/'.$room->image1)!!}" alt="" style='width: 550px; height: 300px; border:5px solid gray;'>
               </li>
@@ -387,41 +381,3 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
         </div>
         <!-- /.col -->
       </div>
-
-
-      <div class="box-body">
-    <div class="table-responsive">
-      <table class="table no-margin">
-        <thead>
-        <tr>
-          <th>Booking Code</th>
-          <th>User</th>
-          <th>Check-in date</th>
-          <th>Check-out date</th>
-          <th>Status</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($latestBookings as $latestBooking)
-        <tr>
-          <td>{{$latestBooking->code}}</a></td>
-          <td>{{$latestBooking->users->first_name}} {{$latestBooking->users->last_name}}</td>
-          <td>{{$latestBooking->check_in}}</a></td>
-          <td>{{$latestBooking->check_out}}</a></td>
-          @if($latestBooking->status==0)
-          <td><span class="label label-info">Booking</span></td>
-          @elseif($latestBooking->status==1)
-          <td><span class="label label-warning">Check-in</span></td>
-          @elseif($latestBooking->status==2)
-          <td><span class="label label-danger">Cancel</span></td>
-          @elseif($latestBooking->status==3)
-          <td><span class="label label-success">Check-out</span></td>
-          @endif
-        </tr>
-        @endforeach
-        </tbody>
-      </table>
-    </div>
-    <!-- /.table-responsive -->
-    </div>

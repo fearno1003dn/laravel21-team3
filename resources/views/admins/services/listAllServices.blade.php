@@ -35,8 +35,7 @@
                                     <td>{!!number_format($service->price)!!} $</td>
                                     <td>{!!$service->description!!}</td>
 
-                                    <td><a href="{{url('admins/services/'.$service->id.'/edit')}}" ><i class="fa fa-edit" ></i>Edit</a> -
-                                       <a href="{{url('admins/services/'.$service->id.'/delete')}}" onclick="return confirm('Are you sure you want to delete this service?');"><i class="fa fa-trash"></i>Delete</a></td>
+                                    <td><a href="{{url('admins/services/'.$service->id.'/edit')}}" ><i class="fa fa-edit" ></i>Edit</a> - <a href="{{url('admins/services/'.$service->id.'/delete')}}" onclick="return confirm('Are you sure you want to delete this service?');"><i class="fa fa-trash"></i>Delete</a></td>
                                 </tr>
                             @endforeach
                             </tbody>

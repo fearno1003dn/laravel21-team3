@@ -2,7 +2,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Room;
-use App\RoomSize;
+use App\RoomType;
 use App\Booking;
 use App\BookRoom;
 
@@ -54,22 +54,14 @@ Route::group(['middleware' => ['admin']], function (){
         Route::put('admins/rooms/{room}', 'RoomController@updateRoom');
 
 
+
         Route::get('admins/roomTypes/search','RoomTypeController@searchRoomType');
         Route::get('admins/roomTypes', 'RoomTypeController@listAllRoomType');
         Route::get('admins/roomTypes/create', 'RoomTypeController@createRoomType');
         Route::get('admins/roomTypes/{roomTypes}/edit', 'RoomTypeController@editRoomType');
-        Route::post('admins/roomTypes', 'roomTypeController@saveRoomType');
+        Route::post('admins/roomTypes', 'RoomTypeController@saveRoomType');
         Route::get('admins/roomTypes/{roomType}/delete', 'RoomTypeController@deleteRoomType');
         Route::put('admins/roomTypes/{roomType}', 'RoomTypeController@updateRoomType');
-
-
-        Route::get('admins/roomSizes/search','RoomSizeController@searchRoomSize');
-        Route::get('admins/roomSizes', 'RoomSizeController@listAllRoomSize');
-        Route::get('admins/roomSizes/create', 'RoomSizeController@createRoomSize');
-        Route::get('admins/roomSizes/{roomSize}/edit', 'RoomSizeController@editRoomSize');
-        Route::post('admins/roomSizes', 'roomSizeController@saveRoomSize');
-        Route::get('admins/roomSizes/{roomSize}/delete', 'RoomSizeController@deleteRoomSize');
-        Route::put('admins/roomSizes/{roomSize}', 'RoomSizeController@updateRoomSize');
 
         Route::get('admins/services/search','ServiceController@searchService');
         Route::get('admins/services', 'ServiceController@listAllService');
@@ -122,7 +114,7 @@ Route::get('/index', function () {
 });
 
 Route::group(['prefix' => 'seachroom'], function () {
-    Route::get('/RoomSize/{id}', ['as' => 'room.TypeVip', 'uses' => 'RoomController@allRoomSize']);
+    Route::get('/roomType/{id}', ['as' => 'room.TypeVip', 'uses' => 'RoomController@allRoomType']);
     Route::get('/detailRoom/{id}', ['as' => 'room.detailRoom', 'uses' => 'RoomController@detailRoom']);
     Route::get('/seach', ['as' => 'room.seach', 'uses' => 'RoomController@seachRoomIndex']);
 });

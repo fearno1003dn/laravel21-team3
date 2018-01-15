@@ -68,7 +68,7 @@ class UserController extends Controller
     {
         if (Auth::check()){
             $user = Auth::user();
-            return view('hotel.users.detail1',compact('user'));
+            return view('hotel.users.detail',compact('user'));
         }
         else
             return redirect('/index');
@@ -116,7 +116,7 @@ class UserController extends Controller
     }
 
     public function userCancelBooking(Booking $booking)
-    {
+    { 
       $d = 0;
       if (Auth::check()){
         $user = Auth::user();

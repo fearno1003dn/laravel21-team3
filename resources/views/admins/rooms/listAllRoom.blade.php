@@ -51,7 +51,7 @@
                             <tr>
 
                                 <td>{!!$room->name!!}</td>
-                                <td>${!!number_format($room->price)!!}</td>
+                                <td>{!!number_format($room->price)!!}$</td>
                                 <td>
                                     @if($room->status == 1) <a>Available</a>
                                     @elseif($room->status == 2) <a>Available</a>

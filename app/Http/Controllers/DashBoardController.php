@@ -59,7 +59,6 @@ class DashBoardController extends Controller
     public function main()
     {
       $bookings =[];
-      $cancels = [];
       for($i=0;$i<=12;$i++){
 
           $now = Carbon::now();
@@ -71,34 +70,18 @@ class DashBoardController extends Controller
           $t2 = $now->endOfMonth()->toDateTimeString();
           // dd($t2);
 
+          $bookingQuant = Booking::whereBetween('created_at',[$t1,$t2])->get();
 
-          $bookingQuant = Booking::whereBetween('created_at',[$t1,$t2])->where('status','!=','2')->get();
-          $cancelQuant = Booking::whereBetween('created_at',[$t1,$t2])->where('status','2')->get();
-
-          $quantity1 = count($bookingQuant);
-          $quantity2 = count($cancelQuant);
+          $quantity = count($bookingQuant);
 
 
-          array_push( $bookings, $quantity1);
-          array_push( $cancels, $quantity2);
+          array_push( $bookings, $quantity);
 
 
   }
   // dd($bookings);
-      $totalCheckouts = Booking::where('status','!=','2')->get();
-      $totalCancels = Booking::where('status','2')->get();
-      $totalCheckOutFee = 0;
-      $totalCancelFee = 0;
-      foreach($totalCheckouts as $totalCheckout){
-        $totalCheckOutFee = $totalCheckOutFee + $totalCheckout->total;
-      }
-      foreach($totalCancels as $totalCancel){
-        $totalCancelFee = $totalCancelFee + $totalCancel->total;
-      }
-      $latestBookings = Booking::where('status','!=','100')->orderBy('created_at','desc')->take(10)->get();
-      // $pika = Carbon::now();
-      // dd($pika);
-      return view('admins.dashboard.content1',compact('bookings','cancels','totalCheckOutFee','totalCancelFee','latestBookings'));
+
+      return view('admins.dashboard.content1')->with(['bookings'=>$bookings]);
 
     }
 

@@ -195,10 +195,8 @@ class RoomController extends Controller
 
     public function roomDetail(Room $room)
     {
-              $calendars =BookRoom::where('room_id',$room->id)
-              ->whereHas('bookings', function ($query) {
-                  $query->where('status', '=', '1');
-              })->get();
+              $calendars =BookRoom::where('room_id',$room->id)->get();
+              // dd($calendars);
               // dd($calendars);
               return view('admins.rooms.roomDetail', compact('room','calendars'));
     }
