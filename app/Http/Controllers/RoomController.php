@@ -140,14 +140,20 @@ class RoomController extends Controller
                $filenames[] = $filename;
            }
           }
+
              $room->image1 = $filenames[0];
              $room->save();
 
+
+           if ($request->hasFile('images2') ) {
              $room->image2 = $filenames[1];
              $room->save();
-
+           }
+           
+           if ($request->hasFile('images3') ) {
              $room->image3 = $filenames[2];
              $room->save();
+           }
 
         return redirect('admins/rooms')->withSuccess('Room has been created');
     }
@@ -161,6 +167,7 @@ class RoomController extends Controller
         if($request->file('image1'))   $files[] = $request->file('image1');
         if($request->file('image2'))   $files[] = $request->file('image2');
         if($request->file('image3'))   $files[] = $request->file('image3');
+
         $time =time();
 
         foreach($files as $file)
@@ -176,14 +183,19 @@ class RoomController extends Controller
                $filenames[] = $filename;
            }
           }
+          if ($request->hasFile('images1') ) {
              $room->image1 = $filenames[0];
              $room->save();
+           }
 
+           if ($request->hasFile('images2') ) {
              $room->image2 = $filenames[1];
              $room->save();
-
+           }
+           if ($request->hasFile('images3') ) {
              $room->image3 = $filenames[2];
              $room->save();
+           }
 
         // $room->update($data);
         return redirect('/admins/rooms/')->withSuccess('Update room success');
