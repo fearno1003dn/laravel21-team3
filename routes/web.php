@@ -122,7 +122,7 @@ Route::get('/index', function () {
 });
 
 Route::group(['prefix' => 'seachroom'], function () {
-    Route::get('/RoomSize/{id}', ['as' => 'room.TypeVip', 'uses' => 'RoomController@allRoomSize']);
+    Route::get('/RoomType/{id}', ['as' => 'room.TypeVip', 'uses' => 'RoomController@allRoomType']);
     Route::get('/detailRoom/{id}', ['as' => 'room.detailRoom', 'uses' => 'RoomController@detailRoom']);
     Route::get('/seach', ['as' => 'room.seach', 'uses' => 'RoomController@seachRoomIndex']);
 });

@@ -14,6 +14,7 @@ use App\Service;
 use App\Http\Requests\RoomRequest;
 use App\Http\Requests\CheckRoomEditRequest;
 use Illuminate\Pagination\Paginator;
+use Carbon\Carbon;
 
 class RoomController extends Controller
 {
@@ -117,35 +118,116 @@ class RoomController extends Controller
 
     public function saveRoom(roomRequest $request)
     {
-        $data = Input::except('image1', 'image2', 'image3');
-        $file1 = $request->file('image1');
-        $filename1 = $file1->getClientOriginalExtension();
-        $request->file = $filename1;
-        $image1 = time() . "." . $filename1;
-        $destinationPath1 = public_path('/images/rooms');
-        $file1->move($destinationPath1, $image1);
-        $data['image1'] = $image1;
-        if ($request->hasFile('image2')) {
-            $file2 = $request->file('image2');
-            $filename2 = $file2->getClientOriginalExtension();
-            $request->file = $filename2;
-            $image2 = time() . "." . $filename2;
-            $destinationPath2 = public_path('/images/rooms');
-            $file2->move($destinationPath2, $image2);
-            $data['image2'] = $image2;
-        }
-
-        if ($request->hasFile('image3')) {
-            $file3 = $request->file('image3');
-            $filename3 = $file3->getClientOriginalExtension();
-            $request->file = $filename3;
-            $image3 = time() . "." . $filename3;
-            $destinationPath3 = public_path('/images/rooms');
-            $file3->move($destinationPath3, $image3);
-            $data['image3'] = $image3;
-        }
-
+        $data = Input::except('image1','image2','image3');
         $room = Room::create($data);
+
+        // if ($request->hasFile('image1')) {
+        //     $file1 = $request->file('image1');
+        //     // dd($file1);
+        //     $filename1 = $file1->getClientOriginalExtension();
+        //     dd($filename1);
+        //     $request->file = $filename1;
+        //
+        //     $image1 = time() . "." . $filename1;
+        //     $destinationPath1 = public_path('/images/rooms');
+        //     $file1->move($destinationPath1, $image1);
+        //     $data['image1'] = $image1;
+        //     $room = Room::create($data);
+        //     dd($data['image1']);
+        // }
+        // if ($request->hasFile('image2')) {
+        //     $file2 = $request->file('image2');
+        //     $filename2 = $file2->getClientOriginalExtension();
+        //     $request->file = $filename2;
+        //     $image2 = time() . "." . $filename2;
+        //     $destinationPath2 = public_path('/images/rooms');
+        //     $file2->move($destinationPath2, $image2);
+        //     $data['image2'] = $image2;
+        //     $room = Room::create($data);
+        //       // dd($data['image2']);
+        // }
+        //
+        // if ($request->hasFile('image3')) {
+        //     $file3 = $request->file('image3');
+        //     $filename3 = $file3->getClientOriginalExtension();
+        //     $request->file = $filename3;
+        //     $image3 = time() . "." . $filename3;
+        //     $destinationPath3 = public_path('/images/rooms');
+        //     $file3->move($destinationPath3, $image3);
+        //     $data['image3'] = $image3;
+        //     $room = Room::create($data);
+        //       // dd($data['image3']);
+        // }
+        // dd($request->file);
+        // dd(  $data['image3'],  $data['image2'],  $data['image1']);
+
+          // $room = Room::create($data);
+
+        // dd($room);
+        // $files = Input::file('photo');
+        // dd($files);
+        // $names = [];
+        //
+        // foreach ($files as $file) {
+        //           $names[] = $file->getClientOriginalExtension();
+        //       }
+        // dd($names);
+        // $destinationPath = public_path('/images/rooms');
+        // $imageName1 = time().'.'.$names[0];
+        // $imageName2 = time().'.'.$names[1];
+        // $imageName3 = time().'.'.$names[2];
+        // // dd($imageName3);
+        //
+        // $data['image1'] = $imageName1;
+        // $file->move($destinationPath, $imageName1);
+        // $data['image2'] = $imageName2;
+        // $file->move($destinationPath, $imageName2);
+        // $data['image3'] = $imageName3;
+        // $file->move($destinationPath, $imageName3);
+        // $data['image1'] = $imageName1;
+        // $data['image2'] = $imageName2;
+        // $data['image3'] = $imageName3;
+        // dd($data['image3'],$data['image2'],$data['image1']);
+        //
+        // $room = Room::create($data);
+
+        // dd($room);
+        $files= [];
+        $filenames = [];
+
+
+         if($request->file('image1'))   $files[] = $request->file('image1');
+         if($request->file('image2'))   $files[] = $request->file('image2');
+         if($request->file('image3'))     $files[] = $request->file('image3');
+         $time =time();
+
+           foreach($files as $file)
+           {
+             $rand1 = rand(1,99999);
+             $rand2 = rand(1,99999);
+            $rand3 = rand(1,99999);
+
+             if(!empty($file))
+             {
+               $filename =  $time. "." . $rand1. "." . $rand2. "." . $rand3 . '.' . $file->getClientOriginalExtension();
+               $file->move('images/rooms/', $filename);
+               $filenames[] = $filename;
+          //
+          // $filename = $file->getClientOriginalExtension();
+          // $image = time() . "." . $filename;
+          // $destinationPath = public_path('/images/rooms');
+          // $file->move($destinationPath, $image);
+          // $filenames[] = $filename;
+           }
+          }
+             $room->image1 = $filenames[0];
+             $room->save();
+
+             $room->image2 = $filenames[1];
+             $room->save();
+
+             $room->image3 = $filenames[2];
+             $room->save();
 
         return redirect('admins/rooms')->withSuccess('Room has been created');
     }
