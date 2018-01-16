@@ -11,9 +11,9 @@
             <div class="box-header">
                 <a href="{{url('admins/bookings')}}" class="btn btn-primary fa fa-heart-o"> List All Booking</a>
                 <!-- <form class="form-inline" style="float: right;" action="{{asset('admins/bookings/search')}}" method="get" role="searchBooking"> -->
-                {!! Form::open(['class' => 'form-inline', 'name' => 'search', 'style' => 'float: right;', 'url' => 'admins/bookings/search', 'method' => 'get']) !!}    
+                {!! Form::open(['class' => 'form-inline', 'name' => 'search', 'style' => 'float: right;', 'url' => 'admins/bookings/search', 'method' => 'get']) !!}
                     {{ csrf_field() }}
- 
+
                     <label class="">From :</label>
                     <input type="date" name="search1" class="form-control" value="{{ isset($_GET['search1']) ? $_GET['search1'] : '' }}">
 
@@ -68,20 +68,20 @@
                                             case '0': echo '<a></i>Booking</a>';
                                                 break;
                                             case '1': echo '<a></i>Check In</a>';
-                                                break;  
+                                                break;
                                             case '2': echo '<a></i>Cancel</a>';
                                                 break;
                                             case '3': echo '<a></i>Check Out</a>';
-                                                break;  
+                                                break;
                                             }
                                         ?>
                                     </td>
                                     <td>{!! $booking->code !!}</td>
-                                    <td>{!! number_format($booking->total) !!} $</td>
+                                    <td>${!! number_format($booking->total) !!}</td>
                                     <td>@if($booking->status == 0 && $booking->check_in >= $date)
                                         <a href="{{url('admins/bookings/cancel/'.$booking->id)}}"><i class="fa fa-trash"></i>Cancel</a> - <a href="{{url('admins/bookings/detail/'.$booking->id)}}"><i class="fa fa-book"></i>Detail</a>
                                          - <a href="{{url('admins/bookings/detail/'.$booking->id)}}"><i class="fa fa-book"></i>Check In</a>
-                                        @else 
+                                        @else
                                         <a href="{{url('admins/bookings/detail/'.$booking->id)}}"><i class="fa fa-book"></i>Detail</a>
                                         @endif
                                     </td>
@@ -105,7 +105,7 @@
                                         <th></th>
                                         <th></th>
                                         <th style="text-align:center; ">Total Money :</th>
-                                        <th style="text-align:center; ">{!! number_format($totalmoney) !!} $</th>
+                                        <th style="text-align:center; ">${!! number_format($totalmoney) !!}</th>
                                         <th></th>
                                         <th></th>
                                         <th></th>
@@ -154,16 +154,16 @@
                         case '0': echo '<a></i>Booking</a>';
                             break;
                         case '1': echo '<a></i>Check In</a>';
-                            break;  
+                            break;
                         case '2': echo '<a></i>Cancel</a>';
                             break;
                         case '3': echo '<a></i>Check Out</a>';
-                            break;  
+                            break;
                         }
                     ?>
                 </td>
                 <td>{!! $booking->code !!}</td>
-                <td>{!! number_format($booking->total) !!} $</td>
+                <td>${!! number_format($booking->total) !!}</td>
             </tr>
         @endforeach
             <tr></tr>
@@ -176,7 +176,7 @@
                 <td></td>
                 <td></td>
                 <th>Total Money :</th>
-                <th>{!! number_format($totalmoney) !!} $</th>
+                <th>${!! number_format($totalmoney) !!}</th>
             </tr>
         @endif
     </table>

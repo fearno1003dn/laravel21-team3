@@ -12,7 +12,7 @@
                 <div class="col-md-6"  >
                     <ul style="padding-top: 15px; ">
                             <strong>Room Type </strong>: {!!$room->roomTypes->name!!}</br>
-                            <strong>Price </strong> : {!!number_format($room->price)!!}$</br>
+                            <strong>Price </strong> : ${!!number_format($room->price)!!}</br>
                             <strong> Status </strong> :
                             {!!$room->status ? '<span>Available</span>' : '<span>Not Available</span>'!!}</br>
                             <strong>Room Size </strong>: <span>{!!$room->roomSizes->size!!}</span></br>

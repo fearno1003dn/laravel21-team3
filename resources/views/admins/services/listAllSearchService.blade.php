@@ -37,7 +37,7 @@
                         @foreach ($services as $service)
                             <tr>
                               <td>{!!$service->name!!}</td>
-                              <td>{!!number_format($service->price)!!}đ</td>
+                              <td>${!!number_format($service->price)!!}</td>
                               <td>{!!$service->description!!}</td>
 
                               <td><a href="{{url('admins/services/'.$service->id.'/edit')}}" ><i class="fa fa-edit" ></i>Edit</a> - <a href="{{url('admins/services/'.$service->id.'/delete')}}" onclick="return confirm('Are you sure you want to delete this service?');"><i class="fa fa-trash"></i>Delete</a></td>
