@@ -180,21 +180,28 @@ class RoomController extends Controller
            }
           }
 
-          if ($files[0]) {
-             $room->image1 = $filenames[0];
-             // dd( $room->image1 );
-             $room->save();
+          if($request->file('image1')){
+            if ($files[0]) {
+               $room->image1 = $filenames[0];
+               // dd( $room->image1 );
+               $room->save();
+             }
            }
 
-           if ($files[1]) {
-             $room->image2 = $filenames[1];
-             $room->save();
-           }
+          if($request->file('image2')){
+            if ($files[1]) {
+              $room->image2 = $filenames[1];
+              $room->save();
+            }
+          }
 
-           if ($files[2]) {
-             $room->image3 = $filenames[2];
-             $room->save();
-           }
+          if($request->file('image3')){
+            if ($files[2]) {
+              $room->image3 = $filenames[2];
+              $room->save();
+            }
+          }
+
 
         $room->update($data);
         return redirect('/admins/rooms/')->withSuccess('Update room success');
