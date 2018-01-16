@@ -9,7 +9,7 @@
 				<th>Room Name</th>
 				<th>Price</th>
 				<th>Status</th>
-				<th>Amount People</th>
+				<th>Room Size</th>
 				<th>Room Type</th>
 				<th>Action</th>
 			</tr>
@@ -18,7 +18,7 @@
 			<tbody>
 				<tr>
 					<td><a >{!!$room->name!!}</a></td>
-					<td>{!!number_format($room->price)!!}VND</td>
+					<td>${!!number_format($room->price)!!}</td>
 					<td>
 						{!!$room->status ? '<span class="label label-success">Available</span>' : '<span class="label label-danger">Not Available</span>'!!}
 					</td>

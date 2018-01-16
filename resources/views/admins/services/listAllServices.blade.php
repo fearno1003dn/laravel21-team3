@@ -28,7 +28,7 @@
                             @foreach ($services as $service)
                                 <tr>
                                     <td>{!!$service->name!!}</td>
-                                    <td>{!!number_format($service->price)!!} $</td>
+                                    <td>${!!number_format($service->price)!!}</td>
                                     <td>{!!$service->description!!}</td>
 
                                     <td><a href="{{url('admins/services/'.$service->id.'/edit')}}" ><i class="fa fa-edit" ></i>Edit</a> -

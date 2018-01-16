@@ -6,11 +6,8 @@
 
 <div class="page-content">
 <div class="box-body">
-
   <div class="row">
       <div class="col-md-3">
-
-
         <div class="info-box bg-red">
           <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
           <div class="info-box-content">
@@ -24,11 +21,8 @@
               70% Increase in 30 Days
             </span>
           </div>
-
           <!-- /.info-box-content -->
         </div>
-
-
 
           <!-- START WIDGET SLIDER -->
           <div class="widget widget-default widget-carousel" style="margin-top:25px">
@@ -56,14 +50,10 @@
               <a href="{{ url('admins/rooms/') }}" class="small-box-footer pull-right" style="text-align:center">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-
           <!-- END WIDGET SLIDER -->
 
-
       <div class="col-md-3">
-
           <!-- START WIDGET MESSAGES -->
-
           <div class="small-box bg-light-blue">
             <div class="inner">
               <h3>{{App\Booking::all()->count()}}</h3>
@@ -75,7 +65,6 @@
             </div>
             <a href="{{ url('admins/bookings') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-
 
           <div class="widget widget-default widget-item-icon">
               <div class="widget-item-left ">
@@ -340,13 +329,8 @@
           </div>
           <!-- /.col -->
         </div>
-
-
 </div>
 </div>
-
-
-
 
 @stop
 
