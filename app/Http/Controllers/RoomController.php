@@ -144,16 +144,12 @@ class RoomController extends Controller
              $room->image1 = $filenames[0];
              $room->save();
 
-
-           if ($request->hasFile('images2') ) {
              $room->image2 = $filenames[1];
              $room->save();
-           }
-           
-           if ($request->hasFile('images3') ) {
+
              $room->image3 = $filenames[2];
              $room->save();
-           }
+
 
         return redirect('admins/rooms')->withSuccess('Room has been created');
     }
@@ -161,7 +157,7 @@ class RoomController extends Controller
     public function updateRoom(Room $room, CheckRoomEditRequest $request)
     {
         $data = Input::except('image1','image2','image3');
-        $room->update($data);
+
         $files= [];
         $filenames = [];
         if($request->file('image1'))   $files[] = $request->file('image1');
@@ -183,21 +179,24 @@ class RoomController extends Controller
                $filenames[] = $filename;
            }
           }
-          if ($request->hasFile('images1') ) {
+
+          if ($files[0]) {
              $room->image1 = $filenames[0];
+             // dd( $room->image1 );
              $room->save();
            }
 
-           if ($request->hasFile('images2') ) {
+           if ($files[1]) {
              $room->image2 = $filenames[1];
              $room->save();
            }
-           if ($request->hasFile('images3') ) {
+
+           if ($files[2]) {
              $room->image3 = $filenames[2];
              $room->save();
            }
 
-        // $room->update($data);
+        $room->update($data);
         return redirect('/admins/rooms/')->withSuccess('Update room success');
     }
 
