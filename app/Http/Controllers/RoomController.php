@@ -140,30 +140,23 @@ class RoomController extends Controller
                $filenames[] = $filename;
            }
           }
-
-             $room->image1 = $filenames[0];
-             $room->save();
-
-             $room->image2 = $filenames[1];
-             $room->save();
-
-             $room->image3 = $filenames[2];
-             $room->save();
-
-
+        $room->image1 = $filenames[0];
+        $room->image2 = $filenames[1];
+        $room->image3 = $filenames[2];
+        $room->save();
         return redirect('admins/rooms')->withSuccess('Room has been created');
     }
 
     public function updateRoom(Room $room, CheckRoomEditRequest $request)
     {
         $data = Input::except('image1','image2','image3');
-
         $files= [];
         $filenames = [];
-        if($request->file('image1'))   $files[] = $request->file('image1');
-        if($request->file('image2'))   $files[] = $request->file('image2');
-        if($request->file('image3'))   $files[] = $request->file('image3');
-
+        if($request->hasFile('image1'))   $files[] = $request->file('image1');
+        if($request->hasFile('image2'))   $files[] = $request->file('image2');
+        if($request->hasFile('image3'))   $files[] = $request->file('image3');
+        $count = count($files);
+        // dd($count);
         $time =time();
 
         foreach($files as $file)
@@ -180,29 +173,54 @@ class RoomController extends Controller
            }
           }
 
-          if($request->file('image1')){
-            if ($files[0]) {
-               $room->image1 = $filenames[0];
-               // dd( $room->image1 );
-               $room->save();
-             }
-           }
+          if($count==3){
+            $room->image1 = $filenames[0];
+            $room->image2 = $filenames[1];
+            $room->image3 = $filenames[2];
+            $room->save();
+          }
 
-          if($request->file('image2')){
-            if ($files[1]) {
+
+          if($count==2){
+            if($request->hasFile('image1') && $request->hasFile('image2')) {
+              $room->image1 = $filenames[0];
               $room->image2 = $filenames[1];
               $room->save();
             }
-          }
 
-          if($request->file('image3')){
-            if ($files[2]) {
-              $room->image3 = $filenames[2];
+            if($request->hasFile('image1') && $request->hasFile('image3')) {
+              $room->image1 = $filenames[0];
+              $room->image3 = $filenames[1];
+              $room->save();
+            }
+
+            if($request->hasFile('image2') && $request->hasFile('image3')) {
+              $room->image2 = $filenames[0];
+              $room->image3 = $filenames[1];
               $room->save();
             }
           }
 
+          if($count==1) {
+              if($request->hasFile('image1')){
+                $room->image1 = $filenames[0];
+                $room->save();
+              }
 
+              if($request->hasFile('image2')){
+                $room->image2 = $filenames[0];
+                $room->save();
+              }
+
+              if($request->hasFile('image3')){
+                $room->image3 = $filenames[0];
+                $room->save();
+              }
+          }
+
+        else{
+          $room->update($data);
+        }
         $room->update($data);
         return redirect('/admins/rooms/')->withSuccess('Update room success');
     }
