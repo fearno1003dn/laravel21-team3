@@ -27,8 +27,8 @@ class RoomRequest extends FormRequest
           'name' => 'required|unique:rooms,name|min:3|max:8',
           'price'=> 'required|numeric',
           'image1'=>'required|image|mimes:jpeg,png,jpg,gif,svg',
-          'image2'=>'image|mimes:jpeg,png,jpg,gif,svg',
-          'image3'=>'image|mimes:jpeg,png,jpg,gif,svg',
+          'image2'=>'required|image|mimes:jpeg,png,jpg,gif,svg',
+          'image3'=>'required|image|mimes:jpeg,png,jpg,gif,svg',
         ];
     }
 }
