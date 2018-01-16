@@ -18,14 +18,14 @@
                                             <div class="clearfix" style="">
                                                 <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
                                                     <!-- <ul id="vertical" class="gallery list-unstyled"> -->
-                                                    <li data-thumb="{!!url('/images/rooms/'.$room->image1)!!}">
-                                                        <img alt="slider" src="{!!url('/images/rooms/'.$room->image1)!!}" />
+                                                    <li style="width:720px;height:400px;" data-thumb="{!!url('/images/rooms/'.$room->image1)!!}">
+                                                        <img alt="slider" style="width:720px;height:400px;" src="{!!url('/images/rooms/'.$room->image1)!!}" />
                                                     </li>
-                                                    <li data-thumb="{!!url('/images/rooms/'.$room->image2)!!}">
-                                                        <img alt="slider" src="{!!url('/images/rooms/'.$room->image2)!!}" />
+                                                    <li style="width:720px;height:400px;" data-thumb="{!!url('/images/rooms/'.$room->image2)!!}">
+                                                        <img alt="slider" style="width:720px;height:400px;" src="{!!url('/images/rooms/'.$room->image2)!!}" />
                                                     </li>
-                                                    <li  data-thumb="{!!url('/images/rooms/'.$room->image3)!!}">
-                                                        <img alt="slider" src="{!!url('/images/rooms/'.$room->image3)!!}" />
+                                                    <li style="width:720px;height:400px;" data-thumb="{!!url('/images/rooms/'.$room->image3)!!}">
+                                                        <img alt="slider" style="width:720px;height:400px;" src="{!!url('/images/rooms/'.$room->image3)!!}" />
                                                     </li>
                                                 </ul>
                                             </div>
