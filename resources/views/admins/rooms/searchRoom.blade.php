@@ -3,15 +3,13 @@
 @section('content')
 <div class="container table-responsive">
 	<span>About {!!count($rooms)!!} results</span>
-
 	<table class="table table-striped table-hover ">
 		<thead class="table-inverse">
 			<tr>
-
 				<th>Room Name</th>
 				<th>Price</th>
 				<th>Status</th>
-				<th>Amount People</th>
+				<th>Room Size</th>
 				<th>Room Type</th>
 				<th>Action</th>
 			</tr>
@@ -19,9 +17,8 @@
 		@foreach ($rooms as $room)
 			<tbody>
 				<tr>
-
 					<td><a >{!!$room->name!!}</a></td>
-					<td>{!!number_format($room->price)!!}VND</td>
+					<td>${!!number_format($room->price)!!}</td>
 					<td>
 						{!!$room->status ? '<span class="label label-success">Available</span>' : '<span class="label label-danger">Not Available</span>'!!}
 					</td>
@@ -37,6 +34,5 @@
 			</tbody>
 		@endforeach
 	</table>
-
 </div>
 @stop

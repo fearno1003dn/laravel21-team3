@@ -28,7 +28,7 @@
                                                 <div class="single_room_wrapper clearfix padding-bottom-30">
                                                     <figure class="uk-overlay uk-overlay-hover">
                                                         <div class="room_media">
-                                                            <a href="{{route('room.detailRoom', $room->id )}}"><img style="width:  263px;height: 187px;"
+                                                            <a href="{{route('room.detailRoom', $room->id )}}"><img style="width:263px;height: 187px;"
                                                                         src="{!!url('/images/rooms/'.$room->image1)!!}"
                                                                         alt=""></a>
                                                         </div>
@@ -61,7 +61,7 @@
                                                     <div class="single_room_wrapper clearfix padding-bottom-30">
                                                         <figure class="uk-overlay uk-overlay-hover">
                                                             <div class="room_media">
-                                                                <a href="{{route('room.detailRoom', $room->id )}}"><img
+                                                                <a href="{{route('room.detailRoom', $room->id )}}"><img style="width:  263px;height: 187px;"
                                                                             src="{!!url('/images/rooms/'.$room->image1)!!}"
                                                                             alt=""></a>
                                                             </div>
@@ -88,7 +88,7 @@
                                                     <div class="single_room_wrapper clearfix padding-bottom-30">
                                                         <figure class="uk-overlay uk-overlay-hover">
                                                             <div class="room_media">
-                                                                <a href="{{route('room.detailRoom', $room->id )}}"><img
+                                                                <a href="{{route('room.detailRoom', $room->id )}}"><img style="width:  263px;height: 187px;"
                                                                             src="{!!url('/images/rooms/'.$room->image1)!!}"
                                                                             alt=""></a>
                                                             </div>

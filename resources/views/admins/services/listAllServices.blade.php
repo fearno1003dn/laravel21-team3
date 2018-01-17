@@ -9,17 +9,14 @@
         <div class="col-xs-12">
           <div class="box-header">
             <a href="{{ url('admins/services/create') }}" class="btn btn-primary fa fa-heart-o"> Create Service</a>
-
               @include('partials.forms.search',['url'=>'admins/services/search'])
             <div class="box">
-
                 <div class="box">
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table class="table table-bordered table-striped">
                             <thead>
                             <tr>
-
                                 <th>Service Name</th>
                                 <th>Price</th>
                                 <th>Description</th>
@@ -30,9 +27,8 @@
                             <tbody>
                             @foreach ($services as $service)
                                 <tr>
-
                                     <td>{!!$service->name!!}</td>
-                                    <td>{!!number_format($service->price)!!} $</td>
+                                    <td>${!!number_format($service->price)!!}</td>
                                     <td>{!!$service->description!!}</td>
 
                                     <td><a href="{{url('admins/services/'.$service->id.'/edit')}}" ><i class="fa fa-edit" ></i>Edit</a> -
@@ -40,11 +36,8 @@
                                 </tr>
                             @endforeach
                             </tbody>
-
-
                         </table>
                     </div>
-
                     <!-- /.box-body -->
                 </div>
                 <!-- /.box -->

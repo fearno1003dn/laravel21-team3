@@ -62,7 +62,7 @@
             </li>
             <li>
                 <a href="{{url('admins/users')}}">
-                    <i class="fa fa-user"></i> <span>USER MANAGEMENT</span>
+                    <i class="fa fa-vcard"></i> <span>USER MANAGEMENT</span>
                 </a>
             </li>
             <li>

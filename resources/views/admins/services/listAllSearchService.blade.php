@@ -5,7 +5,6 @@
 
 @section('content')
 
-
       @if(count($services)==0)
       <div class="row">
         <div class="box-header">
@@ -18,8 +17,6 @@
     <div class="row">
         <div class="box-header">
           <p>   Here are results that match your search</p>
-
-
             @include('partials.forms.search',['url'=>'admins/services/search'])
           </div>
           <div class="col-xs-12">
@@ -40,7 +37,7 @@
                         @foreach ($services as $service)
                             <tr>
                               <td>{!!$service->name!!}</td>
-                              <td>{!!number_format($service->price)!!}đ</td>
+                              <td>${!!number_format($service->price)!!}</td>
                               <td>{!!$service->description!!}</td>
 
                               <td><a href="{{url('admins/services/'.$service->id.'/edit')}}" ><i class="fa fa-edit" ></i>Edit</a> - <a href="{{url('admins/services/'.$service->id.'/delete')}}" onclick="return confirm('Are you sure you want to delete this service?');"><i class="fa fa-trash"></i>Delete</a></td>

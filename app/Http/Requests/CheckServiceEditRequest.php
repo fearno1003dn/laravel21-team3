@@ -25,7 +25,7 @@ class CheckServiceEditRequest extends FormRequest
     {
       $services = $this->route('service');
       return [
-          'name' => 'required|min:3|max:8|unique:services,name,'.$services->id,
+          'name' => 'required|min:3|max:24|unique:services,name,'.$services->id,
           'price'=> 'required|numeric',
       ];
     }

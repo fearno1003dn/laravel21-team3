@@ -11,26 +11,14 @@
             <div class="row">
                 <div class="col-md-6"  >
                     <ul style="padding-top: 15px; ">
-
-
                             <strong>Room Type </strong>: {!!$room->roomTypes->name!!}</br>
-
-                            <strong>Price </strong> : {!!number_format($room->price)!!}$</br>
-
+                            <strong>Price </strong> : ${!!number_format($room->price)!!}</br>
                             <strong> Status </strong> :
                             {!!$room->status ? '<span>Available</span>' : '<span>Not Available</span>'!!}</br>
-
                             <strong>Room Size </strong>: <span>{!!$room->roomSizes->size!!}</span></br>
-
                             <strong>Description </strong>:</br>{!!$room->description!!}</br>
-
-
-
-
-
                     </ul>
                 </div>
-
                 <div id="myCarousel" class="carousel slide" data-ride="carousel" style="display:table-cell; vertical-align:middle; ">
   <!-- Indicators -->
   <ol class="carousel-indicators">

@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="." class="logo">
+    <a href="{!!asset('/admins')!!}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><img src="{{asset('images/logos/admin.png')}}" style='width: 40px; height: 40px;' /></span>
         <!-- logo for regular state and mobile devices -->

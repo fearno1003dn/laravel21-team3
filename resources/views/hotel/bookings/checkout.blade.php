@@ -1,4 +1,4 @@
-@extends('hotel.layouts.app')
+@extends('hotel.users.index')
 @section('content')
     @include('hotel.layouts.availabilitySeach')
     <br>

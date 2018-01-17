@@ -6,7 +6,8 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="left_header_top">
                         <ul>
-                            <li><a href="#"><img src="{{asset('hotel-booking/img/temp-icon.png')}}" alt="temp-icon">London dc, GR 17°C</a></li>
+                            <li><a href="#"><img src="{{asset('hotel-booking/img/temp-icon.png')}}" alt="temp-icon">London
+                                    dc, GR 17°C</a></li>
                         </ul>
                     </div>
                 </div>
@@ -18,28 +19,29 @@
                                     <a class="border-right-dark-4" href="{{url('/login')}}">login</a>
                                 </li>
                                 <li role="presentation" class="dropdown">
-                                    <a id="drop1" href="{{url('/register')}}" >Register</a>
+                                    <a id="drop1" href="{{url('/register')}}">Register</a>
                                 </li>
                             @else
-                                <li>    
-                                    <a class="border-right-dark-4" href="{{url('/user/index')}}">{{Auth::user()->first_name}} {{ Auth::user()->last_name}}</a>
-                                </li>    
+                                <li>
+                                    <a class="border-right-dark-4"
+                                       href="{!!asset('/admins')!!}">{{Auth::user()->first_name}} {{ Auth::user()->last_name}}</a>
+                                </li>
                                 <li>
                                     <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                                        Logout
+                                    </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    <!--<a class="border-right-dark-4" href="{!!url('/review')!!}">PAYMENT</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                <!--<a class="border-right-dark-4" href="{!!url('/review')!!}">PAYMENT</a>
                                         <form id="logout-form" action="{{   route('logout') }}" method="POST" style="display: none;">
                                              {{ csrf_field() }}
                                         </form>-->
-                                </li>        
-                                @endif
-                            
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -73,32 +75,32 @@
                         <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
                                 <li><a href="{{url('/index')}}">Home</a></li>
-                                <li><a href="accomodation.html">Accomodation</a></li>
-                                <li><a href="gallery.html">Gallery</a></li>
+                                <li><a href="#">Accomodation</a></li>
+                                <li><a href="#">Gallery</a></li>
                                 <li role="presentation" class="dropdown">
                                     <a id="drop2" href="#" class="dropdown-toggle" data-toggle="dropdown"
                                        aria-haspopup="true" role="button" aria-expanded="false">
                                         Features
                                     </a>
                                     <ul id="menu2" class="dropdown-menu" role="menu">
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="about-us.html">About
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About
                                                 US</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="booking.html">Booking</a>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Booking</a>
                                         </li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1"
                                                                    href="room-details.html">Room Details</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="staff.html">Our
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Our
                                                 Staff</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="404.html">404
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">404
                                                 Page</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="blog.html">News</a></li>
-                                <li><a href="contact-us.html">Contacts</a></li>
+                                <li><a href="#">News</a></li>
+                                <li><a href="#">Contacts</a></li>
                             </ul>
                             <div class="emergency_number">
-                                <a href="tel:1234567890"><img src="{{asset('hotel-booking/img/call-icon.png')}}" alt="">123
-                                    456 7890</a>
+                                <a href="tel:+841289480359"><img src="{{asset('hotel-booking/img/call-icon.png')}}"
+                                                                 alt="">+841289480359</a>
                             </div>
                         </div><!-- /.navbar-collapse -->
                     </nav>
@@ -107,6 +109,6 @@
             <!-- end mainmenu and logo -->
         </div>
     </div>
-    @yield('content')
-    <!-- end main header -->
+@yield('content')
+<!-- end main header -->
 </header>

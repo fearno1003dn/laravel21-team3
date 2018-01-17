@@ -12,32 +12,21 @@
               <div class="col-lg-6 col-md-12 col-sm-12">
             <h3 class="box-title"><strong>Booking Details</strong></h3>
           </div>
-
           @if($booking->status==3)
             <div class="col-lg-6 col-md-12 col-sm-12">
             <p > <a href="{{url('admins/bookings/detail/'.$booking->id.'/exportPDF')}}" class="btn btn-primary pull-right">Export PDF:<span class="glyphicon glyphicon-export "></span></a> </p>
           </div>
           @endif
-
         </div>
         </div>
-
-
 
         <div class="box-body">
-
             <div class="container">
                 <div class="row">
-
-
                     <div class="col-lg-6 col-md-12 col-sm-12">
-
                         <div class="col-sm-12 btn btn-primary "><h2 class="h2">Info</h2></div>
-
                         <div class="room-detail_overview">
-
                             <table class="simple">
-
                                 <ul>
                                     <tr>
                                         <td>
@@ -218,11 +207,9 @@
                             </table>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="row">
-
                         <div class="col-lg-12 col-md-12 col-sm-12">
                     @foreach($bookroom as $br)
                         <div class="col-lg-12 col-md-3 col-sm-6">
@@ -241,7 +228,6 @@
                                 @endif
                             </div>
                             <div class="room-detail_overview">
-
                                 @if($booking->status==0)
                                     <table class="simple">
                                         <ul>
@@ -296,9 +282,9 @@
                                         @foreach($br->services as $service)
                                             <tr>
                                                 <td>{{$service->name}}</td>
-                                                <td>{{$service->price}}</td>
+                                                <td>${{$service->price}}</td>
                                                 <td>{{$service->pivot->quantity}}</td>
-                                                <td>{{$service->price * $service->pivot->quantity}}</td>
+                                                <td>${{$service->price * $service->pivot->quantity}}</td>
                                                 @if($booking->status==1)
                                                 <td>
                                                     <a href="{{url('admins/bookings/detail/'.$br->booking_id.'/'.$br->room_id.'/'.$service->pivot->id.'/delete')}}" onclick="return confirm('Are you sure you want to delete this service?');"><i

@@ -48,7 +48,7 @@
 							<td>{{$br->rooms->name}}</td>
 							<td>{!!number_format($br->rooms->price)!!}</td>
 							<td>{{$diff1}} Days</td>
-							<td>{!!number_format($br->rooms->price * $diff1)!!} $</td>
+							<td>${!!number_format($br->rooms->price * $diff1)!!} </td>
 
 
 							</tr>
@@ -86,7 +86,7 @@
 			              <tr>
 			                <th>Total:</th>
 
-			                <td>{{number_format($totalPrice)}} $</td>
+			                <td>${{number_format($totalPrice)}} </td>
 
 			              </tr>
 			            </table>
@@ -103,12 +103,12 @@
 							<table class="table">
 								<tr>
 									<th>Services Total Price:</th>
-									<td>{{number_format($serviceTotal)}} $</td>
+									<td>${{number_format($serviceTotal)}}</td>
 								</tr>
 								<tr>
 									<th>Total:</th>
 
-									<td>{{number_format($totalPrice)}} $</td>
+									<td>${{number_format($totalPrice)}}</td>
 
 								</tr>
 							</table>

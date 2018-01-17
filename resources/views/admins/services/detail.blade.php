@@ -18,7 +18,7 @@
                             <a href="{{url('admins/services'.$service->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/services'.$service->id.'/delete')}}"><i class="fa fa-trash"></i>Delete</a>
                         </li>
                         <li>
-                            <strong>Price </strong> : {!!number_format($service->service_price)!!}
+                            <strong>Price </strong> : ${!!number_format($service->service_price)!!}
                         </li>
                         <li>
                             <strong>Description </strong>:{!!$service->description!!}

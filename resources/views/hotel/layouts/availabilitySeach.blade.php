@@ -15,7 +15,8 @@
                         <div class="form-group col-lg-2 col-md-2 col-sm-2">
                             <div class="input-group border-bottom-dark-2">
                                 <input class="date-picker" required="date" name="arrival" id="datepicker"
-                                       value="{!!session()->get('arrival')!!}"
+                                       placeholder="Arrival"
+                                       value="{{ isset($_GET['arrival']) ? $_GET['arrival'] : '' }}"
                                        type="text"/>
                                 @if ( $errors->has('arrival') )
                                     <span class="text-warning">
@@ -28,7 +29,8 @@
                         <div class="form-group col-lg-2 col-md-2 col-sm-2">
                             <div class="input-group border-bottom-dark-2">
                                 <input class="date-picker" required="date" name="departure" id="datepicker1"
-                                       value="{!!session()->get('departure')!!}"
+                                       placeholder="Departure"
+                                       value="{{ isset($_GET['departure']) ? $_GET['departure'] : '' }}"
                                        type="text"/>
                                 @if ( $errors->has('departure') )
                                     <span class="text-warning">

@@ -28,7 +28,6 @@
                         <table class="table table-bordered table-striped">
                             <thead>
                             <tr>
-
                                 <th>User Name</th>
                                 <th>Address</th>
                                 <th>Email</th>
@@ -42,7 +41,6 @@
                             <tbody>
                             @foreach ($users as $user)
                                 <tr>
-
                                     <td><a href="{{url('admins/users/listbooking/'.$user->id)}}" >{!!$user->first_name!!} {!!$user->last_name!!}</a>
                                     </td>
                                     <td>{!!$user->address!!}</td>
@@ -52,7 +50,8 @@
                                         {!!$user->role ? '<a>Admin User</a>' : '<a>Normal User</a>'!!}
                                     </td>
                                     <td>{!!$user->deposit!!} $</td>
-                                    <td><a href="{{url('admins/users/'.$user->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/users/'.$user->id.'/delete')}}" class="fa fa-trash" onclick="return confirm('Are you sure you want to delete this user?');" data-confirm="Are you sure to delete this user?">Delete</a></td>
+                                    <td><a href="{{url('admins/users/'.$user->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> </td>
+                                      <!-- -<a href="{{url('admins/users/'.$user->id.'/delete')}}" class="fa fa-trash" onclick="return confirm('Are you sure you want to delete this user?');" data-confirm="Are you sure to delete this user?">Delete</a></td> -->
                                 </tr>
                             @endforeach
                             </tbody>
