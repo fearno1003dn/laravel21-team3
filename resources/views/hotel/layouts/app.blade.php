@@ -60,10 +60,8 @@
     </div>
 </div>
 <!-- end preloader -->
-
 <!-- PAGE WRAP -->
 <div id="page-wrap">
-
     <!-- HEADER -->
     @include('hotel.layouts.header');
     <!-- END / HEADER -->
@@ -73,10 +71,8 @@
     <!-- FOOTER -->
 @include('hotel.layouts.footer')
 <!-- END / FOOTER -->
-
 </div>
 <!-- END / PAGE WRAP -->
-
 <!-- jquery library -->
 <script src="{{asset('hotel-booking/js/vendor/jquery-1.11.2.min.js')}}"></script>
 <!-- bootstrap -->
@@ -96,7 +92,6 @@
 <script src="{{asset('hotel-booking/js/owl.carousel.min.js')}}"></script>
 <!-- lightslider -->
 <script src="{{asset('hotel-booking/js/lightslider.js')}}"></script>
-
 <!-- wow Animation -->
 <script src="{{asset('hotel-booking/js/wow.min.js')}}"></script>
 <!--Activating WOW Animation only for modern browser-->

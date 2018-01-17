@@ -22,7 +22,7 @@ class RoomController extends Controller
     public function allRoomType(RoomType $id)
     {
         $roomType = $id->id;
-        $rooms = Room::Where('room_type_id', '=', $roomType )->get();
+        $rooms = Room::Where('room_type_id', '=', $roomType )->paginate(4);
         return view('hotel.seachRoom.seachRoomType', compact('rooms'));
     }
 
@@ -53,14 +53,14 @@ class RoomController extends Controller
                     $query->where('name', '=', $roomType);
                 })
                 ->whereHas('roomSizes', function ($query) use ($size) {
-                    $query->where('size', '=', $size);
+                    $query->where('name', '=', $size);
                 })
                 ->Orwhere('status', '=', 1)
                 ->whereHas('roomTypes', function ($query) use ($roomType) {
                     $query->where('name', '=', $roomType);
                 })
                 ->whereHas('roomSizes', function ($query) use ($size) {
-                    $query->where('size', '=', $size);
+                    $query->where('name', '=', $size);
                 })
                 ->whereDoesntHave('bookings', function ($query) use ($from) {
                     $query->where('status', 0)->where('check_in', '<=', $from)->where('check_out', '>=', $from)
@@ -254,7 +254,7 @@ class RoomController extends Controller
             ->OrwhereHas('roomSizes', function ($query) use ($search) {
                 $query->where('name', 'LIKE', '%' . $search . '%');
             })
-            ->paginate(1);
+            ->paginate(25);
         return view('admins.rooms.listAllSearchRoom', compact('rooms'));
     }
 

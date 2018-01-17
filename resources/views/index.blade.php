@@ -58,23 +58,23 @@
 </div>
 <!-- end preloader -->
 <!-- start header -->
-@include('hotel.layouts.header');
+@include('hotel.layouts.header')
 <!-- end header -->
 <!-- start main slider -->
 @include('hotel.layouts.sildeIndex')
-@include('hotel.layouts.availability');
+@include('hotel.layouts.availability')
 <!-- end main slider -->
 
 <!-- start welcome section -->
-@include('hotel.layouts.section');
+@include('hotel.layouts.section')
 <!-- end welcome section -->
 
 <!-- start Hotel Facilities section -->
-@include('hotel.layouts.hotelsection');
+@include('hotel.layouts.hotelsection')
 <!-- end Hotel Facilities section -->
 
 <!-- start footer -->
-@include('hotel.layouts.footer');
+@include('hotel.layouts.footer')
 <!-- end footer -->
 
 

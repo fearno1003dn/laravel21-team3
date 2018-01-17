@@ -63,7 +63,7 @@
                                     </td>
                                     <td>{!! $booking->code !!}</td>
                                     <td>{!! number_format($booking->total) !!} $</td>
-                                    <td>@if($booking->status == 0 && $booking->check_in > $date) <a href="{{url('/user/edit')}}" >Cancel Booking</a>
+                                    <td>@if($booking->status == 0 && $booking->check_in > $date) <a href="{{url('/user/bookings/cancel/'.$booking->id)}}" >Cancel Booking</a>
                                         @else <a href="#" ></i>Not Active</a>
                                     @endif</td>        
                                 </tr>

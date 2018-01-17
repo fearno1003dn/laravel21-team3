@@ -31,7 +31,7 @@ use App\Http\Requests\CheckInRoomRequest;
 
 class BookingController extends Controller
 {
-    public function add(Request $request, $id)
+    public function addRoom(Request $request, $id)
     {
         $arrival = strtotime($request->session()->get('arrival'));
         $departure = strtotime($request->session()->get('departure'));

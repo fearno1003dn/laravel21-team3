@@ -19,7 +19,6 @@
                             @endif
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="description" class="col-md-4 control-label">Description</label>
                             <div class="col-md-6">
@@ -32,7 +31,22 @@
                             @endif
                             </div>
                         </div>
+                        <div class="form-group">
 
+                            <label for="image1" class="col-md-4 control-label">Image 1</label>
+                            <div class="col-md-6">
+                                <td>
+                                    <img src="{!!url('/images/upload/rooms/'.$roomType->image)!!}" alt="" style='width: 50px; height: 30px;'>
+                                </td>
+                                {!! Form::file('image',['class'=>'form-control', 'id' => 'image']) !!}
+
+                                @if ($errors->has('image'))
+                                    <span class="text-danger">
+                                    <strong>{{ $errors->first('image') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary pull-right">
@@ -40,7 +54,6 @@
                                 </button>
                             </div>
                         </div>
-
                         @if ( $errors->any() )
                         <div class="form-group">
                           <label for="errors" class="col-md-4 control-label">Summary All Errors</label>
@@ -55,8 +68,6 @@
                       </div>
                       </div>
                         @endif
-
-                    </form>
                 </div>
             </div>
         </div>
